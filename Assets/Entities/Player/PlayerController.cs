@@ -6,14 +6,9 @@ public class PlayerController : MonoBehaviour {
 	//  Variables for restricting movement
 	private float xMin, xMax, yMin, yMax, padding = 0.5f;
 	
-<<<<<<< HEAD
 	public GameObject shortBullet;
 	public float shortBulletSpeed = 10;
 	public float shortBulletShootRate = 0.15f;
-=======
-	// Passing user position
-	public GameObject userPos; 
->>>>>>> enemies
 	
 	// Use this for initialization
 	void Start () {
@@ -28,7 +23,6 @@ public class PlayerController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update() {
-<<<<<<< HEAD
 		
 		// Fire bullet at a fixed rate if screen is touched or space is pressed
 		if((Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Began) ||
@@ -41,9 +35,7 @@ public class PlayerController : MonoBehaviour {
 			CancelInvoke("ShootShortBullet");
 		}
 		// Follow touch swipe or mouse left-click
-=======
-		//UserPos = transform.position;
->>>>>>> enemies
+
 		FollowSwipe ();
 	}
 	
@@ -78,11 +70,7 @@ public class PlayerController : MonoBehaviour {
 		float newX = Mathf.Clamp (transform.position.x, xMin, xMax);
 		float newY = Mathf.Clamp (transform.position.y, yMin, yMax);
 		transform.position = new Vector3(newX, newY, transform.position.z);
-<<<<<<< HEAD
 
-=======
-		
->>>>>>> enemies
 	}
 
 }
