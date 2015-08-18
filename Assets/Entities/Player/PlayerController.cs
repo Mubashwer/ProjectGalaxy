@@ -6,6 +6,9 @@ public class PlayerController : MonoBehaviour {
 	//  Variables for restricting movement
 	private float xMin, xMax, yMin, yMax, padding = 0.5f;
 	
+	// Passing user position
+	public GameObject userPos; 
+	
 	// Use this for initialization
 	void Start () {
 		
@@ -19,7 +22,7 @@ public class PlayerController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update() {
-		
+		//UserPos = transform.position;
 		FollowSwipe ();
 	}
 	
@@ -43,6 +46,7 @@ public class PlayerController : MonoBehaviour {
 		float newX = Mathf.Clamp (transform.position.x, xMin, xMax);
 		float newY = Mathf.Clamp (transform.position.y, yMin, yMax);
 		transform.position = new Vector3(newX, newY, transform.position.z);
+		
 	}
 
 }
