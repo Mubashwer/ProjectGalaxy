@@ -1,0 +1,748 @@
+fileFormatVersion: 2
+guid: a300fc8bbdb533245abfe9c4fe5522f2
+timeCreated: 1439991230
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: laser_explosion_small_0
+    21300002: laser_explosion_small_1
+    21300004: laser_explosion_small_2
+    21300006: laser_explosion_small_3
+    21300008: laser_explosion_small_4
+    21300010: laser_explosion_small_5
+    21300012: laser_explosion_small_6
+    21300014: laser_explosion_small_7
+    21300016: laser_explosion_small_8
+    21300018: laser_explosion_small_9
+    21300020: laser_explosion_small_10
+    21300022: laser_explosion_small_11
+    21300024: laser_explosion_small_12
+    21300026: laser_explosion_small_13
+    21300028: laser_explosion_small_14
+    21300030: laser_explosion_small_15
+    21300032: laser_explosion_small_16
+    21300034: laser_explosion_small_17
+    21300036: laser_explosion_small_18
+    21300038: laser_explosion_small_19
+    21300040: laser_explosion_small_20
+    21300042: laser_explosion_small_21
+    21300044: laser_explosion_small_22
+    21300046: laser_explosion_small_23
+    21300048: laser_explosion_small_24
+    21300050: laser_explosion_small_25
+    21300052: laser_explosion_small_26
+    21300054: laser_explosion_small_27
+    21300056: laser_explosion_small_28
+    21300058: laser_explosion_small_29
+    21300060: laser_explosion_small_30
+    21300062: laser_explosion_small_31
+    21300064: laser_explosion_small_32
+    21300066: laser_explosion_small_33
+    21300068: laser_explosion_small_34
+    21300070: laser_explosion_small_35
+    21300072: laser_explosion_small_36
+    21300074: laser_explosion_small_37
+    21300076: laser_explosion_small_38
+    21300078: laser_explosion_small_39
+    21300080: laser_explosion_small_40
+    21300082: laser_explosion_small_41
+    21300084: laser_explosion_small_42
+    21300086: laser_explosion_small_43
+    21300088: laser_explosion_small_44
+    21300090: laser_explosion_small_45
+    21300092: laser_explosion_small_46
+    21300094: laser_explosion_small_47
+    21300096: laser_explosion_small_48
+    21300098: laser_explosion_small_49
+    21300100: laser_explosion_small_50
+    21300102: laser_explosion_small_51
+    21300104: laser_explosion_small_52
+    21300106: laser_explosion_small_53
+    21300108: laser_explosion_small_54
+    21300110: laser_explosion_small_55
+    21300112: laser_explosion_small_56
+    21300114: laser_explosion_small_57
+    21300116: laser_explosion_small_58
+    21300118: laser_explosion_small_59
+    21300120: laser_explosion_small_60
+    21300122: laser_explosion_small_61
+    21300124: laser_explosion_small_62
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: laser_explosion_small_0
+      rect:
+        serializedVersion: 2
+        x: 59
+        y: 285
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: laser_explosion_small_1
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 281
+        width: 25
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: laser_explosion_small_2
+      rect:
+        serializedVersion: 2
+        x: 141
+        y: 277
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: laser_explosion_small_3
+      rect:
+        serializedVersion: 2
+        x: 182
+        y: 273
+        width: 41
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: laser_explosion_small_4
+      rect:
+        serializedVersion: 2
+        x: 228
+        y: 274
+        width: 39
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: laser_explosion_small_5
+      rect:
+        serializedVersion: 2
+        x: 275
+        y: 276
+        width: 35
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: laser_explosion_small_6
+      rect:
+        serializedVersion: 2
+        x: 322
+        y: 281
+        width: 31
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: laser_explosion_small_7
+      rect:
+        serializedVersion: 2
+        x: 370
+        y: 299
+        width: 25
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: laser_explosion_small_8
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 289
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: laser_explosion_small_9
+      rect:
+        serializedVersion: 2
+        x: 59
+        y: 240
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: laser_explosion_small_10
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 236
+        width: 25
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: laser_explosion_small_11
+      rect:
+        serializedVersion: 2
+        x: 141
+        y: 232
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: laser_explosion_small_12
+      rect:
+        serializedVersion: 2
+        x: 182
+        y: 228
+        width: 41
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: laser_explosion_small_13
+      rect:
+        serializedVersion: 2
+        x: 228
+        y: 229
+        width: 39
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: laser_explosion_small_14
+      rect:
+        serializedVersion: 2
+        x: 275
+        y: 231
+        width: 35
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: laser_explosion_small_15
+      rect:
+        serializedVersion: 2
+        x: 322
+        y: 236
+        width: 31
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: laser_explosion_small_16
+      rect:
+        serializedVersion: 2
+        x: 370
+        y: 254
+        width: 25
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: laser_explosion_small_17
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 244
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: laser_explosion_small_18
+      rect:
+        serializedVersion: 2
+        x: 59
+        y: 195
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: laser_explosion_small_19
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 191
+        width: 25
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: laser_explosion_small_20
+      rect:
+        serializedVersion: 2
+        x: 141
+        y: 187
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: laser_explosion_small_21
+      rect:
+        serializedVersion: 2
+        x: 182
+        y: 183
+        width: 41
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: laser_explosion_small_22
+      rect:
+        serializedVersion: 2
+        x: 228
+        y: 184
+        width: 39
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: laser_explosion_small_23
+      rect:
+        serializedVersion: 2
+        x: 275
+        y: 186
+        width: 35
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: laser_explosion_small_24
+      rect:
+        serializedVersion: 2
+        x: 322
+        y: 191
+        width: 31
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: laser_explosion_small_25
+      rect:
+        serializedVersion: 2
+        x: 370
+        y: 209
+        width: 25
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: laser_explosion_small_26
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 199
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: laser_explosion_small_27
+      rect:
+        serializedVersion: 2
+        x: 59
+        y: 150
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: laser_explosion_small_28
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 146
+        width: 25
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: laser_explosion_small_29
+      rect:
+        serializedVersion: 2
+        x: 141
+        y: 142
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: laser_explosion_small_30
+      rect:
+        serializedVersion: 2
+        x: 182
+        y: 138
+        width: 41
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: laser_explosion_small_31
+      rect:
+        serializedVersion: 2
+        x: 228
+        y: 139
+        width: 39
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: laser_explosion_small_32
+      rect:
+        serializedVersion: 2
+        x: 275
+        y: 141
+        width: 35
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: laser_explosion_small_33
+      rect:
+        serializedVersion: 2
+        x: 322
+        y: 146
+        width: 31
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: laser_explosion_small_34
+      rect:
+        serializedVersion: 2
+        x: 370
+        y: 164
+        width: 25
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: laser_explosion_small_35
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 154
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: laser_explosion_small_36
+      rect:
+        serializedVersion: 2
+        x: 59
+        y: 105
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: laser_explosion_small_37
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 101
+        width: 25
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: laser_explosion_small_38
+      rect:
+        serializedVersion: 2
+        x: 141
+        y: 97
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: laser_explosion_small_39
+      rect:
+        serializedVersion: 2
+        x: 182
+        y: 93
+        width: 41
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: laser_explosion_small_40
+      rect:
+        serializedVersion: 2
+        x: 228
+        y: 94
+        width: 39
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: laser_explosion_small_41
+      rect:
+        serializedVersion: 2
+        x: 275
+        y: 96
+        width: 35
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: laser_explosion_small_42
+      rect:
+        serializedVersion: 2
+        x: 322
+        y: 101
+        width: 31
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: laser_explosion_small_43
+      rect:
+        serializedVersion: 2
+        x: 370
+        y: 119
+        width: 25
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: laser_explosion_small_44
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 109
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: laser_explosion_small_45
+      rect:
+        serializedVersion: 2
+        x: 59
+        y: 60
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: laser_explosion_small_46
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 56
+        width: 25
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: laser_explosion_small_47
+      rect:
+        serializedVersion: 2
+        x: 141
+        y: 52
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: laser_explosion_small_48
+      rect:
+        serializedVersion: 2
+        x: 182
+        y: 48
+        width: 41
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: laser_explosion_small_49
+      rect:
+        serializedVersion: 2
+        x: 228
+        y: 49
+        width: 39
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: laser_explosion_small_50
+      rect:
+        serializedVersion: 2
+        x: 275
+        y: 51
+        width: 35
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: laser_explosion_small_51
+      rect:
+        serializedVersion: 2
+        x: 322
+        y: 56
+        width: 31
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: laser_explosion_small_52
+      rect:
+        serializedVersion: 2
+        x: 370
+        y: 74
+        width: 25
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: laser_explosion_small_53
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 64
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: laser_explosion_small_54
+      rect:
+        serializedVersion: 2
+        x: 59
+        y: 15
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: laser_explosion_small_55
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 11
+        width: 25
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: laser_explosion_small_56
+      rect:
+        serializedVersion: 2
+        x: 141
+        y: 7
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: laser_explosion_small_57
+      rect:
+        serializedVersion: 2
+        x: 182
+        y: 3
+        width: 41
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: laser_explosion_small_58
+      rect:
+        serializedVersion: 2
+        x: 228
+        y: 4
+        width: 39
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: laser_explosion_small_59
+      rect:
+        serializedVersion: 2
+        x: 275
+        y: 6
+        width: 35
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: laser_explosion_small_60
+      rect:
+        serializedVersion: 2
+        x: 322
+        y: 11
+        width: 31
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: laser_explosion_small_61
+      rect:
+        serializedVersion: 2
+        x: 370
+        y: 29
+        width: 25
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: laser_explosion_small_62
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 19
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

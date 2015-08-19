@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour {
 	public GameObject projectile;
 	public float projectileSpeed = 10f;
 	public float projectileShootRate = 0.15f;
+	public GameObject hitEffect;
 	
 	// Use this for initialization
 	void Start () {
@@ -44,6 +45,11 @@ public class PlayerController : MonoBehaviour {
 		if(enemyProjectile){
 			health -= enemyProjectile.GetDamage();
 			enemyProjectile.Hit();
+			 // hit effect
+			GameObject hit = Instantiate(hitEffect, transform.position, Quaternion.identity) as GameObject;
+			hit.transform.parent = transform;
+			Destroy(hit, 0.9f);
+			 
 			if (health <= 0) {
 				Destroy(gameObject);
 			}

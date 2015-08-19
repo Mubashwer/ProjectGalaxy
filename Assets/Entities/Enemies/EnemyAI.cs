@@ -3,21 +3,20 @@ using System.Collections;
 
 public class EnemyAI : MonoBehaviour {
 	public float health = 100f;
-	
+	public GameObject hitEffect;
 	public GameObject projectile;
-	
 	public float projectileSpeed = 10f;
 	public float projectileShootRate = 1f;
 	
 	private GameObject player;
-	Vector3 playerPosition;
+	
 	void Start() {
 		player = GameObject.Find ("Player");
 		
 	}
 	
 	void Update(){
-		Vector3 direction;
+		
 		// Rotate towards player
 		if(player){
 			Vector3 dir = transform.position - player.transform.position;
@@ -47,6 +46,13 @@ public class EnemyAI : MonoBehaviour {
 		Projectile playerProjectile = collider.gameObject.GetComponent<Projectile>();
 		if(playerProjectile){
 			playerProjectile.Hit ();
+			GameObject hit = Instantiate(hitEffect, transform.position, Quaternion.identity) as GameObject;
+			hit.transform.parent = transform;
+			Destroy(hit, 0.9f);
+			
+			if (health <= 0) {
+				Destroy(gameObject);
+			}
 			health -= playerProjectile.GetDamage();
 			if (health <= 0) {
 				Die();
