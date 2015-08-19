@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
-  hitEffect: {fileID: 194480, guid: ee8609da9212a57439596e1ee19ba428, type: 2}
+  hitEffect: {fileID: 181810, guid: fe05fcb7bdd20224bb2d76ca1fab7762, type: 2}
   projectile: {fileID: 175764, guid: 20e11034337269949a50fe70ad76420e, type: 2}
   projectileSpeed: 10
   projectileShootRate: 1
@@ -175,7 +175,7 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: hitEffect
       value: 
-      objectReference: {fileID: 194480, guid: ee8609da9212a57439596e1ee19ba428, type: 2}
+      objectReference: {fileID: 181810, guid: fe05fcb7bdd20224bb2d76ca1fab7762, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 103886}
