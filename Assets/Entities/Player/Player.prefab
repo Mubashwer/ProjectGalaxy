@@ -151,6 +151,7 @@ MonoBehaviour:
   projectile: {fileID: 175764, guid: 890b450a8d791c84b8537997c9375c3b, type: 2}
   projectileSpeed: 10
   projectileShootRate: .150000006
+  hitEffect: {fileID: 0}
 --- !u!212 &21241672
 SpriteRenderer:
   m_ObjectHideFlags: 1
