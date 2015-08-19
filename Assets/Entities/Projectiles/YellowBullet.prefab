@@ -12,7 +12,7 @@ GameObject:
   - 50: {fileID: 5036732}
   - 61: {fileID: 6114036}
   - 114: {fileID: 11468838}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: YellowBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -72,7 +72,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 20
-  speed: 10
 --- !u!212 &21285982
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -121,6 +120,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_AngularDrag
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

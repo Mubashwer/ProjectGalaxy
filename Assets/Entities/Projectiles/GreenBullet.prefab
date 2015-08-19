@@ -12,7 +12,7 @@ GameObject:
   - 50: {fileID: 5036732}
   - 61: {fileID: 6114036}
   - 114: {fileID: 11468838}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: GreenBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -126,6 +126,10 @@ Prefab:
       value: 
       objectReference: {fileID: 21300002, guid: d90fd4d9c3a89134199ba6ff40199bd0,
         type: 3}
+    - target: {fileID: 0}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 175764}

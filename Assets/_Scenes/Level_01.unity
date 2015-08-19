@@ -566,6 +566,68 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1323654659}
   m_RootOrder: 2
+--- !u!1 &915957472 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 194960, guid: bb3b89baecaadba4c87ceb621ef8e702, type: 2}
+  m_PrefabInternal: {fileID: 1863316168}
+--- !u!60 &915957473
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 915957472}
+  m_Enabled: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 0}
+  m_Points:
+    m_Paths:
+    - - {x: .291999996, y: -.275999993}
+      - {x: .307999998, y: -.256000012}
+      - {x: .307999998, y: -.172000006}
+      - {x: .123999998, y: .0160000008}
+      - {x: .128000006, y: .064000003}
+      - {x: .100000001, y: .100000001}
+      - {x: .0960000008, y: .156000003}
+      - {x: .0560000017, y: .247999996}
+      - {x: .0120000001, y: .319999993}
+      - {x: -.0120000001, y: .319999993}
+      - {x: -.0240000002, y: .312000006}
+      - {x: -.0280000009, y: .300000012}
+      - {x: -.0560000017, y: .247999996}
+      - {x: -.100000001, y: .156000003}
+      - {x: -.131999999, y: .0719999969}
+      - {x: -.128000006, y: .0120000001}
+      - {x: -.30399999, y: -.164000005}
+      - {x: -.312000006, y: -.180000007}
+      - {x: -.312000006, y: -.25999999}
+      - {x: -.296000004, y: -.280000001}
+      - {x: -.228, y: -.268000007}
+      - {x: -.119999997, y: -.272000015}
+      - {x: -.0920000002, y: -.25999999}
+      - {x: -.0320000015, y: -.319999993}
+      - {x: .0199999996, y: -.319999993}
+      - {x: .0480000004, y: -.307999998}
+      - {x: .0799999982, y: -.268000007}
+      - {x: .128000006, y: -.272000015}
+      - {x: .167999998, y: -.268000007}
+--- !u!50 &915957477
+Rigidbody2D:
+  serializedVersion: 2
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 915957472}
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0
+  m_GravityScale: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &1152075035
 GameObject:
   m_ObjectHideFlags: 0
@@ -746,7 +808,16 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 194960, guid: bb3b89baecaadba4c87ceb621ef8e702, type: 2}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11460916, guid: bb3b89baecaadba4c87ceb621ef8e702, type: 2}
+      propertyPath: health
+      value: 100
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 6162804, guid: bb3b89baecaadba4c87ceb621ef8e702, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: bb3b89baecaadba4c87ceb621ef8e702, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1884012508

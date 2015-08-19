@@ -5,7 +5,7 @@ public class PlayerController : MonoBehaviour {
 
 	//  Variables for restricting movement
 	private float xMin, xMax, yMin, yMax, padding = 0.5f;
-	public float health = 500f;
+	public float health = 100f;
 	public GameObject projectile;
 	public float projectileSpeed = 10f;
 	public float projectileShootRate = 0.15f;
@@ -39,7 +39,17 @@ public class PlayerController : MonoBehaviour {
 		FollowSwipe ();
 	}
 	
-	
+	void OnTriggerEnter2D(Collider2D collider){
+		Projectile enemyProjectile = collider.gameObject.GetComponent<Projectile>();
+		if(enemyProjectile){
+			health -= enemyProjectile.GetDamage();
+			enemyProjectile.Hit();
+			if (health <= 0) {
+				Destroy(gameObject);
+			}
+		}
+	}	
+
 	// Just shoot a bullet
 	void Shoot() {
 		Vector3 bulletPos = transform.position;
