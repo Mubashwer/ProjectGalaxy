@@ -3,8 +3,8 @@ using System.Collections;
 
 public class EnemyController : MonoBehaviour { 
 	
-	public GameObject enemyPrefab; 
-	
+	public GameObject enemyPrefab;
+
 	
 	// Use this for initialization
 	void Start () {
@@ -14,6 +14,6 @@ public class EnemyController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-	
 	}
+
 }

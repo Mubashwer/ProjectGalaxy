@@ -5,10 +5,10 @@ public class PlayerController : MonoBehaviour {
 
 	//  Variables for restricting movement
 	private float xMin, xMax, yMin, yMax, padding = 0.5f;
-	
-	public GameObject shortBullet;
-	public float shortBulletSpeed = 10;
-	public float shortBulletShootRate = 0.15f;
+	public float health = 500f;
+	public GameObject projectile;
+	public float projectileSpeed = 10f;
+	public float projectileShootRate = 0.15f;
 	
 	// Use this for initialization
 	void Start () {
@@ -27,12 +27,12 @@ public class PlayerController : MonoBehaviour {
 		// Fire bullet at a fixed rate if screen is touched or space is pressed
 		if((Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Began) ||
 			Input.GetKeyDown(KeyCode.Space)) {
-			InvokeRepeating("ShootShortBullet", 0.00001f, shortBulletShootRate);
+			InvokeRepeating("Shoot", 0.00001f, projectileShootRate);
 		}
 		if(((Input.touchCount > 0 && (Input.touches[0].phase == TouchPhase.Ended ||
 			Input.touches[0].phase == TouchPhase.Canceled) )) || 
 			Input.GetKeyUp(KeyCode.Space)) {
-			CancelInvoke("ShootShortBullet");
+			CancelInvoke("Shoot");
 		}
 		// Follow touch swipe or mouse left-click
 
@@ -40,13 +40,12 @@ public class PlayerController : MonoBehaviour {
 	}
 	
 	
-	
 	// Just shoot a bullet
-	void ShootShortBullet() {
+	void Shoot() {
 		Vector3 bulletPos = transform.position;
 		bulletPos.y += 0.5f;
-		GameObject laserBeam = Instantiate(shortBullet, bulletPos, Quaternion.identity) as GameObject;
-		laserBeam.GetComponent<Rigidbody2D>().velocity = Vector3.up * shortBulletSpeed;		
+		GameObject instantiatedProjectile = Instantiate(projectile, bulletPos, Quaternion.identity) as GameObject;
+		instantiatedProjectile.GetComponent<Rigidbody2D>().velocity = Vector3.up * projectileSpeed;		
 	}
 	
 	// Move with same velocity as touch swipe
