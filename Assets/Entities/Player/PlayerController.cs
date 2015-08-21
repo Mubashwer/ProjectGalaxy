@@ -48,12 +48,12 @@ public class PlayerController : MonoBehaviour {
 			health -= enemyProjectile.GetDamage();
 			enemyProjectile.Hit();
 			 // hit effect
-			GameObject hit = Instantiate(hitEffect, transform.position, Quaternion.identity) as GameObject;
+			GameObject hit = Instantiate(Resources.Load("YellowBulletHit"), transform.position, Quaternion.identity) as GameObject;
 			hit.transform.parent = transform;
 			Destroy(hit, 0.9f);
 			 
 			if (health <= 0) {
-				Destroy(gameObject);
+				Die ();
 			}
 		}
 	}	
@@ -89,5 +89,10 @@ public class PlayerController : MonoBehaviour {
 		transform.position = new Vector3(newX, newY, transform.position.z);
 
 	}
-
+	
+	void Die(){
+		GameObject explosion = Instantiate(Resources.Load("Explosion"), transform.position, Quaternion.identity) as GameObject;
+		Destroy (explosion,0.5f);
+		Destroy(gameObject);
+	}
 }
