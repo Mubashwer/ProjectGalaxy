@@ -54,10 +54,6 @@ public class EnemyAI : MonoBehaviour {
 			hit.transform.parent = transform;
 			Destroy(hit, 0.9f);
 			
-			if (health <= 0) {
-				Destroy(gameObject);
-				
-			}
 			health -= playerProjectile.GetDamage();
 			if (health <= 0) {
 				scoreKeeper.Score(scoreValue);
@@ -69,7 +65,7 @@ public class EnemyAI : MonoBehaviour {
 	void Die(){
 		GameObject explosion = Instantiate(Resources.Load("Explosion"), transform.position, Quaternion.identity) as GameObject;
 		Destroy (explosion,1f);
-		Destroy(gameObject);
+		Destroy(gameObject,0.5f);
 	}
 }
 
