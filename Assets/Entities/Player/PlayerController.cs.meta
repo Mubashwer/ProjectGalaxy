@@ -1,10 +1,13 @@
 fileFormatVersion: 2
 guid: 43ded0063a2f8b840aafc1ebe73c8982
-timeCreated: 1439377333
+timeCreated: 1440157771
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - projectile: {instanceID: 0}
+  - hitEffect: {instanceID: 0}
+  - shoot_sound: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
