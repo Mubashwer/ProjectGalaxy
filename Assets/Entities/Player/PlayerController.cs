@@ -10,7 +10,6 @@ public class PlayerController : MonoBehaviour {
 	public float projectileSpeed = 10f;
 	public float projectileShootRate = 0.15f;
 	public GameObject hitEffect;
-	public AudioClip shoot_sound;
 	
 	
 	
@@ -66,7 +65,6 @@ public class PlayerController : MonoBehaviour {
 		bulletPos.y += 0.5f;
 		GameObject instantiatedProjectile = Instantiate(projectile, bulletPos, Quaternion.identity) as GameObject;
 		instantiatedProjectile.GetComponent<Rigidbody2D>().velocity = Vector3.up * projectileSpeed;		
-		AudioSource.PlayClipAtPoint (shoot_sound, transform.position);	
 	}
 	
 	// Move with same velocity as touch swipe

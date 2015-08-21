@@ -12,7 +12,6 @@ public class EnemyAI : MonoBehaviour {
 	private ScoreKeeper scoreKeeper;
 	private GameObject player;
 	
-	public AudioClip shoot_sound;
 	
 	void Start() {
 		player = GameObject.Find ("Player");
@@ -45,7 +44,6 @@ public class EnemyAI : MonoBehaviour {
 		Vector3 direction = transform.rotation * Vector3.down;
 		direction.Normalize();
 		instantiatedProjectile.GetComponent<Rigidbody2D>().velocity = direction * projectileSpeed;	
-		AudioSource.PlayClipAtPoint (shoot_sound, transform.position);	
 	}
 	
 	void OnTriggerEnter2D(Collider2D collider){
@@ -70,7 +68,7 @@ public class EnemyAI : MonoBehaviour {
 	
 	void Die(){
 		GameObject explosion = Instantiate(Resources.Load("Explosion"), transform.position, Quaternion.identity) as GameObject;
-		Destroy (explosion,0.5f);
+		Destroy (explosion,1f);
 		Destroy(gameObject);
 	}
 }
