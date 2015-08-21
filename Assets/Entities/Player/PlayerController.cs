@@ -94,7 +94,7 @@ public class PlayerController : MonoBehaviour {
 	void Die(){
 		GameObject explosion = Instantiate(Resources.Load("Explosion"), transform.position, Quaternion.identity) as GameObject;
 		isAlive = false;
-		Destroy (explosion,0.5f);
+		Destroy (explosion,1f);
 		Destroy(gameObject);
 	
 	}

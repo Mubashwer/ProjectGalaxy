@@ -66,7 +66,7 @@ public class EnemyAI : MonoBehaviour {
 		GameObject explosion = Instantiate(Resources.Load("Explosion"), transform.position, Quaternion.identity) as GameObject;
 		isAlive = false;
 		Destroy (explosion,1f);
-		Destroy(gameObject,0.5f);
+		Destroy(gameObject);
 	}
 }
 
