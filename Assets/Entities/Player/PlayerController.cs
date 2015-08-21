@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour {
 	public float projectileShootRate = 0.15f;
 	public GameObject hitEffect;
 	
+	
+	
 	// Use this for initialization
 	void Start () {
 		

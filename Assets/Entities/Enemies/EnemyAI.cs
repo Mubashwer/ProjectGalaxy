@@ -7,11 +7,14 @@ public class EnemyAI : MonoBehaviour {
 	public GameObject projectile;
 	public float projectileSpeed = 10f;
 	public float projectileShootRate = 1f;
+	public int scoreValue = 150;
 	
+	private ScoreKeeper scoreKeeper;
 	private GameObject player;
 	
 	void Start() {
 		player = GameObject.Find ("Player");
+		scoreKeeper = GameObject.Find ("Score").GetComponent<ScoreKeeper>();
 		
 	}
 	
@@ -52,9 +55,11 @@ public class EnemyAI : MonoBehaviour {
 			
 			if (health <= 0) {
 				Destroy(gameObject);
+				
 			}
 			health -= playerProjectile.GetDamage();
 			if (health <= 0) {
+				scoreKeeper.Score(scoreValue);
 				Die();
 			}
 		}
