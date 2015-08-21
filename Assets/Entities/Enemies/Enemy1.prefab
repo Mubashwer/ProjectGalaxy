@@ -99,10 +99,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
-  hitEffect: {fileID: 181810, guid: fe05fcb7bdd20224bb2d76ca1fab7762, type: 2}
   projectile: {fileID: 175764, guid: 20e11034337269949a50fe70ad76420e, type: 2}
   projectileSpeed: 10
   projectileShootRate: 1
+  scoreValue: 150
+  rotationSpeed: 8
 --- !u!212 &21203886
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -176,6 +177,10 @@ Prefab:
       propertyPath: hitEffect
       value: 
       objectReference: {fileID: 181810, guid: fe05fcb7bdd20224bb2d76ca1fab7762, type: 2}
+    - target: {fileID: 0}
+      propertyPath: rotationSpeed
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 103886}
