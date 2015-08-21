@@ -3,7 +3,7 @@ using System.Collections;
 
 public class BackgroundScroller : MonoBehaviour {
 
-	public float scrollingSpeed;
+	public float scrollingSpeed; //set it to different values for parallax effect
 	
 	// Divide asset resolution by pixels per unit and use editor
 	public float imageHeight; 
