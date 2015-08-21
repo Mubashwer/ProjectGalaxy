@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour {
 	public float projectileShootRate = 0.15f;
 	public GameObject hitEffect;
 	
-	
+	private bool isAlive = true;
 	
 	// Use this for initialization
 	void Start () {
@@ -52,7 +52,7 @@ public class PlayerController : MonoBehaviour {
 			GameObject hit = Instantiate(Resources.Load("YellowBulletHit"), transform.position, Quaternion.identity) as GameObject;
 			hit.transform.parent = transform;
 			Destroy(hit, 0.9f);
-			 
+			if(!isAlive) return; 
 			if (health <= 0) {
 				Die ();
 			}
@@ -93,6 +93,7 @@ public class PlayerController : MonoBehaviour {
 	
 	void Die(){
 		GameObject explosion = Instantiate(Resources.Load("Explosion"), transform.position, Quaternion.identity) as GameObject;
+		isAlive = false;
 		Destroy (explosion,0.5f);
 		Destroy(gameObject);
 	

@@ -8,10 +8,10 @@ public class EnemyAI : MonoBehaviour {
 	public float projectileShootRate = 1f;
 	public int scoreValue = 150;
 	public float rotationSpeed = 8f;
-	
+
 	private ScoreKeeper scoreKeeper;
 	private GameObject player;
-	
+	private bool isAlive = true;
 	
 	void Start() {
 		player = GameObject.Find ("Player");
@@ -53,7 +53,7 @@ public class EnemyAI : MonoBehaviour {
 			GameObject hit = Instantiate(Resources.Load("YellowBulletHit"), transform.position, Quaternion.identity) as GameObject;
 			hit.transform.parent = transform;
 			Destroy(hit, 0.9f);
-			
+			if(!isAlive) return;
 			health -= playerProjectile.GetDamage();
 			if (health <= 0) {
 				scoreKeeper.Score(scoreValue);
@@ -64,6 +64,7 @@ public class EnemyAI : MonoBehaviour {
 	
 	void Die(){
 		GameObject explosion = Instantiate(Resources.Load("Explosion"), transform.position, Quaternion.identity) as GameObject;
+		isAlive = false;
 		Destroy (explosion,1f);
 		Destroy(gameObject,0.5f);
 	}
