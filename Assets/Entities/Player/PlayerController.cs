@@ -5,13 +5,14 @@ public class PlayerController : MonoBehaviour {
 
 	//  Variables for restricting movement
 	private float xMin, xMax, yMin, yMax, padding = 0.5f;
-	public float health = 100f;
+	public float maxHealth = 200f;
 	public GameObject projectile;
 	public float projectileSpeed = 10f;
 	public float projectileShootRate = 0.15f;
 	public GameObject hitEffect;
 	
 	private bool isAlive = true;
+	private float health; // current health
 	
 	// Use this for initialization
 	void Start () {
@@ -21,6 +22,7 @@ public class PlayerController : MonoBehaviour {
 		xMax = Camera.main.ViewportToWorldPoint (new Vector3(1,0,distFromCam)).x-padding;
 		yMin = Camera.main.ViewportToWorldPoint (new Vector3(0,0,distFromCam)).y+padding;
 		yMax = Camera.main.ViewportToWorldPoint (new Vector3(1,1,distFromCam)).y-padding;
+		health = maxHealth;
 		
 	}
 	
@@ -41,6 +43,10 @@ public class PlayerController : MonoBehaviour {
 		// Follow touch swipe or mouse left-click
 
 		FollowSwipe ();
+	}
+	
+	public float getHealth() {
+		return health;
 	}
 	
 	void OnTriggerEnter2D(Collider2D collider){
