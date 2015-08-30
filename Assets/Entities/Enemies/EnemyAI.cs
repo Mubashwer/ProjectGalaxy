@@ -43,7 +43,8 @@ public class EnemyAI : MonoBehaviour {
 		GameObject instantiatedProjectile = Instantiate(projectile, bulletPos, transform.rotation) as GameObject;
 		Vector3 direction = transform.rotation * Vector3.down;
 		direction.Normalize();
-		instantiatedProjectile.GetComponent<Rigidbody2D>().velocity = direction * projectileSpeed;	
+		instantiatedProjectile.GetComponent<Rigidbody2D>().velocity = direction * projectileSpeed;
+		instantiatedProjectile.transform.parent = transform;
 	}
 	
 	void OnTriggerEnter2D(Collider2D collider){

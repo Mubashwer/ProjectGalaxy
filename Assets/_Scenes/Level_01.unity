@@ -171,7 +171,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
 --- !u!1 &162123680
 GameObject:
   m_ObjectHideFlags: 0
@@ -839,6 +839,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 103886, guid: ddac5563d5fef4c4d88362861f6c2924, type: 2}
+  difficulty: 2
+  speed: 4
+  enemyCount: 2
 --- !u!4 &1152075037
 Transform:
   m_ObjectHideFlags: 0
@@ -1117,7 +1120,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 408178, guid: bb3b89baecaadba4c87ceb621ef8e702, type: 2}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11460916, guid: bb3b89baecaadba4c87ceb621ef8e702, type: 2}
       propertyPath: maxHealth

@@ -70,7 +70,8 @@ public class PlayerController : MonoBehaviour {
 		Vector3 bulletPos = transform.position;
 		bulletPos.y += 0.5f;
 		GameObject instantiatedProjectile = Instantiate(projectile, bulletPos, Quaternion.identity) as GameObject;
-		instantiatedProjectile.GetComponent<Rigidbody2D>().velocity = Vector3.up * projectileSpeed;		
+		instantiatedProjectile.GetComponent<Rigidbody2D>().velocity = Vector3.up * projectileSpeed;
+		instantiatedProjectile.transform.parent = transform;	
 	}
 	
 	// Move with same velocity as touch swipe
