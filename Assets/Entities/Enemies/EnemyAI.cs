@@ -12,10 +12,18 @@ public class EnemyAI : MonoBehaviour {
 	private ScoreKeeper scoreKeeper;
 	private GameObject player;
 	private bool isAlive = true;
+	private float pos; 
 	
 	void Start() {
 		player = GameObject.Find ("Player");
 		scoreKeeper = GameObject.Find ("Score").GetComponent<ScoreKeeper>();
+		
+		// Initiate random starting position
+		pos = Random.Range(-2f, 2f);
+		transform.position = new Vector3(pos , transform.position.y, transform.position.z);
+		
+		// Random vertical speed
+		transform.GetComponent<Rigidbody2D>().drag = Random.Range(5,10);
 		
 	}
 	
@@ -33,6 +41,9 @@ public class EnemyAI : MonoBehaviour {
 		if(Random.value < probability){
 			Shoot ();
 		}
+		
+		MoveEnemyPosition();
+		
 		
 	}
 	
@@ -69,5 +80,12 @@ public class EnemyAI : MonoBehaviour {
 		Destroy (explosion,1f);
 		Destroy(gameObject);
 	}
+	
+	// Moves the enemy from right to left
+	void MoveEnemyPosition(){
+		pos += Time.deltaTime;
+		transform.position = new Vector3(Mathf.PingPong(pos, 4.0f) - 2.0f, transform.position.y, transform.position.z);
+	}
+	
 }
 
