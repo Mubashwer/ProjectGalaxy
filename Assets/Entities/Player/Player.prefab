@@ -147,11 +147,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43ded0063a2f8b840aafc1ebe73c8982, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 500
+  maxHealth: 300
   projectile: {fileID: 175764, guid: 890b450a8d791c84b8537997c9375c3b, type: 2}
   projectileSpeed: 10
   projectileShootRate: .150000006
   hitEffect: {fileID: 127752, guid: 30cce0b65f3d2c34ead7c7f55f4488de, type: 2}
+  shootSound: {fileID: 8300000, guid: 741c68d5dfdfc194f8471043710ca9ec, type: 3}
 --- !u!212 &21241672
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -215,6 +216,10 @@ Prefab:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: shootSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 741c68d5dfdfc194f8471043710ca9ec, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 194960}

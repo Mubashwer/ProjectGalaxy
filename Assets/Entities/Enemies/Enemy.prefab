@@ -98,12 +98,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f99a9b89c36ac914cb2db43435057ceb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+  health: 200
   projectile: {fileID: 175764, guid: 20e11034337269949a50fe70ad76420e, type: 2}
   projectileSpeed: 10
   projectileShootRate: 1
   scoreValue: 150
   rotationSpeed: 8
+  shootSound: {fileID: 8300000, guid: 9a61bcd03420c954d99bda7a3b8f2323, type: 3}
 --- !u!212 &21203886
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -128,7 +129,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: ca5dd7134b73d46c8867d9c68f873886, type: 3}
+  m_Sprite: {fileID: 21300000, guid: cf8e08c333ca948488bd4496b2f8fe27, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &100100000
 Prefab:
@@ -192,8 +193,28 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: ca5dd7134b73d46c8867d9c68f873886,
+      objectReference: {fileID: 21300000, guid: cf8e08c333ca948488bd4496b2f8fe27,
         type: 3}
+    - target: {fileID: 0}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: health
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: shootSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 9a61bcd03420c954d99bda7a3b8f2323, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 103886}

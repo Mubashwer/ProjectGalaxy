@@ -8,6 +8,7 @@ public class EnemyAI : MonoBehaviour {
 	public float projectileShootRate = 1f;
 	public int scoreValue = 150;
 	public float rotationSpeed = 8f;
+    public AudioClip shootSound;
 
 	private ScoreKeeper scoreKeeper;
 	private GameObject player;
@@ -51,12 +52,13 @@ public class EnemyAI : MonoBehaviour {
 	void Shoot() {
 		if(!player) return;
 		Vector3 bulletPos = transform.position;
+        bulletPos += transform.rotation * (0.5f* Vector3.down); 
 		GameObject instantiatedProjectile = Instantiate(projectile, bulletPos, transform.rotation) as GameObject;
 		Vector3 direction = transform.rotation * Vector3.down;
 		direction.Normalize();
 		instantiatedProjectile.GetComponent<Rigidbody2D>().velocity = direction * projectileSpeed;
-		//instantiatedProjectile.transform.parent = transform;
-	}
+        AudioSource.PlayClipAtPoint(shootSound, instantiatedProjectile.transform.position);
+    }
 	
 	void OnTriggerEnter2D(Collider2D collider){
 		Projectile playerProjectile = collider.gameObject.GetComponent<Projectile>();

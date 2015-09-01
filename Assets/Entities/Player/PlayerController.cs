@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour {
 	public float projectileSpeed = 10f;
 	public float projectileShootRate = 0.15f;
 	public GameObject hitEffect;
+    public AudioClip shootSound;
 	
 	private bool isAlive = true;
 	private float health; // current health
@@ -71,8 +72,8 @@ public class PlayerController : MonoBehaviour {
 		bulletPos.y += 0.5f;
 		GameObject instantiatedProjectile = Instantiate(projectile, bulletPos, Quaternion.identity) as GameObject;
 		instantiatedProjectile.GetComponent<Rigidbody2D>().velocity = Vector3.up * projectileSpeed;
-		//instantiatedProjectile.transform.parent = transform;	
-	}
+        AudioSource.PlayClipAtPoint(shootSound, instantiatedProjectile.transform.position);
+    }
 	
 	// Move with same velocity as touch swipe
 	private void FollowSwipe() {
