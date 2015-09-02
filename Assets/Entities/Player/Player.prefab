@@ -177,7 +177,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: aada790f742b891448abff09ac709956, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 79b89df8603af46cc8e3ed089cf6d2be, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!212 &21288950
 SpriteRenderer:
@@ -220,6 +220,11 @@ Prefab:
       propertyPath: shootSound
       value: 
       objectReference: {fileID: 8300000, guid: 741c68d5dfdfc194f8471043710ca9ec, type: 3}
+    - target: {fileID: 0}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 79b89df8603af46cc8e3ed089cf6d2be,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 194960}
