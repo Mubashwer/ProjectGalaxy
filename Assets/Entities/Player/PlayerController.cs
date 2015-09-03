@@ -115,7 +115,7 @@ public class PlayerController : NetworkBehaviour {
 
 	}
 
-    public void setScore(float points) {
+    public void addScore(float points) {
         score += points;
     }
 

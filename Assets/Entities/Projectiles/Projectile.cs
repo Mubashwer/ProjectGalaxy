@@ -13,6 +13,6 @@ public class Projectile : NetworkBehaviour {
 
     [ClientCallback]
     public void Hit(){
-		Destroy(gameObject);
+		Destroy(gameObject,0.1f);
 	}
 }
