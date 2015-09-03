@@ -1,8 +1,7 @@
 ﻿using UnityEngine;
-using UnityEngine.Networking;
 using System.Collections;
 
-public class Projectile : NetworkBehaviour {
+public class Projectile : MonoBehaviour {
 	
 	public float damage;
     public GameObject owner; //shooter
@@ -11,7 +10,6 @@ public class Projectile : NetworkBehaviour {
 		return damage;
 	}
 
-    [ClientCallback]
     public void Hit(){
 		Destroy(gameObject,0.1f);
 	}

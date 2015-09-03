@@ -85,10 +85,11 @@ public class PlayerController : NetworkBehaviour {
         Vector3 bulletPos = transform.position;
         bulletPos.y += 0.5f;
         GameObject instantiatedProjectile = Instantiate(projectile, bulletPos, Quaternion.identity) as GameObject;
+        NetworkServer.Spawn(instantiatedProjectile);
         instantiatedProjectile.GetComponent<Projectile>().owner = gameObject;
         instantiatedProjectile.GetComponent<Rigidbody2D>().velocity = Vector3.up * projectileSpeed;
         AudioSource.PlayClipAtPoint(shootSound, instantiatedProjectile.transform.position);
-        NetworkServer.Spawn(instantiatedProjectile);
+        
     }
 
     // Move with same velocity as touch swipe
