@@ -11,6 +11,6 @@ public class Projectile : MonoBehaviour {
 	}
 
     public void Hit(){
-		Destroy(gameObject,0.1f);
+		Destroy(gameObject,0.05f);
 	}
 }

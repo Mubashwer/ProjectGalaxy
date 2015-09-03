@@ -133,7 +133,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_TransformSyncMode: 2
-  m_SendInterval: .100000001
+  m_SendInterval: .0384615399
   m_SyncRotationAxis: 3
   m_RotationSyncCompression: 0
   m_SyncSpin: 0
@@ -159,6 +159,7 @@ MonoBehaviour:
   scoreValue: 150
   rotationSpeed: 8
   shootSound: {fileID: 8300000, guid: 9a61bcd03420c954d99bda7a3b8f2323, type: 3}
+  isAlive: 1
 --- !u!212 &21203886
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -269,6 +270,10 @@ Prefab:
       propertyPath: shootSound
       value: 
       objectReference: {fileID: 8300000, guid: 9a61bcd03420c954d99bda7a3b8f2323, type: 3}
+    - target: {fileID: 0}
+      propertyPath: m_SendInterval
+      value: .0384615399
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 103886}

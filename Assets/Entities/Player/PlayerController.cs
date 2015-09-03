@@ -18,7 +18,8 @@ public class PlayerController : NetworkBehaviour {
     [SyncVar]
     private float health; // current health
     [SyncVar]
-    private float score = 0; 
+    private float score = 0;
+
 
     // Use this for initialization
     void Start () {

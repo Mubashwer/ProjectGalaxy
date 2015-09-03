@@ -86,7 +86,7 @@ public class EnemyAI : NetworkBehaviour {
 			health -= playerProjectile.GetDamage();
 			if (health <= 0) {
 				Die();
-                playerProjectile.owner.GetComponent<PlayerController>().addScore(scoreValue);
+                if(playerProjectile.owner) playerProjectile.owner.GetComponent<PlayerController>().addScore(scoreValue);
 			}
 		}
 	}
