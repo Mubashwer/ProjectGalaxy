@@ -11,6 +11,8 @@ GameObject:
   - 212: {fileID: 21276138}
   - 95: {fileID: 9595102}
   - 82: {fileID: 8239154}
+  - 114: {fileID: 11411850}
+  - 114: {fileID: 11498538}
   m_Layer: 0
   m_Name: Explosion
   m_TagString: Untagged
@@ -116,6 +118,58 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &11411850
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 139530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: 870353891bb340e2b2a9c8707e7419ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 34
+    i1: 14
+    i2: 138
+    i3: 10
+    i4: 124
+    i5: 218
+    i6: 201
+    i7: 100
+    i8: 234
+    i9: 42
+    i10: 137
+    i11: 227
+    i12: 19
+    i13: 26
+    i14: 68
+    i15: 24
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
+--- !u!114 &11498538
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 139530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1768714887, guid: 870353891bb340e2b2a9c8707e7419ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TransformSyncMode: 1
+  m_SendInterval: .100000001
+  m_SyncRotationAxis: 7
+  m_RotationSyncCompression: 0
+  m_SyncSpin: 0
+  m_MovementTheshold: .00100000005
+  m_SnapThreshold: 5
+  m_InterpolateRotation: 1
+  m_InterpolateMovement: 1
 --- !u!212 &21276138
 SpriteRenderer:
   m_ObjectHideFlags: 1

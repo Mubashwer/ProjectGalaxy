@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
+using UnityEngine.Networking;
 using System.Collections;
 
-public class EnemyAI : MonoBehaviour {
+public class EnemyAI : NetworkBehaviour {
 	public float health = 100f;
 	public GameObject projectile;
 	public float projectileSpeed = 10f;
@@ -9,47 +10,58 @@ public class EnemyAI : MonoBehaviour {
 	public int scoreValue = 150;
 	public float rotationSpeed = 8f;
     public AudioClip shootSound;
+    public bool isAlive = true;
 
-	private ScoreKeeper scoreKeeper;
-	private GameObject player;
-	private bool isAlive = true;
-	private float pos; 
-	
-	void Start() {
-		player = GameObject.Find ("Player");
-		scoreKeeper = GameObject.Find ("Score").GetComponent<ScoreKeeper>();
-		
-		// Initiate random starting position
-		pos = Random.Range(-2f, 2f);
-		transform.position = new Vector3(pos , transform.position.y, transform.position.z);
-		
-		// Random vertical speed
-		transform.GetComponent<Rigidbody2D>().drag = Random.Range(5,10);
-		
-	}
-	
-	void Update(){
-		
-		// Rotate towards player
-		if(player){
-			Vector3 dir = transform.position - player.transform.position;
-			dir.Normalize();
-			float rotationZ = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-			transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0f, 0f, (rotationZ - 90)), Time.deltaTime * rotationSpeed);
-		}
-		// Shoot at player
-		float probability = projectileShootRate * Time.deltaTime;
-		if(Random.value < probability){
-			Shoot ();
-		}
-		
-		MoveEnemyPosition();
-		
-		
-	}
-	
-	// Just shoot a bullet towards the player
-	void Shoot() {
+	private float pos;
+    [SyncVar]
+    private GameObject player;
+
+
+    void Start()
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
+        InvokeRepeating("SetPlayer", 0.0001f, Random.Range(2.0f, 4.0f));
+
+    }
+
+    // Change target player from time to time
+    [ServerCallback]
+    void SetPlayer()
+    {
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        int count = players.GetLength(0);
+        int id = Random.Range(0, count);
+        if (count > 0) {
+            player = players[id];
+        }
+    }
+
+
+    [ServerCallback]
+    void Update()
+    {
+        // Rotate towards player
+        if (player) {
+            Vector3 dir = transform.position - player.transform.position;
+            dir.Normalize();
+            float rotationZ = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0f, 0f, (rotationZ - 90)), Time.deltaTime * rotationSpeed);
+        }
+        else {
+            SetPlayer();
+        }
+
+        // Shoot at player
+        float probability = projectileShootRate * Time.deltaTime;
+        if (Random.value < probability) {
+            RpcShoot();
+        }
+        MoveEnemyPosition();
+    }
+
+    // Just shoot a bullet towards the player
+    [ClientRpc]
+    void RpcShoot() {
 		if(!player) return;
 		Vector3 bulletPos = transform.position;
         bulletPos += transform.rotation * (0.5f* Vector3.down); 
@@ -58,8 +70,11 @@ public class EnemyAI : MonoBehaviour {
 		direction.Normalize();
 		instantiatedProjectile.GetComponent<Rigidbody2D>().velocity = direction * projectileSpeed;
         AudioSource.PlayClipAtPoint(shootSound, instantiatedProjectile.transform.position);
+        NetworkServer.Spawn(instantiatedProjectile);
+
     }
 	
+
 	void OnTriggerEnter2D(Collider2D collider){
 		Projectile playerProjectile = collider.gameObject.GetComponent<Projectile>();
 		if(playerProjectile){
@@ -70,7 +85,6 @@ public class EnemyAI : MonoBehaviour {
 			if(!isAlive) return;
 			health -= playerProjectile.GetDamage();
 			if (health <= 0) {
-				scoreKeeper.Score(scoreValue);
 				Die();
 			}
 		}
@@ -78,6 +92,7 @@ public class EnemyAI : MonoBehaviour {
 	
 	void Die(){
 		GameObject explosion = Instantiate(Resources.Load("Explosion"), transform.position, Quaternion.identity) as GameObject;
+        NetworkServer.Spawn(explosion);
 		isAlive = false;
 		Destroy (explosion,1f);
 		Destroy(gameObject);

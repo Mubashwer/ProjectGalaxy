@@ -12,6 +12,8 @@ GameObject:
   - 50: {fileID: 5036732}
   - 61: {fileID: 6114036}
   - 114: {fileID: 11468838}
+  - 114: {fileID: 11442734}
+  - 114: {fileID: 11470260}
   m_Layer: 10
   m_Name: GreenBullet
   m_TagString: Untagged
@@ -60,6 +62,38 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: .0599999987, y: .460000008}
+--- !u!114 &11442734
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 175764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: 870353891bb340e2b2a9c8707e7419ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 32
+    i1: 225
+    i2: 16
+    i3: 52
+    i4: 51
+    i5: 114
+    i6: 105
+    i7: 148
+    i8: 154
+    i9: 80
+    i10: 254
+    i11: 112
+    i12: 173
+    i13: 118
+    i14: 66
+    i15: 14
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
 --- !u!114 &11468838
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -72,6 +106,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 20
+  owner: {fileID: 0}
+--- !u!114 &11470260
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 175764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1768714887, guid: 870353891bb340e2b2a9c8707e7419ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TransformSyncMode: 2
+  m_SendInterval: .100000001
+  m_SyncRotationAxis: 3
+  m_RotationSyncCompression: 0
+  m_SyncSpin: 0
+  m_MovementTheshold: .00100000005
+  m_SnapThreshold: 5
+  m_InterpolateRotation: 1
+  m_InterpolateMovement: 1
 --- !u!212 &21285982
 SpriteRenderer:
   m_ObjectHideFlags: 1
