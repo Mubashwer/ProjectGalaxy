@@ -27,11 +27,11 @@ public class EnemyController : NetworkBehaviour {
     IEnumerator SpawnEnemies() {
 		while(true){
 			InitiateEnemy();
-			yield return new WaitForSeconds(4-0.8f*Mathf.Sqrt(enemySpawn));
-			if(EnemiesDead()){
+			yield return new WaitForSeconds(Random.Range(1.0f,3.5f));
+			/*if(EnemiesDead()){
 				yield return new WaitForSeconds(1);
 				RpcGameWon();
-			}
+			}*/
 			
 		}
 	}
@@ -42,10 +42,10 @@ public class EnemyController : NetworkBehaviour {
         if (enemySpawn < enemyCount){ 
 			// [-4.0f, 4.0f] is screen width
 			// [6.0f] top of the screen
-			Vector3 position = new Vector3(Random.Range(-4.0F, 4.0F), 5.5f, 0); 
+			Vector3 position = new Vector3(Random.Range(-2.0F, 2.0F), 5.5f, 0);
 			GameObject Enemy = Instantiate(enemyPrefab, position, Quaternion.identity) as GameObject;
 	            
-			Enemy.transform.parent = transform;
+
             NetworkServer.Spawn(Enemy);
 			enemySpawn++; 
 		}

@@ -878,7 +878,7 @@ MonoBehaviour:
   enemyPrefab: {fileID: 103886, guid: ddac5563d5fef4c4d88362861f6c2924, type: 2}
   levelManager: {fileID: 0}
   speed: 4
-  enemyCount: 10
+  enemyCount: 100
   enemyKilled: 0
 --- !u!4 &1152075037
 Transform:

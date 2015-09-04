@@ -21,6 +21,11 @@ public class EnemyAI : NetworkBehaviour {
     {
         player = GameObject.FindGameObjectWithTag("Player");
         InvokeRepeating("SetPlayer", 0.0001f, Random.Range(2.0f, 4.0f));
+        pos = transform.position.x;
+
+
+        // Random vertical speed
+        transform.GetComponent<Rigidbody2D>().drag = Random.Range(5, 10);
 
     }
 
