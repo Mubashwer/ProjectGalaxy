@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Networking;
 using System.Collections;
 
 public class Shredder : MonoBehaviour {
@@ -6,6 +7,7 @@ public class Shredder : MonoBehaviour {
 	// Destroy objects e.g bullets when the enter shredder
 	// outside screen
 	void OnTriggerEnter2D(Collider2D collider) {
-		Destroy (collider.gameObject);
+		if(collider.gameObject.tag != "Player")
+            NetworkServer.Destroy(collider.gameObject);
 	}
 }

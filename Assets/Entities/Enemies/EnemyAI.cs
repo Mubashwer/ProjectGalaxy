@@ -13,7 +13,7 @@ public class EnemyAI : NetworkBehaviour {
     public bool isAlive = true;
 
 	private float pos;
-    [SyncVar]
+    //[SyncVar]
     private GameObject player;
 
 
@@ -78,15 +78,16 @@ public class EnemyAI : NetworkBehaviour {
         NetworkServer.Spawn(instantiatedProjectile);
 
     }
-	
 
-	void OnTriggerEnter2D(Collider2D collider){
+    [ServerCallback]
+    void OnTriggerEnter2D(Collider2D collider){
 		Projectile playerProjectile = collider.gameObject.GetComponent<Projectile>();
 		if(playerProjectile){
 			playerProjectile.Hit ();
-			GameObject hit = Instantiate(Resources.Load("YellowBulletHit"), transform.position, Quaternion.identity) as GameObject;
-			hit.transform.parent = transform;
-			Destroy(hit, 0.9f);
+			GameObject hit = Instantiate(Resources.Load("YellowBulletHit"), transform.position, Quaternion.identity) as GameObject;            
+            hit.transform.parent = transform;
+            NetworkServer.Spawn(hit);
+            Destroy(hit,0.9f);
 			if(!isAlive) return;
 			health -= playerProjectile.GetDamage();
 			if (health <= 0) {

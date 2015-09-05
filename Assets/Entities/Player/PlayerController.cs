@@ -21,6 +21,17 @@ public class PlayerController : NetworkBehaviour {
     private float score = 0;
 
 
+    public override void OnStartClient() {
+        base.OnStartClient();
+
+        // CHange colour and start position of second player
+        if (GameObject.FindGameObjectsWithTag("Player").Length > 1) { 
+            GetComponent<SpriteRenderer>().color = Color.yellow;
+            transform.position = GameObject.Find("StartPosition2").transform.position;
+        }
+
+    }
+
     // Use this for initialization
     void Start () {
 		
@@ -30,7 +41,7 @@ public class PlayerController : NetworkBehaviour {
 		yMin = Camera.main.ViewportToWorldPoint (new Vector3(0,0,distFromCam)).y+padding;
 		yMax = Camera.main.ViewportToWorldPoint (new Vector3(1,1,distFromCam)).y-padding;
 		health = maxHealth;
-		
+        DontDestroyOnLoad(gameObject);
 	}
 	
 	
@@ -49,27 +60,29 @@ public class PlayerController : NetworkBehaviour {
         }
 		// Follow touch swipe or mouse left-click
 		FollowSwipe ();
+
 	}
     IEnumerator KeepShooting(GameObject shooter)
     {
         while (true) {
-            CmdShoot();
             yield return new WaitForSeconds(projectileShootRate);
+            CmdShoot();
         }
     }
 
     public float getHealth() {
 		return health;
 	}
-	
-	void OnTriggerEnter2D(Collider2D collider){
+
+    [ServerCallback]
+    void OnTriggerEnter2D(Collider2D collider){
 		Projectile enemyProjectile = collider.gameObject.GetComponent<Projectile>();
 		if(enemyProjectile){
 			health -= enemyProjectile.GetDamage();
 			enemyProjectile.Hit();
 			 // hit effect
 			GameObject hit = Instantiate(Resources.Load("YellowBulletHit"), transform.position, Quaternion.identity) as GameObject;
-			hit.transform.parent = transform;
+            hit.transform.parent = transform;
             NetworkServer.Spawn(hit);
             Destroy(hit, 0.9f);
 			if(!isAlive) return; 

@@ -5,11 +5,7 @@ using System.Collections;
 public class EnemyController : NetworkBehaviour { 
 	
 	public GameObject enemyPrefab;
-	public LevelManager levelManager;
-	public float speed = 20f;
-	public float enemyCount = 1; 
-	public int enemyKilled = 0;
-
+	public float enemyCount = 10;
 	private float enemySpawn = 0;
 	
 	
@@ -27,7 +23,7 @@ public class EnemyController : NetworkBehaviour {
     IEnumerator SpawnEnemies() {
 		while(true){
 			InitiateEnemy();
-			yield return new WaitForSeconds(Random.Range(1.0f,3.5f));
+			yield return new WaitForSeconds(Random.Range(1.0f,2.0f));
 			/*if(EnemiesDead()){
 				yield return new WaitForSeconds(1);
 				RpcGameWon();

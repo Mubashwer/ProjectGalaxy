@@ -149,7 +149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43ded0063a2f8b840aafc1ebe73c8982, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 10000
+  maxHealth: 100000
   projectile: {fileID: 175764, guid: 890b450a8d791c84b8537997c9375c3b, type: 2}
   projectileSpeed: 10
   projectileShootRate: .150000006
@@ -168,7 +168,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_TransformSyncMode: 2
-  m_SendInterval: .0384615399
+  m_SendInterval: .0333333351
   m_SyncRotationAxis: 3
   m_RotationSyncCompression: 0
   m_SyncSpin: 0
@@ -354,11 +354,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: maxHealth
-      value: 10000
+      value: 100000
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_SendInterval
-      value: .0384615399
+      value: .0333333351
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
