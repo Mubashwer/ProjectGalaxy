@@ -1,29 +1,43 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Networking;
 using System.Collections;
 
-public class HealthGUI : MonoBehaviour {
+public class HealthGUI : MonoBehaviour
+{
 
-	// Use this for initialization
-	private GameObject player; // health
-	private float maxHealth; //maximum health of player
-	
-	void Start () {
-		player = GameObject.Find ("Player");
-		if(player)
-			maxHealth = player.GetComponent<PlayerController>().maxHealth;
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-		float health;
-		if (player){
-			health = player.GetComponent<PlayerController>().getHealth();
-		}
-		else {
-			health = 0;
-		}
-		gameObject.GetComponent<Image>().fillAmount = health/maxHealth;
-	}
+    // Use this for initialization
+    private GameObject player; // health
+    private float maxHealth; //maximum health of player
+    private GameManager gameManager;
+
+    bool playerSet = false;
+
+
+    void Start() {
+        gameManager = GameManager.instance;
+    }
+
+    void FindPlayer() {
+        if (!playerSet) {
+            player = gameManager.FindLocalPlayer();
+            if (player) {
+                playerSet = true;
+                maxHealth = player.GetComponent<PlayerController>().maxHealth;
+            }
+        }
+    }
+
+    // Update is called once per frame
+    void Update() {
+        float health;
+        FindPlayer();
+        if (player) {
+            health = player.GetComponent<PlayerController>().getHealth();
+        }
+        else {
+            health = 0;
+        }
+        gameObject.GetComponent<Image>().fillAmount = health / maxHealth;
+    }
 }
