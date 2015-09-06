@@ -74,7 +74,7 @@ public class PlayerController : NetworkBehaviour {
 		return health;
 	}
 
-    [ServerCallback]
+//    [ServerCallback]
     void OnTriggerEnter2D(Collider2D collider){
 		Projectile enemyProjectile = collider.gameObject.GetComponent<Projectile>();
 		if(enemyProjectile){

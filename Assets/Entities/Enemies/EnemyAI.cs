@@ -79,7 +79,7 @@ public class EnemyAI : NetworkBehaviour {
 
     }
 
-    [ServerCallback]
+//    [ServerCallback]
     void OnTriggerEnter2D(Collider2D collider){
 		Projectile playerProjectile = collider.gameObject.GetComponent<Projectile>();
 		if(playerProjectile){
