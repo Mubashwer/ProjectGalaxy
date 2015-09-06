@@ -85,7 +85,7 @@ public class PlayerController : NetworkBehaviour {
             hit.transform.parent = transform;
             NetworkServer.Spawn(hit);
             Destroy(hit, 0.9f);
-			if(!isAlive) return; 
+            if (!isAlive) return; 
 			if (health <= 0) {
 				Die ();
 			}
@@ -137,6 +137,8 @@ public class PlayerController : NetworkBehaviour {
     public float getScore() {
         return score;
     }
+
+    
 
     void Die(){
 		GameObject explosion = Instantiate(Resources.Load("Explosion"), transform.position, Quaternion.identity) as GameObject;
