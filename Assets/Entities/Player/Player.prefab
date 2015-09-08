@@ -218,6 +218,7 @@ MonoBehaviour:
   hitEffect: {fileID: 127752, guid: 30cce0b65f3d2c34ead7c7f55f4488de, type: 2}
   shootSound: {fileID: 8300000, guid: 741c68d5dfdfc194f8471043710ca9ec, type: 3}
   isAlive: 1
+  mySprite: {fileID: 21300002, guid: 1606fa470dc9f4ac482b4dbe93d7414f, type: 3}
 --- !u!114 &11462354
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -294,7 +295,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 79b89df8603af46cc8e3ed089cf6d2be, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1606fa470dc9f4ac482b4dbe93d7414f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!212 &21276396
 SpriteRenderer:
@@ -366,7 +367,7 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 79b89df8603af46cc8e3ed089cf6d2be,
+      objectReference: {fileID: 21300000, guid: 1606fa470dc9f4ac482b4dbe93d7414f,
         type: 3}
     - target: {fileID: 0}
       propertyPath: m_AssetId.i0
@@ -452,6 +453,11 @@ Prefab:
       propertyPath: m_LocalPosition.z
       value: -1
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: mySprite
+      value: 
+      objectReference: {fileID: 21300002, guid: 1606fa470dc9f4ac482b4dbe93d7414f,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 194960}
