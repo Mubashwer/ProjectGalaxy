@@ -13,6 +13,7 @@ public class PlayerController : NetworkBehaviour {
 	public GameObject hitEffect;
     public AudioClip shootSound;
     public bool isAlive = true;
+	public Sprite mySprite;
 
     private float xMin, xMax, yMin, yMax, padding = 0.5f;
     [SyncVar]
@@ -26,9 +27,10 @@ public class PlayerController : NetworkBehaviour {
 
         // CHange colour and start position of second player
         if (GameObject.FindGameObjectsWithTag("Player").Length > 1) { 
-            GetComponent<SpriteRenderer>().color = Color.yellow;
-            transform.position = GameObject.Find("StartPosition2").transform.position;
+			GetComponent<SpriteRenderer>().sprite = mySprite;
+			transform.position = GameObject.Find("StartPosition2").transform.position;
         }
+        	
 
     }
 
