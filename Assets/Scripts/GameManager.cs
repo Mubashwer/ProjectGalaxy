@@ -37,13 +37,13 @@ public class GameManager : MonoBehaviour
 
 
     // Find local player
-    public GameObject FindLocalPlayer() {
+    public PlayerController FindLocalPlayer() {
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-        GameObject player = null;
+        PlayerController player = null;
         if (players.GetLength(0) > 0) {
             foreach (GameObject p in players) {
                 if (p.GetComponent<PlayerController>().isLocalPlayer) {
-                    player = p;
+                    player = p.GetComponent<PlayerController>();
                     break;
                 }
             }

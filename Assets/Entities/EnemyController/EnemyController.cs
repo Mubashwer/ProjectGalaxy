@@ -20,6 +20,7 @@ public class EnemyController : NetworkBehaviour {
 
 
     // Spawn enemies every x seconds
+    [Server]
     IEnumerator SpawnEnemies() {
 		while(true){
 			InitiateEnemy();
@@ -40,9 +41,9 @@ public class EnemyController : NetworkBehaviour {
 			// [6.0f] top of the screen
 			Vector3 position = new Vector3(Random.Range(-2.0F, 2.0F), 5.5f, 0);
 			GameObject Enemy = Instantiate(enemyPrefab, position, Quaternion.identity) as GameObject;
-	            
 
-            NetworkServer.Spawn(Enemy);
+
+            if (NetworkServer.active) NetworkServer.Spawn(Enemy);
 			enemySpawn++; 
 		}
 

@@ -3,7 +3,11 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Canvas
+  - PowerUpHUD
+  - HealthHUD
+  - ScoreHUD
   layers:
   - Default
   - TransparentFX
@@ -17,8 +21,8 @@ TagManager:
   - Enemies
   - EnemyProjectiles
   - FriendlyProjectiles
-  - 
-  - 
+  - PowerUpItem
+  - PowerUp
   - 
   - 
   - 

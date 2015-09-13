@@ -75,7 +75,7 @@ public class EnemyAI : NetworkBehaviour {
 		direction.Normalize();
 		instantiatedProjectile.GetComponent<Rigidbody2D>().velocity = direction * projectileSpeed;
         AudioSource.PlayClipAtPoint(shootSound, instantiatedProjectile.transform.position);
-        NetworkServer.Spawn(instantiatedProjectile);
+        if(NetworkServer.active) NetworkServer.Spawn(instantiatedProjectile);
 
     }
 
@@ -87,7 +87,7 @@ public class EnemyAI : NetworkBehaviour {
 			playerProjectile.Hit ();
 			GameObject hit = Instantiate(Resources.Load("YellowBulletHit"), transform.position, Quaternion.identity) as GameObject;            
             hit.transform.parent = transform;
-            NetworkServer.Spawn(hit);
+            if(NetworkServer.active) NetworkServer.Spawn(hit);
             Destroy(hit,0.9f);
 			if(!isAlive) return;
 			health -= playerProjectile.GetDamage();
@@ -100,7 +100,7 @@ public class EnemyAI : NetworkBehaviour {
 	
 	void Die(){
 		GameObject explosion = Instantiate(Resources.Load("Explosion"), transform.position, Quaternion.identity) as GameObject;
-        NetworkServer.Spawn(explosion);
+        if(NetworkServer.active)  NetworkServer.Spawn(explosion);
 		isAlive = false;
 		Destroy (explosion,1f);
 		Destroy(gameObject);

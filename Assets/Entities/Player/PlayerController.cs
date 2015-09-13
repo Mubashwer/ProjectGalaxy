@@ -14,12 +14,19 @@ public class PlayerController : NetworkBehaviour {
     public AudioClip shootSound;
     public bool isAlive = true;
 	public Sprite mySprite;
+    public PowerUpItem item;
+    public GameObject powerUpObject;
+    public PowerUp powerUp;
+
 
     private float xMin, xMax, yMin, yMax, padding = 0.5f;
     [SyncVar]
     private float health; // current health
     [SyncVar]
     private float score = 0;
+
+   
+
 
 
     public override void OnStartClient() {
@@ -78,6 +85,11 @@ public class PlayerController : NetworkBehaviour {
 
 
     void OnTriggerEnter2D(Collider2D collider){
+        if (item && powerUp && powerUp.isActivated() && powerUp.isDefensive) {
+            powerUp.Defend(collider);
+            return;
+        }
+
         Projectile enemyProjectile = collider.gameObject.GetComponent<Projectile>();
 		if(enemyProjectile){
 			health -= enemyProjectile.GetDamage();
@@ -85,7 +97,7 @@ public class PlayerController : NetworkBehaviour {
 			 // hit effect
 			GameObject hit = Instantiate(Resources.Load("YellowBulletHit"), transform.position, Quaternion.identity) as GameObject;
             hit.transform.parent = transform;
-            NetworkServer.Spawn(hit);
+            if(NetworkServer.active) NetworkServer.Spawn(hit);
             Destroy(hit, 0.9f);
 			if(!isAlive) return; 
 			if (health <= 0) {
@@ -101,12 +113,35 @@ public class PlayerController : NetworkBehaviour {
         Vector3 bulletPos = transform.position;
         bulletPos.y += 0.5f;
         GameObject instantiatedProjectile = Instantiate(projectile, bulletPos, Quaternion.identity) as GameObject;
-        NetworkServer.Spawn(instantiatedProjectile);
+        if(NetworkServer.active) NetworkServer.Spawn(instantiatedProjectile);
         instantiatedProjectile.GetComponent<Projectile>().owner = gameObject;
         instantiatedProjectile.GetComponent<Rigidbody2D>().velocity = Vector3.up * projectileSpeed;
         AudioSource.PlayClipAtPoint(shootSound, instantiatedProjectile.transform.position);
         
     }
+
+    [Command]
+    public void CmdDestroyPowerUpItem() {
+        if (item.isServer) NetworkServer.Destroy(item.gameObject);
+        if (gameObject) Destroy(item.gameObject);
+    }
+
+    [Command]
+    public void CmdDestroyPowerUp() {
+        powerUp.WrapUp();
+        if(powerUp.isServer) NetworkServer.Destroy(powerUp.gameObject);
+        if (powerUp.gameObject) Destroy(powerUp.gameObject);
+    }
+
+    [ClientRpc]
+    public void RpcDestroyPowerUp() {
+        powerUp.WrapUp();
+        if (powerUp.isServer) NetworkServer.Destroy(powerUp.gameObject);
+        if (powerUp.gameObject) Destroy(powerUp.gameObject);
+    }
+
+
+
 
     // Move with same velocity as touch swipe
     private void FollowSwipe() {
@@ -143,7 +178,7 @@ public class PlayerController : NetworkBehaviour {
     void Die(){
 		GameObject explosion = Instantiate(Resources.Load("Explosion"), transform.position, Quaternion.identity) as GameObject;
 		isAlive = false;
-        NetworkServer.Spawn(explosion);
+        if(NetworkServer.active) NetworkServer.Spawn(explosion);
         Destroy(explosion,1f);
 		Destroy(gameObject);
 	

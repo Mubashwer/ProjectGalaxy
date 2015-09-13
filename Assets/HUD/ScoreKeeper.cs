@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class ScoreKeeper : MonoBehaviour
 {
 
-    private GameObject player;
+    private PlayerController player;
     private Text myText;
     private GameManager gameManager;
     bool playerSet = false;
@@ -26,7 +26,7 @@ public class ScoreKeeper : MonoBehaviour
     void Update() {
         FindPlayer();
         if (player) {
-            myText.text = player.GetComponent<PlayerController>().getScore().ToString();
+            myText.text = player.getScore().ToString();
         }
     }
 

@@ -7,7 +7,7 @@ public class HealthGUI : MonoBehaviour
 {
 
     // Use this for initialization
-    private GameObject player; // health
+    private PlayerController player; // health
     private float maxHealth; //maximum health of player
     private GameManager gameManager;
 
@@ -23,7 +23,7 @@ public class HealthGUI : MonoBehaviour
             player = gameManager.FindLocalPlayer();
             if (player) {
                 playerSet = true;
-                maxHealth = player.GetComponent<PlayerController>().maxHealth;
+                maxHealth = player.maxHealth;
             }
         }
     }
@@ -33,7 +33,7 @@ public class HealthGUI : MonoBehaviour
         float health;
         FindPlayer();
         if (player) {
-            health = player.GetComponent<PlayerController>().getHealth();
+            health = player.getHealth();
         }
         else {
             health = 0;

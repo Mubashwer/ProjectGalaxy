@@ -219,6 +219,7 @@ MonoBehaviour:
   shootSound: {fileID: 8300000, guid: 741c68d5dfdfc194f8471043710ca9ec, type: 3}
   isAlive: 1
   mySprite: {fileID: 21300002, guid: 1606fa470dc9f4ac482b4dbe93d7414f, type: 3}
+  item: {fileID: 0}
 --- !u!114 &11462354
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -458,6 +459,10 @@ Prefab:
       value: 
       objectReference: {fileID: 21300002, guid: 1606fa470dc9f4ac482b4dbe93d7414f,
         type: 3}
+    - target: {fileID: 0}
+      propertyPath: m_TransformSyncMode
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 194960}
