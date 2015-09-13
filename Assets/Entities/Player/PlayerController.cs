@@ -14,8 +14,8 @@ public class PlayerController : NetworkBehaviour {
     public AudioClip shootSound;
     public bool isAlive = true;
 	public Sprite mySprite;
+
     public PowerUpItem item;
-    public GameObject powerUpObject;
     public PowerUp powerUp;
 
 
@@ -120,23 +120,17 @@ public class PlayerController : NetworkBehaviour {
         
     }
 
+
+    // Functions called by local powerUp HUD to destroy item and powerup
     [Command]
     public void CmdDestroyPowerUpItem() {
         if (item.isServer) NetworkServer.Destroy(item.gameObject);
         if (gameObject) Destroy(item.gameObject);
     }
-
     [Command]
     public void CmdDestroyPowerUp() {
         powerUp.WrapUp();
         if(powerUp.isServer) NetworkServer.Destroy(powerUp.gameObject);
-        if (powerUp.gameObject) Destroy(powerUp.gameObject);
-    }
-
-    [ClientRpc]
-    public void RpcDestroyPowerUp() {
-        powerUp.WrapUp();
-        if (powerUp.isServer) NetworkServer.Destroy(powerUp.gameObject);
         if (powerUp.gameObject) Destroy(powerUp.gameObject);
     }
 

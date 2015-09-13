@@ -6,6 +6,7 @@ using System.Collections;
 public class PowerUpItem : NetworkBehaviour {
 
     public GameObject powerUpPrefab;
+    [SyncVar]
     public bool replaced = false;
 
     // Use this for initialization
@@ -18,6 +19,7 @@ public class PowerUpItem : NetworkBehaviour {
 
     }
 
+
     void OnTriggerEnter2D(Collider2D collider) {
        
         GameObject player = collider.gameObject;
@@ -25,10 +27,9 @@ public class PowerUpItem : NetworkBehaviour {
         if (!player || player.tag != "Player") return; //only players can collect
 
         // If player already has a powerup, replace it
-        if (player.GetComponent<PlayerController>().powerUp) {
+        if (!replaced && player.GetComponent<PlayerController>().powerUp) {
 
-            player.GetComponent<PlayerController>().CmdDestroyPowerUp();
-            if (player.GetComponent<PlayerController>().powerUp.gameObject) Destroy(player.GetComponent<PlayerController>().powerUp.gameObject);
+            player.GetComponent<PlayerController>().powerUp.WrapUp();
             replaced = true;
 
         }
@@ -36,22 +37,21 @@ public class PowerUpItem : NetworkBehaviour {
         gameObject.GetComponent<Rigidbody2D>().isKinematic = true; // will stop moving
         gameObject.GetComponent<Collider2D>().enabled = false; // will no longer collide
         
-        Setup(player); // apply powerUp to player
+        Setup(player.GetComponent<PlayerController>()); // apply powerUp to player
 
     }
 
     // create powerup object from item and assign 
 
 
-    public void Setup(GameObject player) {
-        player.GetComponent<PlayerController>().item = this; // assign to player
+    public void Setup(PlayerController player) {
+        player.item = this; // assign to player
         GameObject powerUpObject = Instantiate(powerUpPrefab) as GameObject; // load powerUp object
-        if (NetworkServer.active) NetworkServer.Spawn(powerUpObject);
-        player.GetComponent<PlayerController>().powerUp = powerUpObject.GetComponent<PowerUp>();
-        player.GetComponent<PlayerController>().powerUp.SetPlayer(player);
+        if (NetworkServer.active && player.isServer && powerUpObject.GetComponent<PowerUp>().isServer) NetworkServer.Spawn(powerUpObject);
+        player.powerUp = powerUpObject.GetComponent<PowerUp>();
+        player.powerUp.SetPlayer(player.gameObject);
         player.GetComponent<PlayerController>().powerUp.Setup();
-        
-
+        replaced = false;
     }
 
 

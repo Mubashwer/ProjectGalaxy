@@ -19,17 +19,18 @@ public class PowerUp : NetworkBehaviour {
     public bool isPermanent; // checks to see whether the powerup is permanent for the duration of game or not
     public float duration; // duration of effect to last in seconds
 
-   
+    [SyncVar]
+    public bool toBeDestroyed;
     
     // Use this for initialization
 	void Start () {
-	
+        
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
-	}
+        if (toBeDestroyed) Destroy(gameObject);
+    }
 
 
     // Installs the powerup
@@ -50,7 +51,7 @@ public class PowerUp : NetworkBehaviour {
 
     // Do stuffs before removing powerup
     public virtual void WrapUp() {
-
+        Destroy(gameObject);
     }
 
 

@@ -49,11 +49,6 @@ public class PowerUpGUI : NetworkBehaviour {
             if (!player.powerUp)
             powerUpGained = false;
 
-        if (player.powerUp && (!powerUpGained || player.item.replaced)) { // if player just got an player.item, load it into HUD
-            player.item.replaced = false;
-            //GetPowerUp();
-        }
-       
 
         // destroy when timer counts down to zero for some powerups
         if (powerUpGained && hasTimer && player.powerUp.isActivated()) {
