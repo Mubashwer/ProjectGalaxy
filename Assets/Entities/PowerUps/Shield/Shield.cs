@@ -13,6 +13,7 @@ public class Shield : PowerUp {
 	
 	// Update is called once per frame
 	void Update () {
+        CountDown();
         if (player && player.GetComponent<PlayerController>().isAlive) transform.position = player.transform.position; //sync
 	}
 

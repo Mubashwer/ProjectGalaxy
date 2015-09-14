@@ -5,22 +5,15 @@ using System.Collections;
 
 public class PowerUpGUI : NetworkBehaviour {
 
-    private bool powerUpGained;
-    private bool hasTimer;
-    private float timer;
-
     public PlayerController player;
     private bool playerSet;
     private GameManager gameManager;
-
     private PowerUpItem itemHUD;
 
     // Use this for initialization
     void Start () {
         gameManager = GameManager.instance;
         playerSet = false;
-        hasTimer = false;
-        powerUpGained = false;
     }
 
     bool FindPlayer() {
@@ -37,34 +30,28 @@ public class PowerUpGUI : NetworkBehaviour {
     void Update () {
         if (!FindPlayer() || player.isAlive == false) return; // find local player
 
+        // if powerUp has been used: destory itemHUD
+        if (!player.powerUp && itemHUD) {
+            gameObject.GetComponent<Image>().fillAmount = 0;
+            itemHUD.Destroy();
+        }
+        // if player collected new powerUpItem: remove the older item from HUD and get the new one
         if ((player.item && itemHUD && player.item != itemHUD)) {
             itemHUD.Destroy();
-            GetPowerUp();
-        }
+            GotPowerUp();
+
+        } // if player gets an item
         else if (!itemHUD && player.item) {
-            GetPowerUp();
+            GotPowerUp();
         }
 
-
-            if (!player.powerUp)
-            powerUpGained = false;
-
-
-        // destroy when timer counts down to zero for some powerups
-        if (powerUpGained && hasTimer && player.powerUp.isActivated()) {
-            timer -= Time.deltaTime;
-            gameObject.GetComponent<Image>().fillAmount = Mathf.Abs(timer) / player.powerUp.duration;
-            if (timer <= 0) {
-                player.powerUp.SetDectivated(true);
-                player.CmdDestroyPowerUp();
-                if (player.powerUp.gameObject) Destroy(player.powerUp.gameObject);
-                itemHUD.Destroy(); 
-                powerUpGained = false;
-            }
+        if(player.powerUp && player.powerUp.hasTimer) {
+            gameObject.GetComponent<Image>().fillAmount = player.powerUp.GetTimer() / player.powerUp.duration;
         }
+
 	}
 
-    void GetPowerUp() {
+    void GotPowerUp() {
         // Duplicate player.item and delete original (i.e. make player.item local)
         itemHUD = Instantiate(player.item.gameObject).GetComponent<PowerUpItem>();
         player.CmdDestroyPowerUpItem();
@@ -72,13 +59,8 @@ public class PowerUpGUI : NetworkBehaviour {
         
         // move player.item to HUD
         itemHUD.transform.position = new Vector3(-2, 4, 0);
+
         gameObject.GetComponent<Image>().fillAmount = 1;
-
-        powerUpGained = true;
-        hasTimer = player.powerUp.hasTimer;
-        if (hasTimer)
-            timer = player.powerUp.duration;
-
     }
 
   

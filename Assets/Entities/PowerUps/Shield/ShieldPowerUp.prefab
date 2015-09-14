@@ -16,7 +16,7 @@ GameObject:
   - 114: {fileID: 11465818}
   - 114: {fileID: 11421630}
   m_Layer: 13
-  m_Name: Shield
+  m_Name: ShieldPowerUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -91,12 +91,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9bbabce5e4b694448581baba0e3091b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hasTimer: 1
   instantActivation: 1
   isDefensive: 1
+  isOffensive: 0
   spriteChange: 0
   playerOldSprite: {fileID: 0}
   isPermanent: 0
+  hasTimer: 1
   duration: 10
 --- !u!114 &11421630
 MonoBehaviour:
