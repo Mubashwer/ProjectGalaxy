@@ -12,6 +12,7 @@ public class PowerUp : NetworkBehaviour {
     public bool hasTimer; // checks whether the power-up takes effect for a limited time
     public bool instantActivation; // checks to see whether a double-tap is needed to activate it or not
     public bool isDefensive; // checks to see if the power-up is defensive or not
+    public bool isOffensive;// checks to see if the power-up is offensive or not
 
     public bool spriteChange; // checks to see whether the player changes sprite
     public Sprite playerOldSprite; // stores old player sprite
@@ -19,9 +20,6 @@ public class PowerUp : NetworkBehaviour {
     public bool isPermanent; // checks to see whether the powerup is permanent for the duration of game or not
     public float duration; // duration of effect to last in seconds
 
-    [SyncVar]
-    public bool toBeDestroyed;
-    
     // Use this for initialization
 	void Start () {
         
@@ -29,7 +27,7 @@ public class PowerUp : NetworkBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (toBeDestroyed) Destroy(gameObject);
+        
     }
 
 
