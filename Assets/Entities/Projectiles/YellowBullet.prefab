@@ -126,6 +126,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 20
+  speed: 10
   owner: {fileID: 0}
 --- !u!212 &21285982
 SpriteRenderer:

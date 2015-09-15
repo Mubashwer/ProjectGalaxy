@@ -5,7 +5,6 @@ using System.Collections;
 public class EnemyAI : NetworkBehaviour {
 	public float health = 100f;
 	public GameObject projectile;
-	public float projectileSpeed = 10f;
 	public float projectileShootRate = 1f;
 	public int scoreValue = 150;
 	public float rotationSpeed = 8f;
@@ -70,12 +69,12 @@ public class EnemyAI : NetworkBehaviour {
 		if(!player) return;
 		Vector3 bulletPos = transform.position;
         bulletPos += transform.rotation * (0.5f* Vector3.down); 
-		GameObject instantiatedProjectile = Instantiate(projectile, bulletPos, transform.rotation) as GameObject;
+		GameObject bullet = Instantiate(projectile, bulletPos, transform.rotation) as GameObject;
 		Vector3 direction = transform.rotation * Vector3.down;
 		direction.Normalize();
-		instantiatedProjectile.GetComponent<Rigidbody2D>().velocity = direction * projectileSpeed;
-        AudioSource.PlayClipAtPoint(shootSound, instantiatedProjectile.transform.position);
-        if(NetworkServer.active) NetworkServer.Spawn(instantiatedProjectile);
+		bullet.GetComponent<Rigidbody2D>().velocity = direction * bullet.GetComponent<Projectile>().speed;
+        AudioSource.PlayClipAtPoint(shootSound, bullet.transform.position);
+        if(NetworkServer.active) NetworkServer.Spawn(bullet);
 
     }
 

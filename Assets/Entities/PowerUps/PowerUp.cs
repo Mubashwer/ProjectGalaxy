@@ -9,7 +9,9 @@ public class PowerUp : NetworkBehaviour {
     protected bool activated; // checks whether power-up has been activated or not
     protected bool deactivated; // checks whether power-up is deactivated after being activated or not
 
-    public bool instantActivation; // checks to see whether a double-tap is needed to activate it or not
+    public bool doubleTap; // checks to see whether a double-tap is needed to activate it or not
+    public float count; // number of times it can be used (used when it has no timer)
+    protected float counter; // counter for powerUp expiration (used when it has no timer)
     public bool isDefensive; // checks to see if the power-up is defensive or not
     public bool isOffensive;// checks to see if the power-up is offensive or not
 
@@ -20,17 +22,14 @@ public class PowerUp : NetworkBehaviour {
     public bool hasTimer; // checks whether the power-up takes effect for a limited time
     public float duration; // duration of effect to last in seconds
     protected float timer; // timer for powerUp expiration
-    private bool timerStarted = false;
-   
+
+
 
     // Call this every update for the powerUp to be destroyed after timer has gone to 0
-    public void CountDown() {
-        if (!hasTimer || (timerStarted && timer <= 0)) return;
+    public void CountDownTime() {
+        if (!hasTimer || isPermanent) return;
 
-        if (!timerStarted) {
-            timerStarted = true;
-            timer = duration;
-        }
+
         timer -= Time.deltaTime;
 
         if(timer <= 0) {
@@ -39,14 +38,33 @@ public class PowerUp : NetworkBehaviour {
     }
 
 
-    // Installs the powerup
-    public virtual void Setup() {
+    public void CountDown() {
+        if (hasTimer || isPermanent) return;
+
+        counter--;
+
+        if (counter <= 0) {
+            WrapUp();
+        }
     }
 
 
+    // Installs the powerup
+    public virtual void Setup() {
+        if (hasTimer) {
+            timer = duration;
+        }
+        else {
+            counter = count;
+        }
+    }
+
     // Replaces shooting for player
-    [Command]
-    public virtual void CmdShoot() {
+    public virtual void Shoot() {
+    }
+
+    // Double Tap Shot
+    public virtual void PowerShot() {
     }
 
 
@@ -86,5 +104,9 @@ public class PowerUp : NetworkBehaviour {
 
     public float GetTimer() {
         return timer;
+    }
+
+    public float GetCounter() {
+        return counter;
     }
 }

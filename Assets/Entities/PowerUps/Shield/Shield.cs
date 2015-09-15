@@ -13,7 +13,7 @@ public class Shield : PowerUp {
 	
 	// Update is called once per frame
 	void Update () {
-        CountDown();
+        CountDownTime();
         if (player && player.GetComponent<PlayerController>().isAlive) transform.position = player.transform.position; //sync
 	}
 
@@ -41,6 +41,7 @@ public class Shield : PowerUp {
 
     // Initialization of the shield: make it follow player
     public override void Setup() {
+        base.Setup();
         transform.position = player.transform.position;
         transform.SetParent(player.transform);
     }

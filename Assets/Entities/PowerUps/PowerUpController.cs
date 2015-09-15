@@ -6,7 +6,7 @@ using System.Collections;
 public class PowerUpController : NetworkBehaviour {
 
     // Use this for initialization
-    public string[] powerUps = { "Shield"};
+    public string[] powerUps;
     private GameObject powerUp;
 
     void Start () {

@@ -45,8 +45,15 @@ public class PowerUpGUI : NetworkBehaviour {
             GotPowerUp();
         }
 
-        if(player.powerUp && player.powerUp.hasTimer) {
-            gameObject.GetComponent<Image>().fillAmount = player.powerUp.GetTimer() / player.powerUp.duration;
+        float ratio;
+        if(player.powerUp) {
+            if (player.powerUp.hasTimer) {
+                ratio = player.powerUp.GetTimer() / player.powerUp.duration;
+            }
+            else {
+                ratio = player.powerUp.GetCounter() / player.powerUp.count;
+            }
+            GetComponent<Image>().fillAmount = ratio;
         }
 
 	}
@@ -55,7 +62,7 @@ public class PowerUpGUI : NetworkBehaviour {
         // Duplicate player.item and delete original (i.e. make player.item local)
         itemHUD = Instantiate(player.item.gameObject).GetComponent<PowerUpItem>();
         player.CmdDestroyPowerUpItem();
-        if (player.item.gameObject) Destroy(player.item.gameObject);
+        if (player.item) Destroy(player.item.gameObject);
         
         // move player.item to HUD
         itemHUD.transform.position = new Vector3(-2, 4, 0);

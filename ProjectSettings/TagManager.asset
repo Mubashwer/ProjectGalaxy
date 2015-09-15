@@ -8,6 +8,8 @@ TagManager:
   - PowerUpHUD
   - HealthHUD
   - ScoreHUD
+  - Unshreddable
+  - Enemy
   layers:
   - Default
   - TransparentFX

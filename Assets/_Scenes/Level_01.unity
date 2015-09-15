@@ -617,6 +617,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   powerUps:
+  - Missile
   - Shield
 --- !u!114 &395624913
 MonoBehaviour:
@@ -940,7 +941,10 @@ MonoBehaviour:
   - {fileID: 181810, guid: fe05fcb7bdd20224bb2d76ca1fab7762, type: 2}
   - {fileID: 189184, guid: 52edcec8488648049b6f8a7c69e04a16, type: 2}
   - {fileID: 108238, guid: 3964dfad403844e478aceca4db468bb7, type: 2}
-  - {fileID: 0}
+  - {fileID: 186234, guid: 831a3aa423ff6ad4bbb4100917825bb3, type: 2}
+  - {fileID: 153840, guid: f32f931be9ec78645abadd71dcaa49df, type: 2}
+  - {fileID: 162028, guid: 1e253af39e1e6664e8ba3f9c467f99e5, type: 2}
+  - {fileID: 163986, guid: 24ea40c43b741f94bafd688a7bdd5b88, type: 2}
   m_CustomConfig: 0
   m_MaxConnections: 4
   m_ConnectionConfig:
@@ -1396,7 +1400,7 @@ RectTransform:
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
   m_AnchoredPosition: {x: -217, y: 430}
-  m_SizeDelta: {x: 60, y: 60}
+  m_SizeDelta: {x: 65, y: 65}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &1841113780
 MonoBehaviour:
@@ -1434,7 +1438,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
-  m_FillAmount: 1
+  m_FillAmount: 0
   m_FillClockwise: 0
   m_FillOrigin: 2
 --- !u!222 &1841113782

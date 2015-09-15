@@ -8,7 +8,6 @@ public class PlayerController : NetworkBehaviour {
 	
 	public float maxHealth = 200f;
 	public GameObject projectile;
-	public float projectileSpeed = 10f;
 	public float projectileShootRate = 0.15f;
 	public GameObject hitEffect;
     public AudioClip shootSound;
@@ -57,25 +56,51 @@ public class PlayerController : NetworkBehaviour {
 	// Update is called once per frame
 	void Update() {
         if (!isLocalPlayer) return;
-        // Fire bullet at a fixed rate if screen is touched or space is pressed
-        if ((Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Began) ||
-			Input.GetKeyDown(KeyCode.Space)) {
-            StartCoroutine(KeepShooting(gameObject));
+
+        // Tapping Screen   
+        if (Input.touchCount > 0) {
+
+            //Shoot regular bullet at a fixed rate for touching screen
+            if (Input.touches[0].phase == TouchPhase.Began) {
+                StartCoroutine(KeepShooting());
+            }
+            if (Input.touches[0].phase == TouchPhase.Ended) { 
+                StopAllCoroutines();
+            }
+
+            // If player has double tap shooting powerUp, then shoot it
+            for (int i = 0; i < Input.touchCount; i++) {
+                Touch touch = Input.GetTouch(i);
+                if(touch.phase == TouchPhase.Began) {
+                    if (touch.tapCount >= 2 && powerUp && powerUp.doubleTap) {
+                        CmdPowerShot();
+                    }
+                }
+            }    
         }
-		if(((Input.touchCount > 0 && (Input.touches[0].phase == TouchPhase.Ended ||
-			Input.touches[0].phase == TouchPhase.Canceled) )) || 
-			Input.GetKeyUp(KeyCode.Space)) {
+
+        // Left-alt for powerUp shot, space for regular shot
+        if (Input.GetKeyDown(KeyCode.LeftAlt) && powerUp && powerUp.doubleTap) {
+            CmdPowerShot();
+        }
+        if (Input.GetKeyDown(KeyCode.Space)) {
+            StartCoroutine(KeepShooting());
+        }
+        if (Input.GetKeyUp(KeyCode.Space)) {
             StopAllCoroutines();
         }
-		// Follow touch swipe or mouse left-click
-		FollowSwipe ();
+
+
+
+        // Follow touch swipe or mouse left-click
+        FollowSwipe();
 
 	}
-    IEnumerator KeepShooting(GameObject shooter)
+    IEnumerator KeepShooting()
     {
         while (true) {
-            yield return new WaitForSeconds(projectileShootRate);
             CmdShoot();
+            yield return new WaitForSeconds(projectileShootRate);
         }
     }
 
@@ -112,20 +137,26 @@ public class PlayerController : NetworkBehaviour {
     {
         Vector3 bulletPos = transform.position;
         bulletPos.y += 0.5f;
-        GameObject instantiatedProjectile = Instantiate(projectile, bulletPos, Quaternion.identity) as GameObject;
-        if(NetworkServer.active) NetworkServer.Spawn(instantiatedProjectile);
-        instantiatedProjectile.GetComponent<Projectile>().owner = gameObject;
-        instantiatedProjectile.GetComponent<Rigidbody2D>().velocity = Vector3.up * projectileSpeed;
-        AudioSource.PlayClipAtPoint(shootSound, instantiatedProjectile.transform.position);
+        GameObject bullet = Instantiate(projectile, bulletPos, Quaternion.identity) as GameObject;
+        if(NetworkServer.active) NetworkServer.Spawn(bullet);
+        bullet.GetComponent<Projectile>().owner = gameObject;
+        bullet.GetComponent<Rigidbody2D>().velocity = Vector3.up * bullet.GetComponent<Projectile>().speed;
+        AudioSource.PlayClipAtPoint(shootSound, bullet.transform.position);
         
     }
+
+    [Command]
+    void CmdPowerShot() {
+        powerUp.PowerShot();
+    }
+
 
 
     // Functions called by local powerUp HUD to destroy item and powerup
     [Command]
     public void CmdDestroyPowerUpItem() {
-        if (item.isServer) NetworkServer.Destroy(item.gameObject);
-        if (gameObject) Destroy(item.gameObject);
+        if (item && item.isServer) NetworkServer.Destroy(item.gameObject);
+        if (item) Destroy(item.gameObject);
     }
     [Command]
     public void CmdDestroyPowerUp() {

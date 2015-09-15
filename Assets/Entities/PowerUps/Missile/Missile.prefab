@@ -14,7 +14,7 @@ GameObject:
   - 50: {fileID: 5090208}
   - 60: {fileID: 6053390}
   - 114: {fileID: 11403652}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Missile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,8 +42,8 @@ Rigidbody2D:
   m_GameObject: {fileID: 153840}
   m_Mass: 1
   m_LinearDrag: 0
-  m_AngularDrag: .0500000007
-  m_GravityScale: 1
+  m_AngularDrag: 0
+  m_GravityScale: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -89,7 +89,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 500
+  speed: 2
   owner: {fileID: 0}
+  bigExplosionPrefab: {fileID: 162028, guid: 1e253af39e1e6664e8ba3f9c467f99e5, type: 2}
 --- !u!114 &11451188
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -179,6 +181,30 @@ Prefab:
       propertyPath: damage
       value: 500
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_AngularDrag
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_GravityScale
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: speed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: BigExplosionPrefab
+      value: 
+      objectReference: {fileID: 162028, guid: 1e253af39e1e6664e8ba3f9c467f99e5, type: 2}
+    - target: {fileID: 0}
+      propertyPath: bigExplosionPrefab
+      value: 
+      objectReference: {fileID: 162028, guid: 1e253af39e1e6664e8ba3f9c467f99e5, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 153840}
