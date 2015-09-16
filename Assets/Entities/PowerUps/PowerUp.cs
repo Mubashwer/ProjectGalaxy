@@ -11,6 +11,7 @@ public class PowerUp : NetworkBehaviour {
 
     public bool doubleTap; // checks to see whether a double-tap is needed to activate it or not
     public float count; // number of times it can be used (used when it has no timer)
+    [SyncVar]
     protected float counter; // counter for powerUp expiration (used when it has no timer)
     public bool isDefensive; // checks to see if the power-up is defensive or not
     public bool isOffensive;// checks to see if the power-up is offensive or not
@@ -21,7 +22,9 @@ public class PowerUp : NetworkBehaviour {
     public bool isPermanent; // checks to see whether the powerup is permanent for the duration of game or not
     public bool hasTimer; // checks whether the power-up takes effect for a limited time
     public float duration; // duration of effect to last in seconds
+    [SyncVar]
     protected float timer; // timer for powerUp expiration
+    protected bool timerStarted = false;
 
 
 
@@ -50,13 +53,16 @@ public class PowerUp : NetworkBehaviour {
 
 
     // Installs the powerup
-    public virtual void Setup() {
+    public virtual void Setup(GameObject player) {
         if (hasTimer) {
             timer = duration;
+            timerStarted = true;
         }
         else {
             counter = count;
         }
+        this.player = player;
+
     }
 
     // Replaces shooting for player
@@ -80,10 +86,6 @@ public class PowerUp : NetworkBehaviour {
 
     public GameObject GetPlayer() {
         return player;
-    }
-
-    public void SetPlayer(GameObject player) {
-        this.player = player;
     }
 
     public bool isActivated() {

@@ -73,6 +73,7 @@ public class PlayerController : NetworkBehaviour {
                 Touch touch = Input.GetTouch(i);
                 if(touch.phase == TouchPhase.Began) {
                     if (touch.tapCount >= 2 && powerUp && powerUp.doubleTap) {
+                        powerUp.CountDown();
                         CmdPowerShot();
                     }
                 }
@@ -81,6 +82,7 @@ public class PlayerController : NetworkBehaviour {
 
         // Left-alt for powerUp shot, space for regular shot
         if (Input.GetKeyDown(KeyCode.LeftAlt) && powerUp && powerUp.doubleTap) {
+            powerUp.CountDown();
             CmdPowerShot();
         }
         if (Input.GetKeyDown(KeyCode.Space)) {
@@ -158,13 +160,6 @@ public class PlayerController : NetworkBehaviour {
         if (item && item.isServer) NetworkServer.Destroy(item.gameObject);
         if (item) Destroy(item.gameObject);
     }
-    [Command]
-    public void CmdDestroyPowerUp() {
-        powerUp.WrapUp();
-        if(powerUp.isServer) NetworkServer.Destroy(powerUp.gameObject);
-        if (powerUp.gameObject) Destroy(powerUp.gameObject);
-    }
-
 
 
 
