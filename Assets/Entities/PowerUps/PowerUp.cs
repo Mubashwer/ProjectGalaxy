@@ -5,6 +5,7 @@ using System.Collections;
 public class PowerUp : NetworkBehaviour {
 
     protected GameObject player; // player who received the power-up
+    protected int id;
 
     protected bool activated; // checks whether power-up has been activated or not
     protected bool deactivated; // checks whether power-up is deactivated after being activated or not
@@ -53,7 +54,7 @@ public class PowerUp : NetworkBehaviour {
 
 
     // Installs the powerup
-    public virtual void Setup(GameObject player) {
+    public virtual void Setup(GameObject player, int id) {
         if (hasTimer) {
             timer = duration;
             timerStarted = true;
@@ -62,6 +63,7 @@ public class PowerUp : NetworkBehaviour {
             counter = count;
         }
         this.player = player;
+        this.id = id;
 
     }
 
@@ -70,12 +72,13 @@ public class PowerUp : NetworkBehaviour {
     }
 
     // Double Tap Shot
-    public virtual void PowerShot() {
+    public virtual void DoubleTapEvent() {
     }
 
 
-    // Replaces collision detection for player
-    public virtual void Defend(Collider2D collider) {
+    // Designed to reduce damage
+    public virtual float Defend(float damage) {
+        return 0;
     }
 
     // Do stuffs before removing powerup
@@ -83,6 +86,9 @@ public class PowerUp : NetworkBehaviour {
         Destroy(gameObject);
     }
 
+    public int GetId() {
+        return id;
+    }
 
     public GameObject GetPlayer() {
         return player;

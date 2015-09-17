@@ -8,6 +8,6 @@ public class Shredder : MonoBehaviour {
 	// outside screen
 	void OnTriggerEnter2D(Collider2D collider) {
 		if(collider.gameObject.tag != "Player" && collider.gameObject.tag != "Unshreddable")
-            NetworkServer.Destroy(collider.gameObject);
+           Destroy(collider.gameObject);
 	}
 }

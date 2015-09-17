@@ -17,7 +17,6 @@ public class PlayerController : NetworkBehaviour {
     public PowerUpItem item;
     public PowerUp powerUp;
 
-
     private float xMin, xMax, yMin, yMax, padding = 0.5f;
     [SyncVar]
     private float health; // current health
@@ -55,8 +54,9 @@ public class PlayerController : NetworkBehaviour {
 	
 	// Update is called once per frame
 	void Update() {
-        if (!isLocalPlayer) return;
-
+        if (!isLocalPlayer) {
+            return;
+        }
         // Tapping Screen   
         if (Input.touchCount > 0) {
 
@@ -73,8 +73,8 @@ public class PlayerController : NetworkBehaviour {
                 Touch touch = Input.GetTouch(i);
                 if(touch.phase == TouchPhase.Began) {
                     if (touch.tapCount >= 2 && powerUp && powerUp.doubleTap) {
+                        CmdDoubleTap();
                         powerUp.CountDown();
-                        CmdPowerShot();
                     }
                 }
             }    
@@ -82,8 +82,8 @@ public class PlayerController : NetworkBehaviour {
 
         // Left-alt for powerUp shot, space for regular shot
         if (Input.GetKeyDown(KeyCode.LeftAlt) && powerUp && powerUp.doubleTap) {
+            CmdDoubleTap();
             powerUp.CountDown();
-            CmdPowerShot();
         }
         if (Input.GetKeyDown(KeyCode.Space)) {
             StartCoroutine(KeepShooting());
@@ -98,6 +98,7 @@ public class PlayerController : NetworkBehaviour {
         FollowSwipe();
 
 	}
+
     IEnumerator KeepShooting()
     {
         while (true) {
@@ -110,48 +111,65 @@ public class PlayerController : NetworkBehaviour {
 		return health;
 	}
 
-
+    //Detects collision in server but updates damage in all clients
+    [ServerCallback]
     void OnTriggerEnter2D(Collider2D collider){
-        if (item && powerUp && powerUp.isActivated() && powerUp.isDefensive) {
-            powerUp.Defend(collider);
-            return;
-        }
 
-        Projectile enemyProjectile = collider.gameObject.GetComponent<Projectile>();
-		if(enemyProjectile){
-			health -= enemyProjectile.GetDamage();
-			enemyProjectile.Hit();
-			 // hit effect
-			GameObject hit = Instantiate(Resources.Load("YellowBulletHit"), transform.position, Quaternion.identity) as GameObject;
-            hit.transform.parent = transform;
-            if(NetworkServer.active) NetworkServer.Spawn(hit);
-            Destroy(hit, 0.9f);
-			if(!isAlive) return; 
-			if (health <= 0) {
-				Die ();
-			}
+        Projectile bullet = collider.gameObject.GetComponent<Projectile>();
+        float damage = 0;
+		if(bullet){
+            bullet.Hit();
+            damage = bullet.GetDamage();
+            if (item && powerUp && powerUp.isActivated() && powerUp.isDefensive) {
+                damage = powerUp.Defend(damage);
+            }
+            RpcDamaged(damage);
 		}
 	}
+    
+    // Takes damage and (maybe?) dies in all clients
+    [ClientRpc]
+    void RpcDamaged(float damage) {
+        health -= damage;
+        // hit effect
+        GameObject hit = Instantiate(Resources.Load("YellowBulletHit"), transform.position, Quaternion.identity) as GameObject;
+        hit.transform.parent = transform;
+        Destroy(hit, 0.9f);
+        if (!isAlive) return;
+        if (health <= 0) {
+            Die();
+        }
+    }
 
-    // Just shoot a bullet
+    // Transfers to server and then RpcShoot() is called on all clients to generate local bullets
     [Command]
-    void CmdShoot()
-    {
+    void CmdShoot() {
+        RpcShoot();
+    }
+
+    // Shoots unsyncrhonized bullets in all clients
+    [ClientRpc]
+    void RpcShoot() {
         Vector3 bulletPos = transform.position;
         bulletPos.y += 0.5f;
         GameObject bullet = Instantiate(projectile, bulletPos, Quaternion.identity) as GameObject;
-        if(NetworkServer.active) NetworkServer.Spawn(bullet);
         bullet.GetComponent<Projectile>().owner = gameObject;
         bullet.GetComponent<Rigidbody2D>().velocity = Vector3.up * bullet.GetComponent<Projectile>().speed;
         AudioSource.PlayClipAtPoint(shootSound, bullet.transform.position);
-        
     }
 
+
+    //Transfer to server and then run double tap on all clients
     [Command]
-    void CmdPowerShot() {
-        powerUp.PowerShot();
+    void CmdDoubleTap() {
+        RpcDoubleTap();
     }
 
+    //Run double tap powerUp method on all clients
+    [ClientRpc]
+    void RpcDoubleTap() {
+        powerUp.DoubleTapEvent();
+    }
 
 
     // Functions called by local powerUp HUD to destroy item and powerup
@@ -159,6 +177,12 @@ public class PlayerController : NetworkBehaviour {
     public void CmdDestroyPowerUpItem() {
         if (item && item.isServer) NetworkServer.Destroy(item.gameObject);
         if (item) Destroy(item.gameObject);
+    }
+
+    [ClientRpc]
+    public void RpcDestroyPowerUp() {
+        if (item) Destroy(item);
+        if (powerUp) Destroy(powerUp);
     }
 
 
@@ -187,7 +211,10 @@ public class PlayerController : NetworkBehaviour {
 
 	}
 
-    public void addScore(float points) {
+
+    // Updates scores in all clients
+    [ClientRpc]
+    public void RpcAddScore(float points) {
         score += points;
     }
 
@@ -198,7 +225,6 @@ public class PlayerController : NetworkBehaviour {
     void Die(){
 		GameObject explosion = Instantiate(Resources.Load("Explosion"), transform.position, Quaternion.identity) as GameObject;
 		isAlive = false;
-        if(NetworkServer.active) NetworkServer.Spawn(explosion);
         Destroy(explosion,1f);
 		Destroy(gameObject);
 	

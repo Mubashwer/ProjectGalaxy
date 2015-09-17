@@ -51,4 +51,18 @@ public class GameManager : MonoBehaviour
         return player;
     }
 
+    public PlayerController GetPlayer(short id) {
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        PlayerController player = null;
+        if (players.GetLength(0) > 0) {
+            foreach (GameObject p in players) {
+                if (p.GetComponent<PlayerController>().playerControllerId == id) {
+                    player = p.GetComponent<PlayerController>();
+                    break;
+                }
+            }
+        }
+        return player;
+    }
+
 }

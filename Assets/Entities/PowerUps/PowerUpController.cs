@@ -7,10 +7,11 @@ public class PowerUpController : NetworkBehaviour {
 
     // Use this for initialization
     public string[] powerUps;
-    private GameObject powerUp;
+    private int id;
 
     void Start () {
         if (!isServer) return;
+        id = 0;
         StartCoroutine(SpawnPowerUps());
     }
 
@@ -24,18 +25,22 @@ public class PowerUpController : NetworkBehaviour {
     }
 
     // Initiate powerups 
-    [Server]
     void InitiatePowerUp() {
-        
+        if (!isServer) return;
         int index = Random.Range(0, powerUps.GetLength(0)); // get random powerup index
         Vector3 position = new Vector3(Random.Range(-2, 2), 5.5f, 0); // get random spawn position
-        powerUp = Instantiate(Resources.Load(powerUps[index] + "item"), position, Quaternion.identity) as GameObject;
-        if (NetworkServer.active) NetworkServer.Spawn(powerUp);
+        RpcDropPowerUp(index, position, id++);
+    }
 
+    [ClientRpc]
+    void RpcDropPowerUp(int index, Vector3 position, int itemID) {
+        GameObject item = Instantiate(Resources.Load(powerUps[index] + "item"), position, Quaternion.identity) as GameObject;
+        item.GetComponent<PowerUpItem>().id = itemID;
     }
 
     // Update is called once per frame
     void Update () {
-	
+
 	}
+
 }

@@ -32,16 +32,10 @@ public class PowerUpGUI : NetworkBehaviour {
 
         // if powerUp has been used: destory itemHUD
         if (!player.powerUp && itemHUD) {
+            itemHUD.Destroy();
             gameObject.GetComponent<Image>().fillAmount = 0;
-            itemHUD.Destroy();
         }
-        // if player collected new powerUpItem: remove the older item from HUD and get the new one
-        if ((player.item && itemHUD && player.item != itemHUD)) {
-            itemHUD.Destroy();
-            GotPowerUp();
-
-        } // if player gets an item
-        else if (!itemHUD && player.item) {
+        if (!itemHUD && player.item) {
             GotPowerUp();
         }
 
@@ -59,14 +53,11 @@ public class PowerUpGUI : NetworkBehaviour {
 	}
 
     void GotPowerUp() {
-        // Duplicate player.item and delete original (i.e. make player.item local)
-        itemHUD = Instantiate(player.item.gameObject).GetComponent<PowerUpItem>();
-        player.CmdDestroyPowerUpItem();
-        if (player.item) Destroy(player.item.gameObject);
+        // Get HUD item
+        itemHUD = player.item;
         
         // move player.item to HUD
         itemHUD.transform.position = new Vector3(-2, 4, 0);
-
         gameObject.GetComponent<Image>().fillAmount = 1;
     }
 

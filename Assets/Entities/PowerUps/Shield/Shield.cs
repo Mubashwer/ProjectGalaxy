@@ -18,14 +18,6 @@ public class Shield : PowerUp {
 	}
 
 
-    // Destroy bullets which somehow manage to hit the player
-    public override void Defend(Collider2D collider) {
-        Projectile bullet = collider.gameObject.GetComponent<Projectile>();
-        if (bullet) {
-            Destroy(bullet);
-        }
-    }
-
     // Destroy bullets which touch the shield
     void OnTriggerEnter2D(Collider2D collider) {
         Projectile bullet = collider.gameObject.GetComponent<Projectile>();
@@ -40,8 +32,8 @@ public class Shield : PowerUp {
     }
 
     // Initialization of the shield: make it follow player
-    public override void Setup(GameObject player) {
-        base.Setup(player);
+    public override void Setup(GameObject player, int id) {
+        base.Setup(player, id);
         transform.position = player.transform.position;
         transform.SetParent(player.transform);
     }

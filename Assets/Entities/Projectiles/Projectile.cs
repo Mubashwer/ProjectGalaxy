@@ -13,7 +13,14 @@ public class Projectile : NetworkBehaviour {
 		return damage;
 	}
 
+    [ClientCallback]
+    void OnTriggerEnter2D(Collider2D collider) {
+        Hit();
+    }
+
     public virtual void Hit(){
 		Destroy(gameObject,0.05f);
 	}
+
+
 }

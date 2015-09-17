@@ -45,7 +45,8 @@ public class Missile : Projectile {
     // When it hits the enemy, it generates a big damaging explosion
     public override void Hit() {
         GameObject bigExplosion = Instantiate(bigExplosionPrefab,transform.position, Quaternion.identity) as GameObject;
-        if(NetworkServer.active) NetworkServer.Spawn(bigExplosion);
+        bigExplosion.GetComponent<Projectile>().owner = owner;
+        //if(NetworkServer.active) NetworkServer.Spawn(bigExplosion);
         Destroy(gameObject);
     }
 }
