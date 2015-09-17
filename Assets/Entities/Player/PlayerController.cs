@@ -172,20 +172,12 @@ public class PlayerController : NetworkBehaviour {
     }
 
 
-    // Functions called by local powerUp HUD to destroy item and powerup
+    /*// Functions called by local powerUp HUD to destroy item and powerup
     [Command]
     public void CmdDestroyPowerUpItem() {
         if (item && item.isServer) NetworkServer.Destroy(item.gameObject);
         if (item) Destroy(item.gameObject);
-    }
-
-    [ClientRpc]
-    public void RpcDestroyPowerUp() {
-        if (item) Destroy(item);
-        if (powerUp) Destroy(powerUp);
-    }
-
-
+    }*/
 
     // Move with same velocity as touch swipe
     private void FollowSwipe() {
@@ -194,7 +186,7 @@ public class PlayerController : NetworkBehaviour {
 			for(int i = 0; i < Input.touchCount && Input.touches[i].phase == TouchPhase.Moved; i++) {
 				Vector2 delta = Input.touches[i].deltaPosition; // touch displacement
 				Vector3 delta3 = new Vector3(delta.x, delta.y, transform.position.z);
-				// move in the direction and distance of touch displacement in world space
+				// move in the direction and distance of touch displacement
 				transform.Translate(delta3 * Time.deltaTime, Space.World);
 			}
 		} 
