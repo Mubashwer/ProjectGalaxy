@@ -100,11 +100,10 @@ MonoBehaviour:
   isDefensive: 1
   shootChange: 1
   spriteChange: 1
-  playerOldSprite: {fileID: 0}
+  playerNewSprite: {fileID: 21300000, guid: daadf58e7f172489eb558c56ab36ef41, type: 3}
   isPermanent: 0
   hasTimer: 1
   duration: 10
-  upgrade: {fileID: 21300000, guid: daadf58e7f172489eb558c56ab36ef41, type: 3}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -161,6 +160,11 @@ Prefab:
       propertyPath: m_SendInterval
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: playerNewSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: daadf58e7f172489eb558c56ab36ef41,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 110026}

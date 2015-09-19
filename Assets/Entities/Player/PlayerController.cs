@@ -32,7 +32,7 @@ public class PlayerController : NetworkBehaviour {
 			GetComponent<SpriteRenderer>().sprite = mySprite;
 			transform.position = GameObject.Find("StartPosition2").transform.position;
         }
-        	
+        SetDirtyBit(1);	
 
     }
 
@@ -165,6 +165,22 @@ public class PlayerController : NetworkBehaviour {
     void RpcPowerUpWrapUp() {
         if(powerUp) powerUp.WrapUp(); 
     }
+
+    // This is called when client player connects. Existing powerUp of host player
+    // is loaded in client scene and configured.
+    [ClientRpc]
+    public void RpcPowerUpReSetup() {
+        if (isLocalPlayer) return;
+        PowerUp[] powerUps = FindObjectsOfType<PowerUp>();
+        foreach(PowerUp p in powerUps) {
+            powerUp = p;
+            powerUp.SetPlayer(gameObject);
+            powerUp.ReplacePlayerSprite();
+            return;
+        }
+        return;
+    }
+
 
     // Transfers to server and then RpcShoot() is called on all clients to generate local bullets
     [Command]

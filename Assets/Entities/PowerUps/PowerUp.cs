@@ -21,7 +21,8 @@ public class PowerUp : NetworkBehaviour {
     public bool shootChange;// checks to see if shooting has changed or not
 
     public bool spriteChange; // checks to see whether the player changes sprite
-    public Sprite playerOldSprite; // stores old player sprite
+    public Sprite playerNewSprite; // upgrade sprite
+    protected Sprite playerOldSprite; // stores old player sprite
 
     public bool isPermanent; // checks to see whether the powerup is permanent for the duration of game or not
     public bool hasTimer; // checks whether the power-up takes effect for a limited time
@@ -88,6 +89,17 @@ public class PowerUp : NetworkBehaviour {
         return 0;
     }
 
+    public virtual void ReplacePlayerSprite() {
+        if (!spriteChange || !player) return;
+        playerOldSprite = player.GetComponent<SpriteRenderer>().sprite; //store old sprite
+        player.GetComponent<SpriteRenderer>().sprite = playerNewSprite; // change sprite
+    }
+
+    public virtual void RestorePlayerSprite() {
+        if (!spriteChange || !player || !playerOldSprite) return;
+        player.GetComponent<SpriteRenderer>().sprite = playerOldSprite;
+    }
+
     // Do stuffs before removing powerup
     public virtual void WrapUp() {
         Destroy(gameObject);
@@ -99,6 +111,10 @@ public class PowerUp : NetworkBehaviour {
 
     public GameObject GetPlayer() {
         return player;
+    }
+
+    public  void SetPlayer(GameObject player) {
+        this.player = player;
     }
 
     public bool isActivated() {

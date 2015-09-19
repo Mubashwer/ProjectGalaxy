@@ -3,8 +3,6 @@ using System.Collections;
 
 public class UpgradePowerUp : PowerUp {
 
-    public Sprite upgrade;
-
 	// Use this for initialization
 	void Start () {   
 	}
@@ -49,14 +47,16 @@ public class UpgradePowerUp : PowerUp {
 
     public override void Setup(GameObject player, int id) {
         base.Setup(player, id);
-        playerOldSprite = player.GetComponent<SpriteRenderer>().sprite; //store old sprite
-        player.GetComponent<SpriteRenderer>().sprite = upgrade; // change sprite
+        ReplacePlayerSprite();
     }
 
     public override void WrapUp() {
-        if (player) { //replace old sprite
-            player.GetComponent<SpriteRenderer>().sprite = playerOldSprite;
-        }
+        RestorePlayerSprite();
         base.WrapUp();
+    }
+
+    public override void OnNetworkDestroy() {
+        RestorePlayerSprite();
+        base.OnNetworkDestroy();
     }
 }
