@@ -30,12 +30,19 @@ public class PowerUpGUI : MonoBehaviour {
     void Update () {
         if (!FindPlayer() || player.isAlive == false) return; // find local player
 
-        // if powerUp has been used: destory itemHUD
-        if (!player.powerUp && itemHUD) {
-            itemHUD.Destroy();
+        
+        // if player replace powerUp: replace HUD
+        if(itemHUD && player.powerUp && player.powerUp.GetId() != itemHUD.GetId()) {
             gameObject.GetComponent<Image>().fillAmount = 0;
+            itemHUD.Destroy();
+            GotPowerUp();
         }
-        if (!itemHUD && player.item) {
+        // if powerUp has been used: destory HUD
+        if (!player.powerUp && itemHUD) {
+            gameObject.GetComponent<Image>().fillAmount = 0;
+            itemHUD.Destroy();
+        } // if player gets a new powerUp: get new HUD
+        if (!itemHUD && player.powerUp) {
             GotPowerUp();
         }
 
@@ -54,8 +61,10 @@ public class PowerUpGUI : MonoBehaviour {
 
     void GotPowerUp() {
         // Get HUD item
-        itemHUD = player.item;
-        
+        itemHUD = (Instantiate(Resources.Load(player.powerUp.powerUpName + "Item")) as GameObject).GetComponent<PowerUpItem>();
+        itemHUD.GetComponent<Rigidbody2D>().isKinematic = true; // will stop moving
+        itemHUD.GetComponent<Collider2D>().enabled = false; // will no longer collide
+
         // move player.item to HUD
         itemHUD.transform.position = new Vector3(-2, 4, 0);
         gameObject.GetComponent<Image>().fillAmount = 1;

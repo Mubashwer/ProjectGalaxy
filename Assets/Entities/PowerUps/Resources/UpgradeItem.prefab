@@ -62,9 +62,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5742723146e2ad24ba5ef166fa21290d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  powerUpPrefab: {fileID: 110026, guid: b71b96d515fc5974aaa532c5448dd24e, type: 2}
-  player: {fileID: 0}
-  id: 0
+  powerUpName: Upgrade
 --- !u!114 &11416770
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -77,7 +75,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_TransformSyncMode: 2
-  m_SendInterval: .0333333351
+  m_SendInterval: 0
   m_SyncRotationAxis: 7
   m_RotationSyncCompression: 0
   m_SyncSpin: 0
@@ -182,6 +180,14 @@ Prefab:
       propertyPath: powerUpPrefab
       value: 
       objectReference: {fileID: 110026, guid: b71b96d515fc5974aaa532c5448dd24e, type: 2}
+    - target: {fileID: 0}
+      propertyPath: powerUpName
+      value: Upgrade
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_SendInterval
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 181226}

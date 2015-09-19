@@ -108,20 +108,34 @@ public class PlayerController : NetworkBehaviour {
 		return health;
 	}
 
-    //Detects collision in server but updates damage in all clients
+    //Detects collision in server but updates damage/powerUp in all clients
     [ServerCallback]
     void OnTriggerEnter2D(Collider2D collider){
 
         Projectile bullet = collider.gameObject.GetComponent<Projectile>();
+        PowerUpItem newItem = collider.gameObject.GetComponent<PowerUpItem>();
         float damage = 0;
-		if(bullet){
-            bullet.Hit();
-            damage = bullet.GetDamage();
+
+        if (bullet){
+            bullet.Hit(); //destroy bullet
+            damage = bullet.GetDamage(); // get damage
             if (item && powerUp && powerUp.isActivated() && powerUp.isDefensive) {
-                damage = powerUp.Defend(damage);
+                damage = powerUp.Defend(damage); // update damage via defensive powerUp
             }
-            RpcDamaged(damage);
+            RpcDamaged(damage); // take damage in all clients
 		}
+
+        if (newItem) {
+            newItem.GetComponent<Rigidbody2D>().isKinematic = true; // will stop moving
+            newItem.GetComponent<Collider2D>().enabled = false; // will no longer collide
+
+            if (powerUp && powerUp.GetId() != newItem.GetId()) {
+                RpcPowerUpWrapUp(); //destroy existing powerUp
+            }
+
+            RpcPowerUpExtract(newItem.powerUpName, newItem.GetId()); //extract powerUp in all clients
+            NetworkServer.Destroy(newItem.gameObject); // Destroy item in all clients
+        }
 	}
     
     // Takes damage and (maybe?) dies in all clients
@@ -136,6 +150,20 @@ public class PlayerController : NetworkBehaviour {
         if (health <= 0) {
             Die();
         }
+    }
+
+    // Extract powerUp in all clients
+    [ClientRpc]
+    void RpcPowerUpExtract(string name, int id) {
+        GameObject powerUpObject = Instantiate(Resources.Load(name + "PowerUp")) as GameObject;
+        powerUp = powerUpObject.GetComponent<PowerUp>();
+        powerUp.Setup(gameObject, id);
+    }
+
+    // Destroy powerUp in all clients
+    [ClientRpc]
+    void RpcPowerUpWrapUp() {
+        if(powerUp) powerUp.WrapUp(); 
     }
 
     // Transfers to server and then RpcShoot() is called on all clients to generate local bullets

@@ -5,9 +5,8 @@ using System.Collections;
 
 public class PowerUpItem : NetworkBehaviour {
 
-    public GameObject powerUpPrefab;
-    public PlayerController player;
-    public int id;
+    public string powerUpName;
+    private int id; //unique id of item which is also used by corresponding powerUp
 
     // Use this for initialization
     void Start() {
@@ -19,39 +18,12 @@ public class PowerUpItem : NetworkBehaviour {
 
     }
 
-    void OnTriggerEnter2D(Collider2D collider) {
-        
-        if (!collider.gameObject || collider.gameObject.tag != "Player") return; //only players can collect
-        player = collider.gameObject.GetComponent<PlayerController>();
-        
-        // If player gets a new powerUp, destroy older one
-        if (player.item && player.item.id != id) {
-            player.item.Destroy();
-        }
-        if(player.powerUp && player.powerUp.GetId() != id) {
-            player.powerUp.WrapUp();
-        }
-        
-        gameObject.GetComponent<Rigidbody2D>().isKinematic = true; // will stop moving
-        gameObject.GetComponent<Collider2D>().enabled = false; // will no longer collide
-        Setup();
+    public int GetId() {
+        return id;
     }
 
-
-    // Attach powerUpItem to player and exact powerUp from prefab and attach it to player as well
-    public void Setup() {
-        GameObject powerUpObject = Instantiate(powerUpPrefab) as GameObject;
-        player.powerUp = powerUpObject.GetComponent<PowerUp>();
-        player.powerUp.Setup(player.gameObject, id);
-
-        // Only the local copy is associated with the player, the rest are destroyed
-        if (player.isLocalPlayer) {
-            player.item = this;
-        }
-        else {
-            Destroy();
-        }
-
+    public void SetId(int id) {
+        this.id = id;
     }
 
     public void Destroy() {

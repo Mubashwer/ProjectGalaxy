@@ -42,7 +42,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_TransformSyncMode: 1
-  m_SendInterval: .100000001
+  m_SendInterval: 0
   m_SyncRotationAxis: 7
   m_RotationSyncCompression: 0
   m_SyncSpin: 0
@@ -61,10 +61,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2b4de0eeb42d2e48859c99160502f21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  powerUpName: Missile
+  instantActivation: 0
   doubleTap: 1
   count: 4
   isDefensive: 0
-  isOffensive: 1
+  shootChange: 0
   spriteChange: 0
   playerOldSprite: {fileID: 0}
   isPermanent: 0
@@ -137,6 +139,14 @@ Prefab:
       objectReference: {fileID: 153840, guid: f32f931be9ec78645abadd71dcaa49df, type: 2}
     - target: {fileID: 0}
       propertyPath: m_LocalPlayerAuthority
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: powerUpName
+      value: Missile
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_SendInterval
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

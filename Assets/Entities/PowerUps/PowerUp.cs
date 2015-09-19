@@ -4,8 +4,10 @@ using System.Collections;
 
 public class PowerUp : NetworkBehaviour {
 
+    public string powerUpName; // name
+    protected int id; // unique identification
     protected GameObject player; // player who received the power-up
-    protected int id;
+    
 
     protected bool activated; // checks whether power-up has been activated or not
     protected bool deactivated; // checks whether power-up is deactivated after being activated or not

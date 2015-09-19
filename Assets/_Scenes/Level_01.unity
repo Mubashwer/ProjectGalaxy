@@ -574,7 +574,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b47bb7c754c6517418cc1a39a3d50bd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scrollingSpeed: .200000003
+  scrollingSpeed: .800000012
   imageHeight: 16
 --- !u!1 &395624910
 GameObject:
@@ -818,7 +818,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b47bb7c754c6517418cc1a39a3d50bd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scrollingSpeed: 6
+  scrollingSpeed: 10
   imageHeight: 16
 --- !u!212 &584900717
 SpriteRenderer:
@@ -946,6 +946,7 @@ MonoBehaviour:
   - {fileID: 153840, guid: f32f931be9ec78645abadd71dcaa49df, type: 2}
   - {fileID: 162028, guid: 1e253af39e1e6664e8ba3f9c467f99e5, type: 2}
   - {fileID: 163986, guid: 24ea40c43b741f94bafd688a7bdd5b88, type: 2}
+  - {fileID: 181226, guid: e4b06a62aeece734f95dc069dabc3e1b, type: 2}
   m_CustomConfig: 0
   m_MaxConnections: 4
   m_ConnectionConfig:
@@ -1214,7 +1215,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b47bb7c754c6517418cc1a39a3d50bd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scrollingSpeed: .200000003
+  scrollingSpeed: .800000012
   imageHeight: 16
 --- !u!1 &1511511737
 GameObject:
@@ -1488,7 +1489,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b47bb7c754c6517418cc1a39a3d50bd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scrollingSpeed: 6
+  scrollingSpeed: 10
   imageHeight: 16
 --- !u!212 &1884012511
 SpriteRenderer:
