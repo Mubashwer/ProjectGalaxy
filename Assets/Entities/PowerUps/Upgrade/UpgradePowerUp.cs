@@ -29,7 +29,7 @@ public class UpgradePowerUp : PowerUp {
                 bulletPos.x -= 1.083f;
             }
             if(i == 1) {
-                bulletPos.x -= 1.185f;
+                bulletPos.x -= 1.158f;
             }
             if(i == 2) {
                 bulletPos.x += 0.53f;
