@@ -1,41 +1,41 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &186234
+--- !u!1 &110026
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
   m_Component:
-  - 4: {fileID: 405528}
-  - 114: {fileID: 11447504}
-  - 114: {fileID: 11448160}
-  - 114: {fileID: 11402014}
+  - 4: {fileID: 463162}
+  - 114: {fileID: 11454340}
+  - 114: {fileID: 11415442}
+  - 114: {fileID: 11473110}
   m_Layer: 0
-  m_Name: MissilePowerUp
+  m_Name: UpgradePowerUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &405528
+--- !u!4 &463162
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 186234}
+  m_GameObject: {fileID: 110026}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!114 &11402014
+--- !u!114 &11415442
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 186234}
+  m_GameObject: {fileID: 110026}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -1768714887, guid: 870353891bb340e2b2a9c8707e7419ba, type: 3}
@@ -50,34 +50,12 @@ MonoBehaviour:
   m_SnapThreshold: 5
   m_InterpolateRotation: 1
   m_InterpolateMovement: 1
---- !u!114 &11447504
+--- !u!114 &11454340
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 186234}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e2b4de0eeb42d2e48859c99160502f21, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  doubleTap: 1
-  count: 4
-  isDefensive: 0
-  isOffensive: 1
-  spriteChange: 0
-  playerOldSprite: {fileID: 0}
-  isPermanent: 0
-  hasTimer: 0
-  duration: 0
-  missilePrefab: {fileID: 153840, guid: f32f931be9ec78645abadd71dcaa49df, type: 2}
-  missile: {fileID: 0}
---- !u!114 &11448160
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 186234}
+  m_GameObject: {fileID: 110026}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 372142912, guid: 870353891bb340e2b2a9c8707e7419ba, type: 3}
@@ -86,24 +64,46 @@ MonoBehaviour:
   m_SceneId:
     m_Value: 0
   m_AssetId:
-    i0: 131
-    i1: 26
-    i2: 58
-    i3: 164
-    i4: 35
-    i5: 255
-    i6: 106
-    i7: 212
-    i8: 187
-    i9: 180
-    i10: 16
-    i11: 9
-    i12: 23
-    i13: 130
-    i14: 91
-    i15: 179
+    i0: 183
+    i1: 27
+    i2: 150
+    i3: 213
+    i4: 21
+    i5: 252
+    i6: 89
+    i7: 116
+    i8: 170
+    i9: 165
+    i10: 50
+    i11: 197
+    i12: 68
+    i13: 141
+    i14: 210
+    i15: 78
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 0
+--- !u!114 &11473110
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 110026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0cfceb8470d1cc4bb887b589581ffa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  instantActivation: 1
+  doubleTap: 0
+  count: 0
+  isDefensive: 1
+  shootChange: 1
+  spriteChange: 1
+  playerOldSprite: {fileID: 0}
+  isPermanent: 0
+  hasTimer: 1
+  duration: 10
+  upgrade: {fileID: 21300000, guid: daadf58e7f172489eb558c56ab36ef41, type: 3}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -112,34 +112,47 @@ Prefab:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 0}
+      propertyPath: hasTimer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: isDefensive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: spriteChange
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: duration
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
       propertyPath: isOffensive
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 0}
-      propertyPath: projectile
-      value: 
-      objectReference: {fileID: 153840, guid: f32f931be9ec78645abadd71dcaa49df, type: 2}
-    - target: {fileID: 0}
-      propertyPath: projectileSpeed
+      propertyPath: shootChange
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 0}
-      propertyPath: doubleTap
+      propertyPath: instantActivation
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 0}
-      propertyPath: count
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: missilePrefab
+      propertyPath: yellowBulletBlaster
       value: 
-      objectReference: {fileID: 153840, guid: f32f931be9ec78645abadd71dcaa49df, type: 2}
+      objectReference: {fileID: 175764, guid: 890b450a8d791c84b8537997c9375c3b, type: 2}
     - target: {fileID: 0}
-      propertyPath: m_LocalPlayerAuthority
+      propertyPath: upgrade
+      value: 
+      objectReference: {fileID: 21300000, guid: daadf58e7f172489eb558c56ab36ef41,
+        type: 3}
+    - target: {fileID: 0}
+      propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 186234}
+  m_RootGameObject: {fileID: 110026}
   m_IsPrefabParent: 1

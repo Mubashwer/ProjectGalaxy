@@ -10,6 +10,7 @@ TagManager:
   - ScoreHUD
   - Unshreddable
   - Enemy
+  - Unspawnable
   layers:
   - Default
   - TransparentFX

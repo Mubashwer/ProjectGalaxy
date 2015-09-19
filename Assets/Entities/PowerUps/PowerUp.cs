@@ -9,13 +9,14 @@ public class PowerUp : NetworkBehaviour {
 
     protected bool activated; // checks whether power-up has been activated or not
     protected bool deactivated; // checks whether power-up is deactivated after being activated or not
+    public bool instantActivation; // checks whether power-up is activated on start
 
     public bool doubleTap; // checks to see whether a double-tap is needed to activate it or not
     public float count; // number of times it can be used (used when it has no timer)
     [SyncVar]
     protected float counter; // counter for powerUp expiration (used when it has no timer)
     public bool isDefensive; // checks to see if the power-up is defensive or not
-    public bool isOffensive;// checks to see if the power-up is offensive or not
+    public bool shootChange;// checks to see if shooting has changed or not
 
     public bool spriteChange; // checks to see whether the player changes sprite
     public Sprite playerOldSprite; // stores old player sprite
@@ -55,16 +56,20 @@ public class PowerUp : NetworkBehaviour {
 
     // Installs the powerup
     public virtual void Setup(GameObject player, int id) {
+        if(instantActivation) {
+            activated = true;
+        }
+        deactivated = false;
+
         if (hasTimer) {
             timer = duration;
-            timerStarted = true;
+            if(activated) timerStarted = true;
         }
         else {
             counter = count;
         }
         this.player = player;
         this.id = id;
-
     }
 
     // Replaces shooting for player

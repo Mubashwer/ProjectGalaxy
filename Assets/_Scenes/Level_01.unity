@@ -617,8 +617,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   powerUps:
-  - Missile
+  - Upgrade
   - Shield
+  - Missile
 --- !u!114 &395624913
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -886,7 +887,7 @@ GameObject:
   - 114: {fileID: 650445261}
   m_Layer: 0
   m_Name: NetworkManager
-  m_TagString: Untagged
+  m_TagString: Unspawnable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1526,7 +1527,7 @@ GameObject:
   - 114: {fileID: 2050303687}
   m_Layer: 0
   m_Name: StartPosition1
-  m_TagString: Untagged
+  m_TagString: Unspawnable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -6,9 +6,6 @@ public class Shield : PowerUp {
 
 	// Use this for initialization
 	void Start () {
-        activated = true;
-        deactivated = false;
-       
     }
 	
 	// Update is called once per frame

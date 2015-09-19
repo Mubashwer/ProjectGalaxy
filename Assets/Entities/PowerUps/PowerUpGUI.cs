@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using UnityEngine.Networking;
 using System.Collections;
 
-public class PowerUpGUI : NetworkBehaviour {
+public class PowerUpGUI : MonoBehaviour {
 
     public PlayerController player;
     private bool playerSet;

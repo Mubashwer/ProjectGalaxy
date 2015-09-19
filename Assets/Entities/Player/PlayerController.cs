@@ -5,11 +5,8 @@ using System.Collections;
 public class PlayerController : NetworkBehaviour {
 
 	//  Variables for restricting movement
-	
 	public float maxHealth = 200f;
-	public GameObject projectile;
 	public float projectileShootRate = 0.15f;
-	public GameObject hitEffect;
     public AudioClip shootSound;
     public bool isAlive = true;
 	public Sprite mySprite;
@@ -150,9 +147,13 @@ public class PlayerController : NetworkBehaviour {
     // Shoots unsyncrhonized bullets in all clients
     [ClientRpc]
     void RpcShoot() {
+        if(powerUp && powerUp.shootChange) {
+            powerUp.Shoot();
+            return;
+        }
         Vector3 bulletPos = transform.position;
         bulletPos.y += 0.5f;
-        GameObject bullet = Instantiate(projectile, bulletPos, Quaternion.identity) as GameObject;
+        GameObject bullet = Instantiate(Resources.Load("YellowBullet"), bulletPos, Quaternion.identity) as GameObject;
         bullet.GetComponent<Projectile>().owner = gameObject;
         bullet.GetComponent<Rigidbody2D>().velocity = Vector3.up * bullet.GetComponent<Projectile>().speed;
         AudioSource.PlayClipAtPoint(shootSound, bullet.transform.position);
