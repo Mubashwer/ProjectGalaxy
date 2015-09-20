@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour {
     public AudioClip shootSound;
     public int lives = 3;
 	
-	private bool isAlive = true;
+	public bool isAlive = true;
 	private float health; // current health
 	
 	// Use this for initialization
@@ -60,6 +60,14 @@ public class PlayerController : MonoBehaviour {
 	
 	public void increaseLives(){
 		lives++;
+	}
+	
+	public bool playerAlive(){
+		if(isAlive == true){
+			return true;
+		}
+		else
+			return false;
 	}
 	
 	void OnTriggerEnter2D(Collider2D collider){
@@ -118,9 +126,12 @@ public class PlayerController : MonoBehaviour {
 		lives --;
 		if(lives > 0){
 			Respawn ();
+			}
+		else if(lives <=0){
+			Application.Quit ();
+		}	
 			
-			
-		}
+		
 		
 		
 		}

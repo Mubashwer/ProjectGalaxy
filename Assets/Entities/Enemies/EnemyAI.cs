@@ -12,7 +12,7 @@ public class EnemyAI : MonoBehaviour {
 
 	private ScoreKeeper scoreKeeper;
 	private GameObject player;
-	private bool isAlive = true;
+	public bool isAlive = true;
 	private float pos; 
 	
 	void Start() {
@@ -39,7 +39,8 @@ public class EnemyAI : MonoBehaviour {
 		}
 		// Shoot at player
 		float probability = projectileShootRate * Time.deltaTime;
-		if(Random.value < probability){
+		bool alive = player.GetComponent<PlayerController>().isAlive;
+		if(Random.value < probability && alive == true ){
 			Shoot ();
 		}
 		
