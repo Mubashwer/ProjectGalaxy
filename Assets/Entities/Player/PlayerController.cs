@@ -5,25 +5,33 @@ public class PlayerController : MonoBehaviour {
 
 	//  Variables for restricting movement
 	private float xMin, xMax, yMin, yMax, padding = 0.5f;
-	public float maxHealth = 200f;
+	public float maxHealth = 300f;
 	public GameObject projectile;
+	public GameObject Player;
+	public Renderer rend;
+	
 	public float projectileSpeed = 10f;
 	public float projectileShootRate = 0.15f;
 	public GameObject hitEffect;
     public AudioClip shootSound;
+    public int lives = 3;
 	
 	private bool isAlive = true;
 	private float health; // current health
 	
 	// Use this for initialization
 	void Start () {
-		
+	
+	
+		rend = GetComponent<Renderer>();
+		rend.enabled = true;	
 		float distFromCam = transform.position.z - Camera.main.transform.position.z;
 		xMin = Camera.main.ViewportToWorldPoint (new Vector3(0,0,distFromCam)).x+padding;
 		xMax = Camera.main.ViewportToWorldPoint (new Vector3(1,0,distFromCam)).x-padding;
 		yMin = Camera.main.ViewportToWorldPoint (new Vector3(0,0,distFromCam)).y+padding;
 		yMax = Camera.main.ViewportToWorldPoint (new Vector3(1,1,distFromCam)).y-padding;
 		health = maxHealth;
+		Player = GameObject.FindGameObjectWithTag("Player");
 		
 	}
 	
@@ -50,9 +58,13 @@ public class PlayerController : MonoBehaviour {
 		return health;
 	}
 	
+	public void increaseLives(){
+		lives++;
+	}
+	
 	void OnTriggerEnter2D(Collider2D collider){
 		Projectile enemyProjectile = collider.gameObject.GetComponent<Projectile>();
-		if(enemyProjectile){
+		if(enemyProjectile && isAlive == true){
 			health -= enemyProjectile.GetDamage();
 			enemyProjectile.Hit();
 			 // hit effect
@@ -103,8 +115,35 @@ public class PlayerController : MonoBehaviour {
 		GameObject explosion = Instantiate(Resources.Load("Explosion"), transform.position, Quaternion.identity) as GameObject;
 		isAlive = false;
 		Destroy (explosion,1f);
-		Destroy(gameObject);
+		lives --;
+		if(lives > 0){
+			Respawn ();
+			
+			
+		}
+		
+		
+		}
 	
+	IEnumerator Blink()
+	{
+		
+		yield return new WaitForSeconds(2);
+		for(int i = 0;i<10;i++){
+			rend.enabled = false;
+			yield return new WaitForSeconds(0.1f);
+			rend.enabled = true;
+			yield return new WaitForSeconds(0.1f);
+		}
+		isAlive = true;
+	}
+	
+	void Respawn(){
+		rend.enabled = false;
+		StartCoroutine(Blink());
+		health = maxHealth;
+		
+		
 	}
 	
 }

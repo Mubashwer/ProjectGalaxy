@@ -149,10 +149,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 300
   projectile: {fileID: 175764, guid: 890b450a8d791c84b8537997c9375c3b, type: 2}
+  Player: {fileID: 0}
+  rend: {fileID: 0}
   projectileSpeed: 10
   projectileShootRate: .150000006
   hitEffect: {fileID: 127752, guid: 30cce0b65f3d2c34ead7c7f55f4488de, type: 2}
   shootSound: {fileID: 8300000, guid: 741c68d5dfdfc194f8471043710ca9ec, type: 3}
+  lives: 3
 --- !u!212 &21241672
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -225,6 +228,18 @@ Prefab:
       value: 
       objectReference: {fileID: 21300000, guid: 79b89df8603af46cc8e3ed089cf6d2be,
         type: 3}
+    - target: {fileID: 0}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 194960}
