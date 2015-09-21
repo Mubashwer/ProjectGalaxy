@@ -114,7 +114,7 @@ public class PlayerController : MonoBehaviour {
 		
 		// Clamp/Restrict the player to the play space
 		float newX = Mathf.Clamp (transform.position.x, xMin, xMax);
-		float newY = Mathf.Clamp (transform.position.y, yMin, yMax);
+		float newY = Mathf.Clamp (transform.position.y, yMin, yMax- 1.2f);
 		transform.position = new Vector3(newX, newY, transform.position.z);
 
 	}
