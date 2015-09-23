@@ -1,9 +1,11 @@
 fileFormatVersion: 2
-guid: c48c6ed627ef043c6935b2c3d55ec8af
-timeCreated: 1441171546
+guid: d5979c265c39b6d43b9e26833b0a8b4d
+timeCreated: 1442044324
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: shooting_button_separated_2
+    21300002: shooting_button_separated_6
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -30,14 +32,15 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     filterMode: -1
-    aniso: -1
+    aniso: 16
     mipBias: -1
     wrapMode: 1
   nPOTScale: 0
   lightmap: 0
   rGBM: 0
   compressionQuality: 50
-  spriteMode: 1
+  allowsAlphaSplitting: 0
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -48,7 +51,27 @@ TextureImporter:
   textureType: 8
   buildTargetSettings: []
   spriteSheet:
-    sprites: []
+    sprites:
+    - name: shooting_button_separated_2
+      rect:
+        serializedVersion: 2
+        x: 1294
+        y: 669
+        width: 529
+        height: 529
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: shooting_button_separated_6
+      rect:
+        serializedVersion: 2
+        x: 1582
+        y: 488
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 
   assetBundleName: 

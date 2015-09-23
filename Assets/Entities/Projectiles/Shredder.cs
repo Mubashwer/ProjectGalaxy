@@ -7,7 +7,7 @@ public class Shredder : MonoBehaviour {
 	// Destroy objects e.g bullets when the enter shredder
 	// outside screen
 	void OnTriggerEnter2D(Collider2D collider) {
-		if(collider.gameObject.tag != "Player")
-            NetworkServer.Destroy(collider.gameObject);
+		if(collider.gameObject.tag != "Player" && collider.gameObject.tag != "Unshreddable")
+           Destroy(collider.gameObject);
 	}
 }

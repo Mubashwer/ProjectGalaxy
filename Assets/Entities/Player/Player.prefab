@@ -212,13 +212,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100000
-  projectile: {fileID: 175764, guid: 890b450a8d791c84b8537997c9375c3b, type: 2}
-  projectileSpeed: 10
+  projectile: {fileID: 120534, guid: 2cd26e99135285047bf78b542d1122fb, type: 2}
   projectileShootRate: .150000006
   hitEffect: {fileID: 127752, guid: 30cce0b65f3d2c34ead7c7f55f4488de, type: 2}
   shootSound: {fileID: 8300000, guid: 741c68d5dfdfc194f8471043710ca9ec, type: 3}
   isAlive: 1
   mySprite: {fileID: 21300002, guid: 1606fa470dc9f4ac482b4dbe93d7414f, type: 3}
+  item: {fileID: 0}
+  powerUp: {fileID: 0}
 --- !u!114 &11462354
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -458,6 +459,18 @@ Prefab:
       value: 
       objectReference: {fileID: 21300002, guid: 1606fa470dc9f4ac482b4dbe93d7414f,
         type: 3}
+    - target: {fileID: 0}
+      propertyPath: m_TransformSyncMode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_AngularDrag
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: projectile
+      value: 
+      objectReference: {fileID: 120534, guid: 2cd26e99135285047bf78b542d1122fb, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 194960}

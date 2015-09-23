@@ -5,7 +5,6 @@ using System.Collections;
 public class EnemyAI : NetworkBehaviour {
 	public float health = 100f;
 	public GameObject projectile;
-	public float projectileSpeed = 10f;
 	public float projectileShootRate = 1f;
 	public int scoreValue = 150;
 	public float rotationSpeed = 8f;
@@ -13,8 +12,8 @@ public class EnemyAI : NetworkBehaviour {
     public bool isAlive = true;
 
 	private float pos;
-    //[SyncVar]
     private GameObject player;
+    private PlayerController killer;
 
 
     void Start()
@@ -42,9 +41,10 @@ public class EnemyAI : NetworkBehaviour {
     }
 
 
-    [ServerCallback]
+ 
     void Update()
     {
+        if (!isServer) return;
         // Rotate towards player
         if (player) {
             Vector3 dir = transform.position - player.transform.position;
@@ -70,41 +70,49 @@ public class EnemyAI : NetworkBehaviour {
 		if(!player) return;
 		Vector3 bulletPos = transform.position;
         bulletPos += transform.rotation * (0.5f* Vector3.down); 
-		GameObject instantiatedProjectile = Instantiate(projectile, bulletPos, transform.rotation) as GameObject;
+		GameObject bullet = Instantiate(projectile, bulletPos, transform.rotation) as GameObject;
 		Vector3 direction = transform.rotation * Vector3.down;
 		direction.Normalize();
-		instantiatedProjectile.GetComponent<Rigidbody2D>().velocity = direction * projectileSpeed;
-        AudioSource.PlayClipAtPoint(shootSound, instantiatedProjectile.transform.position);
-        NetworkServer.Spawn(instantiatedProjectile);
+		bullet.GetComponent<Rigidbody2D>().velocity = direction * bullet.GetComponent<Projectile>().speed;
+        AudioSource.PlayClipAtPoint(shootSound, bullet.transform.position);
 
     }
 
 
+
     [ServerCallback]
-    void OnTriggerEnter2D(Collider2D collider){
-		Projectile playerProjectile = collider.gameObject.GetComponent<Projectile>();
-		if(playerProjectile){
-			playerProjectile.Hit ();
-			GameObject hit = Instantiate(Resources.Load("YellowBulletHit"), transform.position, Quaternion.identity) as GameObject;            
-            hit.transform.parent = transform;
-            NetworkServer.Spawn(hit);
-            Destroy(hit,0.9f);
-			if(!isAlive) return;
-			health -= playerProjectile.GetDamage();
-			if (health <= 0) {
-				Die();
-                if(playerProjectile.owner) playerProjectile.owner.GetComponent<PlayerController>().addScore(scoreValue);
-			}
-		}
-	}
+    void OnTriggerEnter2D(Collider2D collider) {
+        Projectile bullet = collider.gameObject.GetComponent<Projectile>();
+        float damage = 0;
+        if (bullet) {
+            killer = bullet.owner.GetComponent<PlayerController>();
+            damage = bullet.GetDamage();
+            bullet.Hit();
+            RpcDamaged(damage);
+        }
+    }
+
+    [ClientRpc]
+    void RpcDamaged(float damage) {
+        health -= damage;
+        // hit effect
+        GameObject hit = Instantiate(Resources.Load("YellowBulletHit"), transform.position, Quaternion.identity) as GameObject;
+        hit.transform.parent = transform;
+        Destroy(hit, 0.9f);
+        if (!isAlive) return;
+        if (health <= 0) {
+            if(isServer && killer) killer.RpcAddScore(scoreValue);
+            Die();
+        }
+    }
 	
 	void Die(){
 		GameObject explosion = Instantiate(Resources.Load("Explosion"), transform.position, Quaternion.identity) as GameObject;
-        NetworkServer.Spawn(explosion);
 		isAlive = false;
 		Destroy (explosion,1f);
 		Destroy(gameObject);
 	}
+
 	
 	// Moves the enemy from right to left
 	void MoveEnemyPosition(){

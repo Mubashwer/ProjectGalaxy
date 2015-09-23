@@ -9,13 +9,13 @@ GameObject:
   m_Component:
   - 4: {fileID: 453734}
   - 212: {fileID: 21285982}
-  - 50: {fileID: 5036732}
   - 61: {fileID: 6114036}
   - 114: {fileID: 11468838}
   - 114: {fileID: 11421496}
   - 114: {fileID: 11456054}
+  - 50: {fileID: 5050816}
   m_Layer: 11
-  m_Name: YellowBullet
+  m_Name: YellowBulletBlaster
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -33,7 +33,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!50 &5036732
+--- !u!50 &5050816
 Rigidbody2D:
   serializedVersion: 2
   m_ObjectHideFlags: 1
@@ -106,7 +106,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_TransformSyncMode: 2
-  m_SendInterval: .0333333351
+  m_SendInterval: 0
   m_SyncRotationAxis: 3
   m_RotationSyncCompression: 0
   m_SyncSpin: 0
@@ -125,7 +125,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc48cbbbd5fa8f4c844cc0df3e0d6e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 20
+  damage: 120
+  speed: 10
   owner: {fileID: 0}
 --- !u!212 &21285982
 SpriteRenderer:
@@ -151,7 +152,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: d90fd4d9c3a89134199ba6ff40199bd0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d4e7f6fa4f4b1364fb5c2e67edefac08, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &100100000
 Prefab:
@@ -166,7 +167,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: damage
-      value: 20
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: speed
@@ -190,8 +191,17 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_SendInterval
-      value: .0333333351
+      value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_TransformSyncMode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: d4e7f6fa4f4b1364fb5c2e67edefac08,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 175764}
