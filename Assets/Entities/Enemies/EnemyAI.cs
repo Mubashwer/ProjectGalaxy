@@ -58,7 +58,8 @@ public class EnemyAI : NetworkBehaviour {
 
         // Shoot at player
         float probability = projectileShootRate * Time.deltaTime;
-        if (Random.value < probability) {
+        bool alive = player.GetComponent<PlayerController>().isAlive;
+        if (Random.value < probability && alive == true) {
             RpcShoot();
         }
         MoveEnemyPosition();
