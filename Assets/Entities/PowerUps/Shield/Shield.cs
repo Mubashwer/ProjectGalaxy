@@ -23,7 +23,6 @@ public class Shield : PowerUp {
             // hit animation
             GameObject hitEffect = Instantiate(Resources.Load("YellowBulletHit"), collider.transform.position, Quaternion.identity) as GameObject;
             hitEffect.transform.parent = transform;
-            if (NetworkServer.active) NetworkServer.Spawn(hitEffect);
             Destroy(hitEffect, 0.9f);
         }
     }
