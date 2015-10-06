@@ -11,7 +11,7 @@ public class PlayerController : NetworkBehaviour {
     public bool isAlive = true;
 	public Sprite mySprite;
 	public GameObject Player;
-	public Renderer renderer;
+	public Renderer myRenderer;
 	public int lives = 3;
 
     public PowerUpItem item;
@@ -49,15 +49,15 @@ public class PlayerController : NetworkBehaviour {
 		yMax = Camera.main.ViewportToWorldPoint (new Vector3(1,1,distFromCam)).y-padding;
 		health = maxHealth;
         DontDestroyOnLoad(gameObject);
-        renderer = GetComponent<Renderer>();
-        renderer.enabled = true;
+        myRenderer = GetComponent<Renderer>();
+        myRenderer.enabled = true;
         Player = GameObject.FindGameObjectWithTag("Player");
 	}
 	
 	
 	// Update is called once per frame
 	void Update() {
-        if (!isLocalPlayer) {
+        if (!isLocalPlayer || isAlive == false) {
             return;
         }
         // Tapping Screen   
@@ -95,8 +95,6 @@ public class PlayerController : NetworkBehaviour {
             StopAllCoroutines();
         }
 
-		Debug.Log ("Lives = " + lives);
-
         // Follow touch swipe or mouse left-click
         FollowSwipe();
 
@@ -121,15 +119,15 @@ public class PlayerController : NetworkBehaviour {
     //Detects collision in server but updates damage/powerUp in all clients
     [ServerCallback]
     void OnTriggerEnter2D(Collider2D collider){
-
+        if (!isAlive) return;
         Projectile bullet = collider.gameObject.GetComponent<Projectile>();
         PowerUpItem newItem = collider.gameObject.GetComponent<PowerUpItem>();
         float damage = 0;
 
-        if (bullet && isAlive == true){
+        if (bullet){
             bullet.Hit(); //destroy bullet
             damage = bullet.GetDamage(); // get damage
-            if (item && powerUp && powerUp.isActivated() && powerUp.isDefensive) {
+            if (powerUp && powerUp.isActivated() && powerUp.isDefensive) {
                 damage = powerUp.Defend(damage); // update damage via defensive powerUp
             }
             RpcDamaged(damage); // take damage in all clients
@@ -272,23 +270,25 @@ public class PlayerController : NetworkBehaviour {
     void Die(){
 		GameObject explosion = Instantiate(Resources.Load("Explosion"), transform.position, Quaternion.identity) as GameObject;
 		isAlive = false;
+        if (powerUp) powerUp.WrapUp();
         Destroy(explosion,1f);
 		lives--;
-		if(lives > 0){
-			Respawn();
-			
+        StopAllCoroutines();
+        if (lives <= 0) {
+            Respawn(); // TODO: GAME OVER screen    
+        }
+        else {
+			Respawn();	
 		}
-		else if(lives <=0){
-			Application.Quit ();
-		}
+
 	
 	}
 	IEnumerator Blink(){
 		yield return new WaitForSeconds(2);
 		for(int i = 0;i<10;i++){
-			renderer.enabled = false;
+			myRenderer.enabled = false;
 			yield return new WaitForSeconds(0.1f);
-			renderer.enabled = true;
+			myRenderer.enabled = true;
 			yield return new WaitForSeconds(0.1f);
 		}
 		//renderer.enabled = true;
@@ -296,9 +296,10 @@ public class PlayerController : NetworkBehaviour {
 	}
 	
 	void Respawn(){
-		renderer.enabled = false;
-		StartCoroutine(Blink ());
+		myRenderer.enabled = false;
+        StartCoroutine(Blink ());
 		health = maxHealth;
-		//isAlive = true;
+		
+        //isAlive = true;
 	}
 }
