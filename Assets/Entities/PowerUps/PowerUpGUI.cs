@@ -17,6 +17,7 @@ public class PowerUpGUI : MonoBehaviour {
     }
 
     bool FindPlayer() {
+        if (!gameManager) return false;
         if (!playerSet) {
             player = gameManager.FindLocalPlayer();
             if (player) {

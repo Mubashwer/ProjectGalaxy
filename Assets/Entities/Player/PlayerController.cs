@@ -287,19 +287,23 @@ public class PlayerController : NetworkBehaviour {
 		yield return new WaitForSeconds(2);
 		for(int i = 0;i<10;i++){
 			myRenderer.enabled = false;
-			yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.1f);
 			myRenderer.enabled = true;
-			yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.1f);
 		}
 		//renderer.enabled = true;
 		isAlive = true;
-	}
+        transform.FindChild("RightExhaustFlames").gameObject.GetComponent<Renderer>().enabled = true;
+        transform.FindChild("LeftExhaustFlames").gameObject.GetComponent<Renderer>().enabled = true;
+    }
 	
 	void Respawn(){
 		myRenderer.enabled = false;
+        transform.FindChild("RightExhaustFlames").gameObject.GetComponent<Renderer>().enabled = false;
+        transform.FindChild("LeftExhaustFlames").gameObject.GetComponent<Renderer>().enabled = false;
         StartCoroutine(Blink ());
 		health = maxHealth;
-		
+
         //isAlive = true;
-	}
+    }
 }
