@@ -32,7 +32,4 @@ public class NetworkManagerCustom : NetworkManager {
             }
         }
     }
-
-
-
 }

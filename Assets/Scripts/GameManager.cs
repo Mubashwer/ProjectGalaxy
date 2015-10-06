@@ -21,6 +21,8 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public bool SinglePlayer { get; set; }
+
     void Awake()
     {
         if (_instance == null) {
