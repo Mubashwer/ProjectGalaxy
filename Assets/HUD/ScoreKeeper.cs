@@ -17,6 +17,7 @@ public class ScoreKeeper : MonoBehaviour
     }
 
     void FindPlayer() {
+        if (!gameManager) return;
         if (!playerSet) {
             player = gameManager.FindLocalPlayer();
             if (player) playerSet = true;

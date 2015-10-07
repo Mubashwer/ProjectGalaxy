@@ -7,11 +7,8 @@ public class PowerUp : NetworkBehaviour {
     public string powerUpName; // name
     protected int id; // unique identification
     protected GameObject player; // player who received the power-up
-    
 
     protected bool activated; // checks whether power-up has been activated or not
-    protected bool deactivated; // checks whether power-up is deactivated after being activated or not
-    public bool instantActivation; // checks whether power-up is activated on start
 
     public bool doubleTap; // checks to see whether a double-tap is needed to activate it or not
     public float count; // number of times it can be used (used when it has no timer)
@@ -59,11 +56,7 @@ public class PowerUp : NetworkBehaviour {
 
     // Installs the powerup
     public virtual void Setup(GameObject player, int id) {
-        if(instantActivation) {
-            activated = true;
-        }
-        deactivated = false;
-
+        activated = true;
         if (hasTimer) {
             timer = duration;
             if(activated) timerStarted = true;

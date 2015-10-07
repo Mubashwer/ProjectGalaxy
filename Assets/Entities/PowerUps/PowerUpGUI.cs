@@ -17,6 +17,7 @@ public class PowerUpGUI : MonoBehaviour {
     }
 
     bool FindPlayer() {
+        if (!gameManager) return false;
         if (!playerSet) {
             player = gameManager.FindLocalPlayer();
             if (player) {
@@ -65,8 +66,10 @@ public class PowerUpGUI : MonoBehaviour {
         itemHUD.GetComponent<Rigidbody2D>().isKinematic = true; // will stop moving
         itemHUD.GetComponent<Collider2D>().enabled = false; // will no longer collide
 
+
         // move player.item to HUD
-        itemHUD.transform.position = new Vector3(-2, 4, 0);
+        itemHUD.transform.position = new Vector3(-2.12f,4.1f,0);
+
         gameObject.GetComponent<Image>().fillAmount = 1;
     }
 
