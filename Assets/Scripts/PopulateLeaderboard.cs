@@ -23,7 +23,7 @@ public class PopulateLeaderboard : MonoBehaviour {
             int score = scoreRecord["Score"].AsInt;
             string TimeString = scoreRecord["Time"].Value;
 
-            Instantiate(new 
+            
 
             // TODO: Populate the UI with the downloaded leaderboard information
 
