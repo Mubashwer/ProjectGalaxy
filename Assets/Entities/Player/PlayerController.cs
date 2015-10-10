@@ -31,17 +31,23 @@ public class PlayerController : NetworkBehaviour {
         base.OnStartClient();
 
         // CHange colour and start position of second player
-        if (GameObject.FindGameObjectsWithTag("Player").Length > 1) { 
+        var players = GameObject.FindGameObjectsWithTag("Player");
+        if (players.Length == 1) {
+            transform.position = new Vector3(-1f, -3.5f, 0f);
+            print(transform.position);
+                
+        }
+        else if (players.Length > 1) { 
 			GetComponent<SpriteRenderer>().sprite = mySprite;
 			transform.position = GameObject.Find("StartPosition2").transform.position;
         }
+
         SetDirtyBit(1);	
 
     }
 
     // Use this for initialization
     void Start () {
-		
 		float distFromCam = transform.position.z - Camera.main.transform.position.z;
 		xMin = Camera.main.ViewportToWorldPoint (new Vector3(0,0,distFromCam)).x+padding;
 		xMax = Camera.main.ViewportToWorldPoint (new Vector3(1,0,distFromCam)).x-padding;
@@ -60,6 +66,7 @@ public class PlayerController : NetworkBehaviour {
         if (!isLocalPlayer || isAlive == false) {
             return;
         }
+        print(transform.position);
         // Tapping Screen   
         if (Input.touchCount > 0) {
 

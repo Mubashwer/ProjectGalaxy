@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.Networking;
 
 public class LoadOnClick : MonoBehaviour {
     public void LoadScene(int index) {
@@ -8,8 +9,19 @@ public class LoadOnClick : MonoBehaviour {
 
     public void StartSinglePlayerGame() {
         // setup parameters to enable single player only
+        Debug.Log("Starting single player game");
         GameManager.instance.SinglePlayer = true;
-        Application.LoadLevel("Level_01");
+        NetworkManager netman = GameObject.Find("NetworkManager").GetComponent<NetworkManager>();
+        netman.ServerChangeScene("Level_01");
+        if (netman == null) {
+            Debug.LogError("Network Manager is null");
+            return;
+        }
+
+        netman.StopHost();
+        var client = netman.StartHost();
+        
+
     }
 
     public void StartMultiplayerGame() {
