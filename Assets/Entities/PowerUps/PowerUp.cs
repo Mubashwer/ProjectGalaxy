@@ -89,8 +89,8 @@ public class PowerUp : NetworkBehaviour {
         
 		if (player.GetComponent<PlayerController>().PlayerNum >= 2) { 
 			Debug.Log("Found player 2");
-			playerTwoOldSprite = GetComponent<SpriteRenderer>().sprite; //store old sprite
-			GetComponent<SpriteRenderer>().sprite = playerTwoNewSprite; // change sprite
+			playerTwoOldSprite = player.GetComponent<SpriteRenderer>().sprite; //store old sprite
+			player.GetComponent<SpriteRenderer>().sprite = playerTwoNewSprite; // change sprite
 		}else{
 			playerOldSprite = player.GetComponent<SpriteRenderer>().sprite; //store old sprite
 			player.GetComponent<SpriteRenderer>().sprite = playerNewSprite; // change sprite
