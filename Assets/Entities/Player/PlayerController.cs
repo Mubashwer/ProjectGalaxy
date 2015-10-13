@@ -13,6 +13,9 @@ public class PlayerController : NetworkBehaviour {
 	public GameObject Player;
 	public Renderer myRenderer;
 	public int lives = 3;
+	public LevelManager levelManager;
+	
+	public int PlayerNum { get; set; }
 
     public PowerUpItem item;
     public PowerUp powerUp;
@@ -29,9 +32,11 @@ public class PlayerController : NetworkBehaviour {
 
     public override void OnStartClient() {
         base.OnStartClient();
-
+		
+		PlayerNum = GameObject.FindGameObjectsWithTag("Player").Length;
+		
         // CHange colour and start position of second player
-        if (GameObject.FindGameObjectsWithTag("Player").Length > 1) { 
+        if (PlayerNum > 1) { 
 			GetComponent<SpriteRenderer>().sprite = mySprite;
 			transform.position = GameObject.Find("StartPosition2").transform.position;
         }
@@ -274,8 +279,9 @@ public class PlayerController : NetworkBehaviour {
         Destroy(explosion,1f);
 		lives--;
         StopAllCoroutines();
-        if (lives <= 0) {
-            Respawn(); // TODO: GAME OVER screen    
+        if (GameManager.instance.AllPlayersDead()) {
+        	levelManager.LoadLevel("Lose"); 
+			NetworkServer.Destroy(Player);
         }
         else {
 			Respawn();	

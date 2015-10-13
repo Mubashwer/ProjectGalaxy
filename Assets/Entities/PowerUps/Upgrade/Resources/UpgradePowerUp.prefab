@@ -94,13 +94,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   powerUpName: Upgrade
-  instantActivation: 1
   doubleTap: 0
   count: 0
-  isDefensive: 1
+  isDefensive: 0
   shootChange: 1
   spriteChange: 1
-  playerNewSprite: {fileID: 21300000, guid: daadf58e7f172489eb558c56ab36ef41, type: 3}
+  playerNewSprite: {fileID: 21300012, guid: 427d7756da2144e9cb5a0f57d1a463a8, type: 3}
+  playerTwoNewSprite: {fileID: 21300014, guid: 427d7756da2144e9cb5a0f57d1a463a8, type: 3}
   isPermanent: 0
   hasTimer: 1
   duration: 10
@@ -117,7 +117,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: isDefensive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: spriteChange
@@ -163,7 +163,12 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: playerNewSprite
       value: 
-      objectReference: {fileID: 21300000, guid: daadf58e7f172489eb558c56ab36ef41,
+      objectReference: {fileID: 21300012, guid: 427d7756da2144e9cb5a0f57d1a463a8,
+        type: 3}
+    - target: {fileID: 0}
+      propertyPath: playerTwoNewSprite
+      value: 
+      objectReference: {fileID: 21300014, guid: 427d7756da2144e9cb5a0f57d1a463a8,
         type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

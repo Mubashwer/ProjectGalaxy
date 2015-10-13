@@ -50,6 +50,19 @@ public class GameManager : MonoBehaviour
         }
         return player;
     }
+    
+    // Check if all the players are dead
+	public bool AllPlayersDead() {
+		GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+		if (players.GetLength(0) > 0) {
+			foreach (GameObject p in players) {
+				if (p.GetComponent<PlayerController>().lives > 0) {
+					return false;
+				} 
+			}
+		}
+		return true;
+	}
 
     public PlayerController GetPlayer(short id) {
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");

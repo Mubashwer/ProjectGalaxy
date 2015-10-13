@@ -19,7 +19,9 @@ public class PowerUp : NetworkBehaviour {
 
     public bool spriteChange; // checks to see whether the player changes sprite
     public Sprite playerNewSprite; // upgrade sprite
+	public Sprite playerTwoNewSprite; // upgrade sprite
     protected Sprite playerOldSprite; // stores old player sprite
+	protected Sprite playerTwoOldSprite; // stores old player sprite
 
     public bool isPermanent; // checks to see whether the powerup is permanent for the duration of game or not
     public bool hasTimer; // checks whether the power-up takes effect for a limited time
@@ -83,14 +85,26 @@ public class PowerUp : NetworkBehaviour {
     }
 
     public virtual void ReplacePlayerSprite() {
-        if (!spriteChange || !player) return;
-        playerOldSprite = player.GetComponent<SpriteRenderer>().sprite; //store old sprite
-        player.GetComponent<SpriteRenderer>().sprite = playerNewSprite; // change sprite
+        if (!spriteChange || !player) return;    
+        
+		if (player.GetComponent<PlayerController>().PlayerNum >= 2) { 
+			Debug.Log("Found player 2");
+			playerTwoOldSprite = GetComponent<SpriteRenderer>().sprite; //store old sprite
+			GetComponent<SpriteRenderer>().sprite = playerTwoNewSprite; // change sprite
+		}else{
+			playerOldSprite = player.GetComponent<SpriteRenderer>().sprite; //store old sprite
+			player.GetComponent<SpriteRenderer>().sprite = playerNewSprite; // change sprite
+		}
     }
 
     public virtual void RestorePlayerSprite() {
         if (!spriteChange || !player || !playerOldSprite) return;
-        player.GetComponent<SpriteRenderer>().sprite = playerOldSprite;
+        
+		if (player.GetComponent<PlayerController>().PlayerNum >= 21) { 
+        	player.GetComponent<SpriteRenderer>().sprite = playerTwoOldSprite;
+        }else{
+			player.GetComponent<SpriteRenderer>().sprite = playerOldSprite;
+        }
     }
 
     // Do stuffs before removing powerup

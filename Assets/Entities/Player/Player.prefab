@@ -211,14 +211,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43ded0063a2f8b840aafc1ebe73c8982, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 10000
+  maxHealth: 1000
   projectileShootRate: .150000006
   shootSound: {fileID: 8300000, guid: 741c68d5dfdfc194f8471043710ca9ec, type: 3}
   isAlive: 1
-  mySprite: {fileID: 21300002, guid: 1606fa470dc9f4ac482b4dbe93d7414f, type: 3}
+  mySprite: {fileID: 21300002, guid: 427d7756da2144e9cb5a0f57d1a463a8, type: 3}
   Player: {fileID: 0}
   myRenderer: {fileID: 0}
   lives: 3
+  levelManager: {fileID: 11434360, guid: 326076d23d9f7409eb85b832a1988a54, type: 2}
   item: {fileID: 0}
   powerUp: {fileID: 0}
 --- !u!114 &11462354
@@ -297,7 +298,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 1606fa470dc9f4ac482b4dbe93d7414f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 427d7756da2144e9cb5a0f57d1a463a8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!212 &21276396
 SpriteRenderer:
@@ -369,7 +370,7 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 1606fa470dc9f4ac482b4dbe93d7414f,
+      objectReference: {fileID: 21300000, guid: 427d7756da2144e9cb5a0f57d1a463a8,
         type: 3}
     - target: {fileID: 0}
       propertyPath: m_AssetId.i0
@@ -445,7 +446,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: maxHealth
-      value: 10000
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_SendInterval
@@ -458,7 +459,7 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: mySprite
       value: 
-      objectReference: {fileID: 21300002, guid: 1606fa470dc9f4ac482b4dbe93d7414f,
+      objectReference: {fileID: 21300002, guid: 427d7756da2144e9cb5a0f57d1a463a8,
         type: 3}
     - target: {fileID: 0}
       propertyPath: m_TransformSyncMode
@@ -472,6 +473,11 @@ Prefab:
       propertyPath: projectile
       value: 
       objectReference: {fileID: 120534, guid: 2cd26e99135285047bf78b542d1122fb, type: 2}
+    - target: {fileID: 0}
+      propertyPath: levelManager
+      value: 
+      objectReference: {fileID: 11434360, guid: 326076d23d9f7409eb85b832a1988a54,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 194960}

@@ -3,6 +3,7 @@ using System.Collections;
 
 public class UpgradePowerUp : PowerUp {
 
+
 	// Use this for initialization
 	void Start () {   
 	}
