@@ -78,4 +78,8 @@ public class GameManager : MonoBehaviour
         return player;
     }
 
+    void Update() {
+        if(!EnemyController.instance) Instantiate(Resources.Load("EnemyController"));
+    }
+
 }

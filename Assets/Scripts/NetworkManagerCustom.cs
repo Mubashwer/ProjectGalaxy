@@ -4,6 +4,35 @@ using System.Collections;
 
 public class NetworkManagerCustom : NetworkManager {
 
+    // Private reference for this class only
+    private static NetworkManagerCustom _instance;
+
+    //Public reference that other classes will use
+    public static NetworkManager instance {
+        get {
+            // Get instance from scene if it hasn't been set
+            if (_instance == null) {
+                _instance = GameObject.FindObjectOfType<NetworkManagerCustom>();
+                // Reuse in other scenes	
+                DontDestroyOnLoad(_instance.gameObject);
+            }
+            return (NetworkManager)_instance;
+        }
+    }
+
+    void Awake() {
+        if (_instance == null) {
+            // Make the first instance the singleton
+            _instance = this;
+            DontDestroyOnLoad(this);
+        }
+        else {
+            // Destroy this if another exists
+            if (this != _instance)
+                Destroy(this.gameObject);
+        }
+    }
+
     // called when a new player is added for a client
     public override void OnServerAddPlayer(NetworkConnection conn, short playerControllerId) {
         base.OnServerAddPlayer(conn, playerControllerId);
@@ -32,6 +61,15 @@ public class NetworkManagerCustom : NetworkManager {
             }
         }
     }
+
+    public override void OnStopServer() {
+        base.OnStopServer();
+        EnemyController.instance.StopAllCoroutines();
+        EnemyController.instance.CoroutinesStopped = true;
+        PowerUpController.instance.StopAllCoroutines();
+        PowerUpController.instance.CoroutinesStopped = true;
+    }
+
 
 
 

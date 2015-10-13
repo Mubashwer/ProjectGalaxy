@@ -9,16 +9,46 @@ public class PowerUpController : NetworkBehaviour {
     public string[] powerUps; // list of names of powerUps
     private int id; //unique id of every pair of item and corresponding powerUp dropped
 
+    public bool CoroutinesStopped { get; set; }
+
+    // Private reference for this class only
+    private static PowerUpController _instance;
+
+    //Public reference that other classes will use
+    public static PowerUpController instance {
+        get {
+            // Get instance from scene if it hasn't been set
+            if (_instance == null) {
+                _instance = GameObject.FindObjectOfType<PowerUpController>();
+                // Reuse in other scenes	
+                DontDestroyOnLoad(_instance.gameObject);
+            }
+            return _instance;
+        }
+    }
+
+    void Awake() {
+        if (_instance == null) {
+            // Make the first instance the singleton
+            _instance = this;
+            DontDestroyOnLoad(this);
+        }
+        else {
+            // Destroy this if another exists
+            if (this != _instance)
+                Destroy(this.gameObject);
+        }
+    }
+
 
     void Start () {
         if (!isServer) return;
-        id = 0;
-        StartCoroutine(SpawnPowerUps());
     }
 
     
     // Spawn powerUps every x seconds
     IEnumerator SpawnPowerUps() {
+        CoroutinesStopped = false;
         while (true) {
             InitiatePowerUp();
             yield return new WaitForSeconds(Random.Range(2.0f, 3.0f));
@@ -43,8 +73,15 @@ public class PowerUpController : NetworkBehaviour {
     }*/
 
     // Update is called once per frame
-    void Update () {
+    public override void OnStartServer () {
+        id = 0;
+        StartCoroutine(SpawnPowerUps());
+    }
 
-	}
+    void Update() {
+        if (!isServer) return;
+        if (CoroutinesStopped) StartCoroutine(SpawnPowerUps());
+    }
+
 
 }
