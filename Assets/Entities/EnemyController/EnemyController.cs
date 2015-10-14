@@ -2,13 +2,28 @@
 using UnityEngine.Networking;
 using System.Collections;
 
-public class EnemyController : NetworkBehaviour { 
-	
-	public GameObject enemyPrefab;
+public class EnemyController : NetworkBehaviour {
+
+    public GameObject enemyPrefab;
 
     // Private reference for this class only
     private static EnemyController _instance;
-    public bool CoroutinesStopped { get; set; }
+
+    public bool Enabled {
+        get {
+            return enabled;
+        }
+        set {
+            enabled = value;
+            if (value) {
+                StopAllCoroutines();
+                StartCoroutine(SpawnEnemies());
+            }
+            else {
+                StopAllCoroutines();
+            }
+        }
+    }
 
     //Public reference that other classes will use
     public static EnemyController instance {
@@ -31,7 +46,7 @@ public class EnemyController : NetworkBehaviour {
         }
         else {
             // Destroy this if another exists
-            if (this != _instance) 
+            if (this != _instance)
                 Destroy(this.gameObject);
         }
     }
@@ -39,46 +54,43 @@ public class EnemyController : NetworkBehaviour {
     // Use this for initialization
     void Start() {
         if (!isServer) return;
-        
-	}
-	
-	void Update(){
+    }
+
+    void Update() {
         if (!isServer) return;
-        if (CoroutinesStopped) StartCoroutine(SpawnEnemies());
     }
 
     public override void OnStartServer() {
-        StartCoroutine(SpawnEnemies());
-        Debug.Log("serverstarted");
+        //StartCoroutine(SpawnEnemies());
+        //Debug.Log("serverstarted");
     }
 
 
     // Spawn enemies every x seconds
     [Server]
     IEnumerator SpawnEnemies() {
-        CoroutinesStopped = false;
-        while (true){
-			InitiateEnemy();
-			yield return new WaitForSeconds(Random.Range(1.0f,2.0f));
-			/*if(EnemiesDead()){
-				yield return new WaitForSeconds(1);
-				RpcGameWon();
-			}*/
-			
-		}
-	}
-	
-	// Initiate Enemy Game Objects (as duplicate of enemyPrefab) 
-	void InitiateEnemy(){
-        
+        while (true) {
+            InitiateEnemy();
+            yield return new WaitForSeconds(Random.Range(1.0f, 2.0f));
+            /*if(EnemiesDead()){
+                yield return new WaitForSeconds(1);
+                RpcGameWon();
+            }*/
 
-		// [-4.0f, 4.0f] is screen width
-		// [6.0f] top of the screen
-		Vector3 position = new Vector3(Random.Range(-2.0F, 2.0F), 5.5f, 0);
-		GameObject Enemy = Instantiate(enemyPrefab, position, Quaternion.identity) as GameObject;
+        }
+    }
+
+    // Initiate Enemy Game Objects (as duplicate of enemyPrefab) 
+    void InitiateEnemy() {
+
+
+        // [-4.0f, 4.0f] is screen width
+        // [6.0f] top of the screen
+        Vector3 position = new Vector3(Random.Range(-2.0F, 2.0F), 5.5f, 0);
+        GameObject Enemy = Instantiate(enemyPrefab, position, Quaternion.identity) as GameObject;
 
 
         if (NetworkServer.active) NetworkServer.Spawn(Enemy);
-	}
+    }
 
 }

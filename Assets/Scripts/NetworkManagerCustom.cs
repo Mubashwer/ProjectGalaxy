@@ -8,7 +8,7 @@ public class NetworkManagerCustom : NetworkManager {
     private static NetworkManagerCustom _instance;
 
     //Public reference that other classes will use
-    public static NetworkManager instance {
+    public static NetworkManagerCustom instance {
         get {
             // Get instance from scene if it hasn't been set
             if (_instance == null) {
@@ -16,7 +16,7 @@ public class NetworkManagerCustom : NetworkManager {
                 // Reuse in other scenes	
                 DontDestroyOnLoad(_instance.gameObject);
             }
-            return (NetworkManager)_instance;
+            return _instance;
         }
     }
 
@@ -64,12 +64,13 @@ public class NetworkManagerCustom : NetworkManager {
 
     public override void OnStopServer() {
         base.OnStopServer();
-        EnemyController.instance.StopAllCoroutines();
-        EnemyController.instance.CoroutinesStopped = true;
-        PowerUpController.instance.StopAllCoroutines();
-        PowerUpController.instance.CoroutinesStopped = true;
+        StopGame();
     }
 
+    public void StopGame() {
+        EnemyController.instance.Enabled = false;
+        PowerUpController.instance.Enabled = false;
+    }
 
 
 

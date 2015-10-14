@@ -9,7 +9,22 @@ public class PowerUpController : NetworkBehaviour {
     public string[] powerUps; // list of names of powerUps
     private int id; //unique id of every pair of item and corresponding powerUp dropped
 
-    public bool CoroutinesStopped { get; set; }
+    private bool enabled = false;
+    public bool Enabled {
+        get {
+            return enabled;
+        }
+        set {
+            enabled = value;
+            if (value) {
+                StopAllCoroutines();
+                StartCoroutine(SpawnPowerUps());
+            }
+            else {
+                StopAllCoroutines();
+            }
+        }
+    }
 
     // Private reference for this class only
     private static PowerUpController _instance;
@@ -28,6 +43,7 @@ public class PowerUpController : NetworkBehaviour {
     }
 
     void Awake() {
+        id = 0;
         if (_instance == null) {
             // Make the first instance the singleton
             _instance = this;
@@ -42,13 +58,13 @@ public class PowerUpController : NetworkBehaviour {
 
 
     void Start () {
+
         if (!isServer) return;
     }
 
     
     // Spawn powerUps every x seconds
     IEnumerator SpawnPowerUps() {
-        CoroutinesStopped = false;
         while (true) {
             InitiatePowerUp();
             yield return new WaitForSeconds(Random.Range(2.0f, 3.0f));
@@ -74,13 +90,11 @@ public class PowerUpController : NetworkBehaviour {
 
     // Update is called once per frame
     public override void OnStartServer () {
-        id = 0;
-        StartCoroutine(SpawnPowerUps());
+        
     }
 
     void Update() {
         if (!isServer) return;
-        if (CoroutinesStopped) StartCoroutine(SpawnPowerUps());
     }
 
 

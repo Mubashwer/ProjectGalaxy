@@ -7,6 +7,15 @@ public class GameManager : MonoBehaviour
     // Private reference for this class only
     private static GameManager _instance;
 
+    public GameMode CurrentGameMode { get; set; }
+
+    public enum GameMode {
+        None,
+        SinglePlayer,
+        MultiPlayerClient,
+        MultiPlayerHost
+    }
+
     //Public reference that other classes will use
     public static GameManager instance
     {

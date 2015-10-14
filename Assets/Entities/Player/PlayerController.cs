@@ -280,6 +280,7 @@ public class PlayerController : NetworkBehaviour {
 		lives--;
         StopAllCoroutines();
         if (GameManager.instance.AllPlayersDead()) {
+            NetworkManagerCustom.instance.StopGame();
         	levelManager.LoadLevel("Lose"); 
 			NetworkServer.Destroy(Player);
         }
