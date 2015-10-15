@@ -211,7 +211,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43ded0063a2f8b840aafc1ebe73c8982, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 1000
+  maxHealth: 100
   projectileShootRate: .150000006
   shootSound: {fileID: 8300000, guid: 741c68d5dfdfc194f8471043710ca9ec, type: 3}
   isAlive: 1
@@ -446,7 +446,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: maxHealth
-      value: 1000
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_SendInterval

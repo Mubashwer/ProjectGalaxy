@@ -15,7 +15,7 @@ GameObject:
   - 114: {fileID: 11403838}
   - 114: {fileID: 11439318}
   m_Layer: 9
-  m_Name: Enemy
+  m_Name: Boss
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -41,7 +41,7 @@ Rigidbody2D:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 103886}
   m_Mass: 1
-  m_LinearDrag: 10
+  m_LinearDrag: 3
   m_AngularDrag: 0
   m_GravityScale: 1
   m_IsKinematic: 0
@@ -135,22 +135,22 @@ MonoBehaviour:
   m_SceneId:
     m_Value: 0
   m_AssetId:
-    i0: 221
-    i1: 172
-    i2: 85
-    i3: 99
-    i4: 213
-    i5: 254
+    i0: 223
+    i1: 108
+    i2: 241
+    i3: 63
+    i4: 219
+    i5: 36
     i6: 244
-    i7: 196
-    i8: 216
-    i9: 131
-    i10: 98
-    i11: 134
-    i12: 31
-    i13: 108
-    i14: 41
-    i15: 36
+    i7: 241
+    i8: 152
+    i9: 60
+    i10: 134
+    i11: 211
+    i12: 49
+    i13: 254
+    i14: 110
+    i15: 5
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 0
 --- !u!114 &11439318
@@ -181,15 +181,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 103886}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f99a9b89c36ac914cb2db43435057ceb, type: 3}
+  m_Script: {fileID: 11500000, guid: abf58324e780e457c8b36133add8cd3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 200
-  projectile: {fileID: 175764, guid: 20e11034337269949a50fe70ad76420e, type: 2}
-  projectileShootRate: 1
-  scoreValue: 150
-  rotationSpeed: 8
-  shootSound: {fileID: 8300000, guid: 9a61bcd03420c954d99bda7a3b8f2323, type: 3}
+  health: 1200
+  projectile: {fileID: 175764, guid: 1b4b654a710d34e9794c54c9c94669af, type: 2}
+  projectileShootRate: .200000003
+  minion: {fileID: 0}
+  scoreValue: 200
   isAlive: 1
 --- !u!212 &21203886
 SpriteRenderer:
@@ -215,7 +214,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: cf8e08c333ca948488bd4496b2f8fe27, type: 3}
+  m_Sprite: {fileID: 21300000, guid: cfb98c00de27c4687ae78ab97198ccfd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &100100000
 Prefab:
@@ -227,7 +226,7 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: projectile
       value: 
-      objectReference: {fileID: 175764, guid: 20e11034337269949a50fe70ad76420e, type: 2}
+      objectReference: {fileID: 175764, guid: 1b4b654a710d34e9794c54c9c94669af, type: 2}
     - target: {fileID: 0}
       propertyPath: player
       value: 
@@ -238,7 +237,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: projectileShootRate
-      value: 1
+      value: .200000003
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_IsTrigger
@@ -270,7 +269,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_LinearDrag
-      value: 10
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_Mass
@@ -279,7 +278,7 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: cf8e08c333ca948488bd4496b2f8fe27,
+      objectReference: {fileID: 21300000, guid: cfb98c00de27c4687ae78ab97198ccfd,
         type: 3}
     - target: {fileID: 0}
       propertyPath: m_Color.r
@@ -295,7 +294,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: health
-      value: 200
+      value: 1200
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: shootSound
@@ -308,6 +307,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: scoreValue
+      value: 200
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
