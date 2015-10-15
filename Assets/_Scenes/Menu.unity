@@ -2467,6 +2467,30 @@ Prefab:
       propertyPath: m_AssetId.i15
       value: 47
       objectReference: {fileID: 0}
+    - target: {fileID: 11444918, guid: cc298087f2ceb28448be25fe0ce3402f, type: 2}
+      propertyPath: weakEnemyPrefab
+      value: 
+      objectReference: {fileID: 103886, guid: ddac5563d5fef4c4d88362861f6c2924, type: 2}
+    - target: {fileID: 11444918, guid: cc298087f2ceb28448be25fe0ce3402f, type: 2}
+      propertyPath: strongEnemyPrefab
+      value: 
+      objectReference: {fileID: 103886, guid: eb21a41bb8d68450a90da58e1f3570c2, type: 2}
+    - target: {fileID: 11444918, guid: cc298087f2ceb28448be25fe0ce3402f, type: 2}
+      propertyPath: minWeakEnemy
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11444918, guid: cc298087f2ceb28448be25fe0ce3402f, type: 2}
+      propertyPath: maxWeakEnemy
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11444918, guid: cc298087f2ceb28448be25fe0ce3402f, type: 2}
+      propertyPath: minStrongEnemy
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 11444918, guid: cc298087f2ceb28448be25fe0ce3402f, type: 2}
+      propertyPath: maxStrongEnemy
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cc298087f2ceb28448be25fe0ce3402f, type: 2}
   m_IsPrefabParent: 0

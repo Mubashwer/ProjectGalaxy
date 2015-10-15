@@ -10,6 +10,7 @@ public class EnemyAI : NetworkBehaviour {
 	public float rotationSpeed = 8f;
     public AudioClip shootSound;
     public bool isAlive = true;
+     
 
 	private float pos;
     private GameObject player;
@@ -25,6 +26,9 @@ public class EnemyAI : NetworkBehaviour {
 
         // Random vertical speed
         transform.GetComponent<Rigidbody2D>().drag = Random.Range(5, 10);
+        
+        // Rotate projectiles
+		projectile.transform.RotateAround (transform.position, transform.up, 180f);
 
     }
 
@@ -80,8 +84,6 @@ public class EnemyAI : NetworkBehaviour {
         AudioSource.PlayClipAtPoint(shootSound, bullet.transform.position);
 
     }
-
-
 
     [ServerCallback]
     void OnTriggerEnter2D(Collider2D collider) {

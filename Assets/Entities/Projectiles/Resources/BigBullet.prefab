@@ -9,13 +9,13 @@ GameObject:
   m_Component:
   - 4: {fileID: 453734}
   - 212: {fileID: 21285982}
+  - 50: {fileID: 5036732}
   - 61: {fileID: 6114036}
   - 114: {fileID: 11468838}
-  - 114: {fileID: 11421496}
-  - 114: {fileID: 11456054}
-  - 50: {fileID: 5050816}
-  m_Layer: 11
-  m_Name: YellowBulletBlaster
+  - 114: {fileID: 11442734}
+  - 114: {fileID: 11470260}
+  m_Layer: 10
+  m_Name: BigBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27,13 +27,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 175764}
-  m_LocalRotation: {x: 1, y: 0, z: 0, w: -1.62920685e-07}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -9.17939246e-07, y: 1.62920685e-07, z: -1, w: -1.92280179e-13}
+  m_LocalPosition: {x: 10.4214401, y: 0, z: -6.05996956e-06}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!50 &5050816
+--- !u!50 &5036732
 Rigidbody2D:
   serializedVersion: 2
   m_ObjectHideFlags: 1
@@ -62,7 +62,7 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: .0599999987, y: .460000008}
---- !u!114 &11421496
+--- !u!114 &11442734
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -76,25 +76,39 @@ MonoBehaviour:
   m_SceneId:
     m_Value: 0
   m_AssetId:
-    i0: 137
-    i1: 11
-    i2: 69
-    i3: 10
-    i4: 141
-    i5: 121
-    i6: 28
-    i7: 132
-    i8: 184
-    i9: 83
-    i10: 121
-    i11: 151
+    i0: 27
+    i1: 75
+    i2: 101
+    i3: 74
+    i4: 113
+    i5: 13
+    i6: 52
+    i7: 233
+    i8: 121
+    i9: 76
+    i10: 84
+    i11: 201
     i12: 201
-    i13: 55
-    i14: 92
-    i15: 59
+    i13: 70
+    i14: 105
+    i15: 175
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 0
---- !u!114 &11456054
+--- !u!114 &11468838
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 175764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbc48cbbbd5fa8f4c844cc0df3e0d6e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 50
+  speed: 8
+  owner: {fileID: 0}
+--- !u!114 &11470260
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -114,20 +128,6 @@ MonoBehaviour:
   m_SnapThreshold: 5
   m_InterpolateRotation: 1
   m_InterpolateMovement: 1
---- !u!114 &11468838
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 175764}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bbc48cbbbd5fa8f4c844cc0df3e0d6e8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 120
-  speed: 10
-  owner: {fileID: 0}
 --- !u!212 &21285982
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -152,7 +152,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: d4e7f6fa4f4b1364fb5c2e67edefac08, type: 3}
+  m_Sprite: {fileID: 21300010, guid: d4e7f6fa4f4b1364fb5c2e67edefac08, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &100100000
 Prefab:
@@ -167,41 +167,33 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: damage
-      value: 120
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: speed
-      value: 10
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_AngularDrag
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 0}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300010, guid: d4e7f6fa4f4b1364fb5c2e67edefac08,
+        type: 3}
+    - target: {fileID: 0}
       propertyPath: m_Layer
-      value: 11
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_audioClip
       value: 
-      objectReference: {fileID: 8300000, guid: 741c68d5dfdfc194f8471043710ca9ec, type: 3}
-    - target: {fileID: 0}
-      propertyPath: m_LocalPlayerAuthority
-      value: 0
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 8300000, guid: 9a61bcd03420c954d99bda7a3b8f2323, type: 3}
     - target: {fileID: 0}
       propertyPath: m_SendInterval
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_TransformSyncMode
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: d4e7f6fa4f4b1364fb5c2e67edefac08,
-        type: 3}
     - target: {fileID: 0}
       propertyPath: m_LocalRotation.x
       value: 1
@@ -209,6 +201,14 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_LocalRotation.w
       value: -1.62920685e-07
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_LocalRotation.z
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
