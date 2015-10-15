@@ -9,12 +9,7 @@ public class LevelManager : MonoBehaviour {
 		Debug.Log ("New Level load: " + name);
 		Application.LoadLevel (name);
 	}
-	
-	public void QuitRequest(){
-		Debug.Log ("Quit requested");
-		Application.Quit ();
-	}
-	
+		
 	public void PauseGame(){
 		if(paused == false){
 			Time.timeScale = 0;
@@ -25,6 +20,6 @@ public class LevelManager : MonoBehaviour {
 			paused = false;
 		}
 	}
-		
+    	
 }
 	

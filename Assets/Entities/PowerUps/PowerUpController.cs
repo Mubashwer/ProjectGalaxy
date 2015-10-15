@@ -9,13 +9,13 @@ public class PowerUpController : NetworkBehaviour {
     public string[] powerUps; // list of names of powerUps
     private int id; //unique id of every pair of item and corresponding powerUp dropped
 
-    private bool enabled = false;
+    private bool _enabled = false;
     public bool Enabled {
         get {
-            return enabled;
+            return _enabled;
         }
         set {
-            enabled = value;
+            _enabled = value;
             if (value) {
                 StopAllCoroutines();
                 StartCoroutine(SpawnPowerUps());

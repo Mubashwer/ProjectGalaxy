@@ -238,7 +238,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
 --- !u!114 &152555469 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 11446718, guid: 9c3368150f463244ea2ebe46fa868a3a,
@@ -282,7 +282,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 447884, guid: 9c3368150f463244ea2ebe46fa868a3a, type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 447884, guid: 9c3368150f463244ea2ebe46fa868a3a, type: 2}
       propertyPath: m_LocalScale.x
@@ -356,7 +356,7 @@ MonoBehaviour:
     m_Font: {fileID: 12800000, guid: c5fe3c3d75b8b434f8ce1d8e4a56dc60, type: 3}
     m_FontSize: 0
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 10
     m_MaxSize: 40
     m_Alignment: 4
@@ -428,7 +428,7 @@ MonoBehaviour:
     m_Font: {fileID: 12800000, guid: c5fe3c3d75b8b434f8ce1d8e4a56dc60, type: 3}
     m_FontSize: 0
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 10
     m_MaxSize: 40
     m_Alignment: 4
@@ -436,7 +436,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Server
+  m_Text: Host Game
 --- !u!222 &300402192
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -474,10 +474,10 @@ RectTransform:
   m_Children:
   - {fileID: 300402190}
   m_Father: {fileID: 850806355}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: -7, y: -74}
+  m_AnchoredPosition: {x: -7, y: 33}
   m_SizeDelta: {x: 510, y: 76}
   m_Pivot: {x: .5, y: .5}
 --- !u!132 &356645041
@@ -799,7 +799,7 @@ MonoBehaviour:
     m_Font: {fileID: 12800000, guid: c5fe3c3d75b8b434f8ce1d8e4a56dc60, type: 3}
     m_FontSize: 0
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 10
     m_MaxSize: 40
     m_Alignment: 4
@@ -854,7 +854,7 @@ MonoBehaviour:
     m_Font: {fileID: 12800000, guid: c5fe3c3d75b8b434f8ce1d8e4a56dc60, type: 3}
     m_FontSize: 0
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 10
     m_MaxSize: 40
     m_Alignment: 4
@@ -862,7 +862,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Client
+  m_Text: Join Game
 --- !u!222 &789683327
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -983,11 +983,11 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 1434915176}
   - {fileID: 356645040}
+  - {fileID: 1434915176}
   - {fileID: 1613218023}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -1407,10 +1407,10 @@ RectTransform:
   m_Children:
   - {fileID: 789683328}
   m_Father: {fileID: 850806355}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: -7, y: 33}
+  m_AnchoredPosition: {x: -7, y: -74}
   m_SizeDelta: {x: 510, y: 76}
   m_Pivot: {x: .5, y: .5}
 --- !u!132 &1434915177
@@ -1578,7 +1578,7 @@ MonoBehaviour:
     m_Font: {fileID: 12800000, guid: c5fe3c3d75b8b434f8ce1d8e4a56dc60, type: 3}
     m_FontSize: 0
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 10
     m_MaxSize: 40
     m_Alignment: 4
@@ -1938,7 +1938,7 @@ MonoBehaviour:
     m_Font: {fileID: 12800000, guid: c5fe3c3d75b8b434f8ce1d8e4a56dc60, type: 3}
     m_FontSize: 0
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 10
     m_MaxSize: 40
     m_Alignment: 4
@@ -2358,7 +2358,7 @@ RectTransform:
   - {fileID: 1818445915}
   - {fileID: 1421126580}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 3
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -2526,7 +2526,7 @@ MonoBehaviour:
   m_PlayerPrefab: {fileID: 194960, guid: bb3b89baecaadba4c87ceb621ef8e702, type: 2}
   m_AutoCreatePlayer: 1
   m_PlayerSpawnMethod: 0
-  m_OfflineScene: Disconnected
+  m_OfflineScene: 
   m_OnlineScene: 
   m_SpawnPrefabs:
   - {fileID: 103886, guid: ddac5563d5fef4c4d88362861f6c2924, type: 2}
@@ -2645,7 +2645,7 @@ MonoBehaviour:
     m_Font: {fileID: 12800000, guid: c5fe3c3d75b8b434f8ce1d8e4a56dc60, type: 3}
     m_FontSize: 0
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 10
     m_MaxSize: 40
     m_Alignment: 4
@@ -2690,4 +2690,4 @@ Transform:
   - {fileID: 655622779}
   - {fileID: 839411316}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 9

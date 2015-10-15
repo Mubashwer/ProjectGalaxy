@@ -9,12 +9,13 @@ public class EnemyController : NetworkBehaviour {
     // Private reference for this class only
     private static EnemyController _instance;
 
+    private bool _enabled = false;
     public bool Enabled {
         get {
-            return enabled;
+            return _enabled;
         }
         set {
-            enabled = value;
+            _enabled = value;
             if (value) {
                 StopAllCoroutines();
                 StartCoroutine(SpawnEnemies());
