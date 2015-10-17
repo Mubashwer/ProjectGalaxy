@@ -7,19 +7,16 @@ public class ScoreKeeper : MonoBehaviour
 
     private PlayerController player;
     private Text myText;
-    private GameManager gameManager;
     bool playerSet = false;
 
     void Start() {
         myText = GetComponent<Text>();
         myText.text = 0.ToString();
-        gameManager = GameManager.instance;
     }
 
     void FindPlayer() {
-        if (!gameManager) return;
         if (!playerSet) {
-            player = gameManager.FindLocalPlayer();
+            player = LevelManager.instance.FindLocalPlayer();
             if (player) playerSet = true;
         }
     }

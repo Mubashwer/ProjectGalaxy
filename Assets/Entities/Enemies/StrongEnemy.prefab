@@ -184,13 +184,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f99a9b89c36ac914cb2db43435057ceb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 500
   projectile: {fileID: 175764, guid: 1b4b654a710d34e9794c54c9c94669af, type: 2}
-  projectileShootRate: .200000003
-  scoreValue: 200
-  rotationSpeed: 8
   shootSound: {fileID: 8300000, guid: 9a61bcd03420c954d99bda7a3b8f2323, type: 3}
-  isAlive: 1
+  maxHealth:
+  - 200
+  - 300
+  - 500
+  projectileShootRate:
+  - .200000003
+  - .300000012
+  - .600000024
+  scoreValue: 080000001400000032000000
+  rotationSpeed:
+  - .600000024
+  - .800000012
+  - 1
 --- !u!212 &21203886
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -224,6 +232,26 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: health.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: maxHealth.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: scoreValue.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: rotationSpeed.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: projectileShootRate.Array.size
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: projectile
       value: 
@@ -311,6 +339,66 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: scoreValue
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: health.Array.data[1]
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: projectileShootRate.Array.data[1]
+      value: .300000012
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: scoreValue.Array.data[1]
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: rotationSpeed.Array.data[1]
+      value: .800000012
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: rotationSpeed.Array.data[2]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: rotationSpeed.Array.data[0]
+      value: .600000024
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: scoreValue.Array.data[2]
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: scoreValue.Array.data[0]
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: projectileShootRate.Array.data[2]
+      value: .600000024
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: projectileShootRate.Array.data[0]
+      value: .200000003
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: health.Array.data[2]
+      value: 700
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: health.Array.data[0]
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: maxHealth.Array.data[2]
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: maxHealth.Array.data[1]
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: maxHealth.Array.data[0]
       value: 200
       objectReference: {fileID: 0}
     m_RemovedComponents: []

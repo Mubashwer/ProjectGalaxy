@@ -3,23 +3,29 @@ using UnityEngine.Networking;
 using System.Collections;
 
 public class EnemyAI : NetworkBehaviour {
-	public float health = 100f;
-	public GameObject projectile;
-	public float projectileShootRate = 1f;
-	public int scoreValue = 150;
-	public float rotationSpeed = 8f;
-    public AudioClip shootSound;
-    public bool isAlive = true;
-     
 
-	private float pos;
-    private GameObject player;
+	public GameObject projectile;
+    public AudioClip shootSound;
+    public float[] maxHealth;
+    public float[] projectileShootRate;
+    public int[] scoreValue;
+    public float[] rotationSpeed;
+
+    public bool IsAlive { get; set; }
+    public float Health { get; set; }
+
+    private float pos;
+    private GameObject target;
     private PlayerController killer;
+    private int difficulty;
 
 
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
+        IsAlive = true;
+        Health = maxHealth[difficulty];
+        difficulty = (int)EnemyController.instance.CurrentAIDifficulty;
+        target = GameObject.FindGameObjectWithTag("Player");
         InvokeRepeating("SetPlayer", 0.0001f, Random.Range(2.0f, 4.0f));
         pos = transform.position.x;
 
@@ -40,7 +46,7 @@ public class EnemyAI : NetworkBehaviour {
         int count = players.GetLength(0);
         int id = Random.Range(0, count);
         if (count > 0) {
-            player = players[id];
+            if(players[id].GetComponent<PlayerController>().IsAlive) target = players[id];
         }
     }
 
@@ -50,20 +56,20 @@ public class EnemyAI : NetworkBehaviour {
     {
         if (!isServer) return;
         // Rotate towards player
-        if (player) {
-            Vector3 dir = transform.position - player.transform.position;
+        if (target) {
+            Vector3 dir = transform.position - target.transform.position;
             dir.Normalize();
             float rotationZ = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0f, 0f, (rotationZ - 90)), Time.deltaTime * rotationSpeed);
+            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0f, 0f, (rotationZ - 90)), Time.deltaTime * rotationSpeed[difficulty]);
         }
         else {
             SetPlayer();
         }
 
-        if (player) {
+        if (target) {
             // Shoot at player
-            float probability = projectileShootRate * Time.deltaTime;
-            bool alive = player.GetComponent<PlayerController>().isAlive;
+            float probability = projectileShootRate[difficulty] * Time.deltaTime;
+            bool alive = target.GetComponent<PlayerController>().IsAlive;
             if (Random.value < probability && alive == true) {
                 RpcShoot();
             }
@@ -74,7 +80,7 @@ public class EnemyAI : NetworkBehaviour {
     // Just shoot a bullet towards the player
     [ClientRpc]
     void RpcShoot() {
-		if(!player) return;
+		if(!target) return;
 		Vector3 bulletPos = transform.position;
         bulletPos += transform.rotation * (0.5f* Vector3.down); 
 		GameObject bullet = Instantiate(projectile, bulletPos, transform.rotation) as GameObject;
@@ -90,7 +96,7 @@ public class EnemyAI : NetworkBehaviour {
         Projectile bullet = collider.gameObject.GetComponent<Projectile>();
         float damage = 0;
         if (bullet) {
-            killer = bullet.owner.GetComponent<PlayerController>();
+            if(bullet.owner) killer = bullet.owner.GetComponent<PlayerController>();
             damage = bullet.GetDamage();
             bullet.Hit();
             RpcDamaged(damage);
@@ -99,21 +105,21 @@ public class EnemyAI : NetworkBehaviour {
 
     [ClientRpc]
     void RpcDamaged(float damage) {
-        health -= damage;
+        Health -= damage;
         // hit effect
         GameObject hit = Instantiate(Resources.Load("YellowBulletHit"), transform.position, Quaternion.identity) as GameObject;
         hit.transform.parent = transform;
         Destroy(hit, 0.9f);
-        if (!isAlive) return;
-        if (health <= 0) {
-            if(isServer && killer) killer.RpcAddScore(scoreValue);
+        if (!IsAlive) return;
+        if (Health <= 0) {
+            if(isServer && killer) killer.RpcAddScore(scoreValue[difficulty]);
             Die();
         }
     }
 	
 	void Die(){
 		GameObject explosion = Instantiate(Resources.Load("Explosion"), transform.position, Quaternion.identity) as GameObject;
-		isAlive = false;
+		IsAlive = false;
 		Destroy (explosion,1f);
 		Destroy(gameObject);
 	}

@@ -211,15 +211,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43ded0063a2f8b840aafc1ebe73c8982, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
-  projectileShootRate: .150000006
+  maxHealth:
+  - 1000
+  - 500
+  - 250
+  projectileShootRate:
+  - .100000001
+  - .150000006
+  - .25
+  lives: 030000000100000001000000
+  alternateSprite: {fileID: 21300002, guid: 427d7756da2144e9cb5a0f57d1a463a8, type: 3}
   shootSound: {fileID: 8300000, guid: 741c68d5dfdfc194f8471043710ca9ec, type: 3}
-  isAlive: 1
-  mySprite: {fileID: 21300002, guid: 427d7756da2144e9cb5a0f57d1a463a8, type: 3}
-  Player: {fileID: 0}
-  myRenderer: {fileID: 0}
-  lives: 2
-  levelManager: {fileID: 11434360, guid: 326076d23d9f7409eb85b832a1988a54, type: 2}
   item: {fileID: 0}
   powerUp: {fileID: 0}
 --- !u!114 &11462354
@@ -360,6 +362,18 @@ Prefab:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 0}
+      propertyPath: lives.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: maxHealth.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: projectileShootRate.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
@@ -482,6 +496,47 @@ Prefab:
       propertyPath: lives
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: maxHealth.Array.data[1]
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: maxHealth.Array.data[0]
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: maxHealth.Array.data[2]
+      value: 250
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: projectileShootRate.Array.data[1]
+      value: .150000006
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: projectileShootRate.Array.data[2]
+      value: .25
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: projectileShootRate.Array.data[0]
+      value: .100000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: lives.Array.data[2]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: lives.Array.data[1]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: lives.Array.data[0]
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: alternateSprite
+      value: 
+      objectReference: {fileID: 21300002, guid: 427d7756da2144e9cb5a0f57d1a463a8,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 194960}

@@ -44,13 +44,13 @@ public class NetworkManagerCustom : NetworkManager {
         // thes objects happened before client joined the game.
 
         GameObject[] gameObjects = FindObjectsOfType<GameObject>();
-        PlayerController player = GameManager.instance.FindLocalPlayer();
+        PlayerController player = LevelManager.instance.FindLocalPlayer();
 
         // Add unspawned existing gameObjects to client
         print(numPlayers);
         foreach (GameObject g in gameObjects) {
             NetworkBehaviour spawnable = g.GetComponent<NetworkBehaviour>();
-            if (NetworkServer.active && spawnable && !spawnable.isServer && spawnable.tag != "Unspawnable") {
+            if (NetworkServer.active && spawnable && spawnable.GetComponent<NetworkIdentity>() && !spawnable.isServer && spawnable.tag != "Unspawnable") {
                 NetworkServer.Spawn(g);
 
                 // reconfigure powerUp in host player in client scene so that they can be used

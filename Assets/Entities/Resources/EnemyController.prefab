@@ -72,7 +72,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b1c48f0e861e4ad2b29f8db3a9c17d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 103886, guid: ddac5563d5fef4c4d88362861f6c2924, type: 2}
+  weakEnemyPrefab: {fileID: 103886, guid: ddac5563d5fef4c4d88362861f6c2924, type: 2}
+  strongEnemyPrefab: {fileID: 103886, guid: eb21a41bb8d68450a90da58e1f3570c2, type: 2}
+  minWeakEnemyWait: 2
+  maxWeakEnemyWait: 2.5
+  minStrongEnemyWait: 2.9000001
+  maxStrongEnemyWait: 3.5999999
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

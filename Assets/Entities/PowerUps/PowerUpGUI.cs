@@ -7,19 +7,16 @@ public class PowerUpGUI : MonoBehaviour {
 
     public PlayerController player;
     private bool playerSet;
-    private GameManager gameManager;
     private PowerUpItem itemHUD;
 
     // Use this for initialization
     void Start () {
-        gameManager = GameManager.instance;
         playerSet = false;
     }
 
     bool FindPlayer() {
-        if (!gameManager) return false;
         if (!playerSet) {
-            player = gameManager.FindLocalPlayer();
+            player = LevelManager.instance.FindLocalPlayer();
             if (player) {
                 playerSet = true;
             }
@@ -29,7 +26,7 @@ public class PowerUpGUI : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-        if (!FindPlayer() || player.isAlive == false) return; // find local player
+        if (!FindPlayer() || player.IsAlive == false) return; // find local player
 
         
         // if player replace powerUp: replace HUD

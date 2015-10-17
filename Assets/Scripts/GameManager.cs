@@ -1,20 +1,26 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class GameManager : MonoBehaviour
-{
+public class GameManager : MonoBehaviour {
 
     // Private reference for this class only
     private static GameManager _instance;
-
-    public GameMode CurrentGameMode { get; set; }
-
     public enum GameMode {
         None,
         SinglePlayer,
         MultiPlayerClient,
         MultiPlayerHost
     }
+    public GameMode CurrentGameMode { get; set; }
+
+    public enum Difficulty {
+        Easy,
+        Normal,
+        Hard,
+    }
+    private Difficulty _difficulty;
+    public Difficulty CurrentPlayerDifficulty { get; set; }
+
 
     //Public reference that other classes will use
     public static GameManager instance
@@ -23,6 +29,9 @@ public class GameManager : MonoBehaviour
             // Get instance from scene if it hasn't been set
             if (_instance == null) {
                 _instance = GameObject.FindObjectOfType<GameManager>();
+                if(_instance == null) {
+                    _instance = (Instantiate(Resources.Load("GameManager")) as GameObject).GetComponent<GameManager>();
+                } 
                 // Reuse in other scenes	
                 DontDestroyOnLoad(_instance.gameObject);
             }
@@ -42,6 +51,8 @@ public class GameManager : MonoBehaviour
             if (this != _instance)
                 Destroy(this.gameObject);
         }
+        CurrentPlayerDifficulty = Difficulty.Normal;
+        CurrentGameMode = GameMode.None;
     }
 
 	// Host has disconnected the game
@@ -51,50 +62,10 @@ public class GameManager : MonoBehaviour
 		}
 	}
 
-    // Find local player
-    public PlayerController FindLocalPlayer() {
-        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-        PlayerController player = null;
-        if (players.GetLength(0) > 0) {
-            foreach (GameObject p in players) {
-                if (p.GetComponent<PlayerController>().isLocalPlayer) {
-                    player = p.GetComponent<PlayerController>();
-                    break;
-                }
-            }
-        }
-        return player;
-    }
     
     // Check if all the players are dead
-	public bool AllPlayersDead() {
-		GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-		if (players.GetLength(0) > 0) {
-			foreach (GameObject p in players) {
-				if (p.GetComponent<PlayerController>().lives > 0) {
-					return false;
-				} 
-			}
-		}
-		return true;
-	}
-
-    public PlayerController GetPlayer(short id) {
-        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-        PlayerController player = null;
-        if (players.GetLength(0) > 0) {
-            foreach (GameObject p in players) {
-                if (p.GetComponent<PlayerController>().playerControllerId == id) {
-                    player = p.GetComponent<PlayerController>();
-                    break;
-                }
-            }
-        }
-        return player;
-    }
 
     void Update() {
-        if(!EnemyController.instance) Instantiate(Resources.Load("EnemyController"));
     }
 
 }

@@ -9,22 +9,19 @@ public class HealthGUI : MonoBehaviour
     // Use this for initialization
     private PlayerController player; // health
     private float maxHealth; //maximum health of player
-    private GameManager gameManager;
-
     bool playerSet = false;
 
 
     void Start() {
-        gameManager = GameManager.instance;
+
     }
 
     void FindPlayer() {
-        if (!gameManager) return;
         if (!playerSet) {
-            player = gameManager.FindLocalPlayer();
+            player = LevelManager.instance.FindLocalPlayer();
             if (player) {
                 playerSet = true;
-                maxHealth = player.maxHealth;
+                maxHealth = player.GetMaxHealth();
             }
         }
     }

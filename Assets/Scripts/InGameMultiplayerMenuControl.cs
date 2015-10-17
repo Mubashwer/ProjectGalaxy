@@ -2,9 +2,9 @@
 using System.Collections;
 using UnityEngine.UI;
 using System.Net;
+using UnityEngine.Networking;
 
-
-public class InGameMultiplayerMenuControl : MonoBehaviour {
+public class InGameMultiplayerMenuControl : NetworkBehaviour {
 
     private GameObject multiplayerMenuCanvas;
     private GameObject ipAddressUIText;
@@ -29,9 +29,10 @@ public class InGameMultiplayerMenuControl : MonoBehaviour {
 
     public void CommenceMultiplayerGame() {
         multiplayerMenuCanvas.SetActive(false);
-        EnemyController.instance.Enabled = true;
-        PowerUpController.instance.Enabled = true;
+        LevelManager.instance.FindLocalPlayer().CmdSetSpawners(true);
     }
+
+
 
 
 }

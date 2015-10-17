@@ -35,9 +35,12 @@ public class PowerUpController : NetworkBehaviour {
             // Get instance from scene if it hasn't been set
             if (_instance == null) {
                 _instance = GameObject.FindObjectOfType<PowerUpController>();
-                // Reuse in other scenes	
-                DontDestroyOnLoad(_instance.gameObject);
+                if (_instance == null) {
+                    _instance = (Instantiate(Resources.Load("PowerUpController")) as GameObject).GetComponent<PowerUpController>();
+                }
             }
+            // Reuse in other scenes	
+            DontDestroyOnLoad(_instance.gameObject);
             return _instance;
         }
     }

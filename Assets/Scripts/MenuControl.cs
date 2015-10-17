@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Networking;
 using System.Collections;
 
@@ -6,15 +7,17 @@ public class MenuControl : MonoBehaviour {
 
     private GameObject mainMenuCanvas;
     private GameObject multiplayerMenuCanvas;
+    private GameObject optionsCanvas;
 
 
     public void Start() {
         mainMenuCanvas = GameObject.Find("CanvasMain");
         multiplayerMenuCanvas = GameObject.Find("CanvasMultiplayer");
+        optionsCanvas = GameObject.Find("CanvasOptions");
+        optionsCanvas.SetActive(false);
     }
 
     public void OnClickedSinglePlayer() {
-        Debug.Log("SinglePlayer button clicked!");
         GameManager.instance.CurrentGameMode = GameManager.GameMode.SinglePlayer;
         Application.LoadLevel("Level_01");
         NetworkManager networkManager = NetworkManagerCustom.instance;
@@ -28,52 +31,24 @@ public class MenuControl : MonoBehaviour {
         multiplayerMenuCanvas.SetActive(true);
     }
 
-    void OnGUI() {
-        NetworkManager networkManager = NetworkManagerCustom.instance;
-
-        int xpos = 10;
-        int ypos = 40;
-        int spacing = 24;
-
-        if (!NetworkClient.active && !NetworkServer.active && networkManager.matchMaker == null) {
-            if (GUI.Button(new Rect(xpos, ypos, 200, 20), "LAN Host(H)")) {
-                networkManager.StartHost();
-            }
-            ypos += spacing;
-
-            if (GUI.Button(new Rect(xpos, ypos, 105, 20), "LAN Client(C)")) {
-                networkManager.StartClient();
-            }
-            networkManager.networkAddress = GUI.TextField(new Rect(xpos + 100, ypos, 95, 20), networkManager.networkAddress);
-            ypos += spacing;
-
-            if (GUI.Button(new Rect(xpos, ypos, 200, 20), "LAN Server Only(S)")) {
-                networkManager.StartServer();
-            }
-            ypos += spacing;
-        }
-        else {
+    public void OnClickedInGameQuit() {
+        
+        GameManager.instance.CurrentGameMode = GameManager.GameMode.None;
+        try {
+            NetworkManagerCustom networkManager = NetworkManagerCustom.instance;
             if (NetworkServer.active) {
-                GUI.Label(new Rect(xpos, ypos, 300, 20), "Server: port=" + networkManager.networkPort);
-                ypos += spacing;
+                networkManager.StopServer();
             }
             if (NetworkClient.active) {
-                GUI.Label(new Rect(xpos, ypos, 300, 20), "Client: address=" + networkManager.networkAddress + " port=" + networkManager.networkPort);
-                ypos += spacing;
+                networkManager.StopClient();
             }
+            networkManager.StopGame();
         }
-    }
-
-    public void OnClickedInGameQuit() {
-        NetworkManager networkManager = NetworkManagerCustom.instance;
-        if (NetworkServer.active) {
-            networkManager.StopServer();
+        catch {
         }
-        if (NetworkClient.active) {
-            networkManager.StopClient();
+        finally {
+            Application.LoadLevel("Menu");
         }
-        GameManager.instance.CurrentGameMode = GameManager.GameMode.None;
-        Application.LoadLevel("Menu");
     }
 
     public void OnClickedMultiplayerMenuBack() {
@@ -86,12 +61,30 @@ public class MenuControl : MonoBehaviour {
     }
 
     public void OnClickedMultiplayerMenuServer() {
-        Debug.Log("MultiPlayer button clicked!");
         GameManager.instance.CurrentGameMode = GameManager.GameMode.MultiPlayerHost;
         Application.LoadLevel("Level_01");
         NetworkManager networkManager = NetworkManagerCustom.instance;
         networkManager.StartHost();
     }
 
+    public void OnClickedLeaderBoard() {
+        GameManager.instance.CurrentGameMode = GameManager.GameMode.MultiPlayerClient;
+        Application.LoadLevel("Level_01");
+        NetworkManager networkManager = NetworkManagerCustom.instance;
+        networkManager.StartClient();
+    }
+
+    public void OnClickedOptions() {
+        mainMenuCanvas.SetActive(false);
+        optionsCanvas.SetActive(true);
+    }
+    public void OnClickedOptionsMenuBack() {
+        mainMenuCanvas.SetActive(true);
+        optionsCanvas.SetActive(false);
+    }
+    public void OnDifficultyChanged() {
+        Slider slider = GameObject.Find("DifficultySlider").GetComponent<Slider>();
+        GameManager.instance.CurrentPlayerDifficulty = (GameManager.Difficulty)Mathf.RoundToInt(slider.value);
+    }
 
 }
