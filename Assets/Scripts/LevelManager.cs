@@ -50,6 +50,7 @@ public class LevelManager : MonoBehaviour {
     public void GameOver(string message, int score) {
         Message = message;
         Score = score;
+        LoginManager.instance.PostScoreToLeaderBoard(score);
         Instantiate(Resources.Load("CanvasGameOver"));
         
     }

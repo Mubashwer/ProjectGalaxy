@@ -233,7 +233,7 @@ public class PlayerController : NetworkBehaviour {
     void RpcShoot() {
         if (powerUp && powerUp.shootChange) {
             powerUp.Shoot();
-            AudioSource.PlayClipAtPoint(shootSound, transform.position, 0.9f);
+            AudioSource.PlayClipAtPoint(shootSound, transform.position);
             return;
         }
         Vector3 bulletPos = transform.position;
@@ -241,7 +241,7 @@ public class PlayerController : NetworkBehaviour {
         GameObject bullet = Instantiate(Resources.Load("YellowBullet"), bulletPos, Quaternion.identity) as GameObject;
         bullet.GetComponent<Projectile>().owner = gameObject;
         bullet.GetComponent<Rigidbody2D>().velocity = Vector3.up * bullet.GetComponent<Projectile>().speed;
-        AudioSource.PlayClipAtPoint(shootSound, bullet.transform.position, 0.9f);
+        AudioSource.PlayClipAtPoint(shootSound, bullet.transform.position);
     }
 
 
