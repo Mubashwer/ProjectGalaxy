@@ -36,22 +36,18 @@ public class MenuControl : MonoBehaviour {
 
     public void OnClickedInGameQuit() {
         
+        GameManager.GameMode mode = GameManager.instance.CurrentGameMode;
         GameManager.instance.CurrentGameMode = GameManager.GameMode.None;
-        try {
-            NetworkManagerCustom networkManager = NetworkManagerCustom.instance;
-            if (NetworkServer.active) {
-                networkManager.StopServer();
-            }
-            if (NetworkClient.active) {
-                networkManager.StopClient();
-            }
-            networkManager.StopGame();
+        NetworkManagerCustom networkManager = NetworkManagerCustom.instance;
+        networkManager.StopGame();
+        //Debug.Log(mode);
+        if ((mode == GameManager.GameMode.MultiPlayerHost || mode == GameManager.GameMode.SinglePlayer) && (NetworkServer.active || NetworkClient.active)) {
+            networkManager.StopHost();
         }
-        catch {
+        else if (mode == GameManager.GameMode.MultiPlayerClient && NetworkClient.active) {
+            networkManager.StopClient();
         }
-        finally {
-            Application.LoadLevel("Menu");
-        }
+        Application.LoadLevel("Menu");
     }
 
     public void OnClickedMultiplayerMenuBack() {
@@ -77,10 +73,7 @@ public class MenuControl : MonoBehaviour {
             LoginManager.instance.ShowLeaderBoard();
         }
         catch { }
-        //GameManager.instance.CurrentGameMode = GameManager.GameMode.MultiPlayerClient;
-        //Application.LoadLevel("Level_01");
-        //NetworkManager networkManager = NetworkManagerCustom.instance;
-        //networkManager.StartClient();
+
     }
 
     public void OnClickedOptions() {

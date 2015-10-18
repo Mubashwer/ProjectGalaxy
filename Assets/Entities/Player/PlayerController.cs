@@ -348,9 +348,4 @@ public class PlayerController : NetworkBehaviour {
         GameManager.instance.CurrentPlayerDifficulty = difficulty;
     }
 
-    void OnPlayerDisconnected(NetworkPlayer player) {
-        if (GameObject.Find("CanvasGameOver")) return;
-        LevelManager.instance.GameOver("host disconnected", (int)score);
-    }
-   
 }

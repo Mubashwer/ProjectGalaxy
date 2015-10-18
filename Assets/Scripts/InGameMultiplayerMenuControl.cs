@@ -20,7 +20,7 @@ public class InGameMultiplayerMenuControl : NetworkBehaviour {
         multiplayerMenuCanvas.SetActive(multiplayer);
 
         if (multiplayer) {
-            ipAddressUIText.GetComponent<Text>().text = "Give this code to Player 2\n" + Utilities.GetCurrentIPAddress().ToString();  //Utilities.Base64Encode(Utilities.GetCurrentIPAddress().ToString());
+            ipAddressUIText.GetComponent<Text>().text = "Give your IP to Player 2\n" + Utilities.GetCurrentIPAddress().ToString();  //Utilities.Base64Encode(Utilities.GetCurrentIPAddress().ToString());
         }
 
         // For Client
@@ -46,12 +46,8 @@ public class InGameMultiplayerMenuControl : NetworkBehaviour {
         var code = clientInputCode.GetComponent<InputField>().text;
         //var hack = Utilities.Base64Encode("192.168.1.1");
         //Debug.Log(code);
-        //Debug.Log(hack);
-        networkManager.networkAddress = Utilities.Base64Decode(code);
+        networkManager.networkAddress = code;
         networkManager.StartClient();
+        multiplayerJoinMenuCanvas.SetActive(false);
     }
-
-
-
-
 }
