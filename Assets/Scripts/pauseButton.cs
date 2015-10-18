@@ -3,7 +3,17 @@ using System.Collections;
 
 public class pauseButton : MonoBehaviour {
 	public bool paused = false;
-	public void PauseGame(){
+
+    void Start() {
+        // disable pause in multiplayer
+        if (GameManager.instance.CurrentGameMode != GameManager.GameMode.SinglePlayer) {
+            gameObject.SetActive(false);
+        }
+
+    }
+
+
+    public void PauseGame(){
 		if(paused == false){
 			Time.timeScale = 0;
 			paused = true;

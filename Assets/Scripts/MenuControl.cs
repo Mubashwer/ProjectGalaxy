@@ -60,7 +60,8 @@ public class MenuControl : MonoBehaviour {
     }
 
     public void OnClickedMultiplayerMenuClient() {
-        
+        GameManager.instance.CurrentGameMode = GameManager.GameMode.MultiPlayerClient;
+        Application.LoadLevel("Level_01");
     }
 
     public void OnClickedMultiplayerMenuServer() {
