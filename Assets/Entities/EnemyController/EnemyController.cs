@@ -2,6 +2,7 @@
 using UnityEngine.Networking;
 using System.Collections;
 
+
 public class EnemyController : NetworkBehaviour { 
 	
 	public GameObject weakEnemyPrefab;
@@ -11,7 +12,6 @@ public class EnemyController : NetworkBehaviour {
 	public float maxWeakEnemyWait; 
 	public float minStrongEnemyWait;
 	public float maxStrongEnemyWait;
-    //public BossAI bossAI;
 
     public GameManager.Difficulty CurrentAIDifficulty { get; set; }
 
@@ -108,8 +108,5 @@ public class EnemyController : NetworkBehaviour {
 		}
         
 	}
-	
-	void InitiateBoss(){
-	
-	}
+
 }

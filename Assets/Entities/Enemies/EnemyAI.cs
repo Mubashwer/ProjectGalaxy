@@ -83,7 +83,7 @@ public class EnemyAI : NetworkBehaviour {
 		if(!target) return;
 		Vector3 bulletPos = transform.position;
         bulletPos += transform.rotation * (0.5f* Vector3.down); 
-		GameObject bullet = Instantiate(projectile, bulletPos, transform.rotation) as GameObject;
+		GameObject bullet = Instantiate(projectile, bulletPos,transform.rotation * projectile.transform.rotation) as GameObject;
 		Vector3 direction = transform.rotation * Vector3.down;
 		direction.Normalize();
 		bullet.GetComponent<Rigidbody2D>().velocity = direction * bullet.GetComponent<Projectile>().speed;

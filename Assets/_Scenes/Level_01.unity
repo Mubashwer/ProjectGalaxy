@@ -2164,7 +2164,7 @@ GameObject:
   - 114: {fileID: 1832203738}
   - 114: {fileID: 1832203737}
   m_Layer: 5
-  m_Name: Button
+  m_Name: PauseButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2200,6 +2200,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   paused: 0
+  pausedSprite: {fileID: 21300002, guid: 8c52c3e845dfeed41b81f15fd2cca39c, type: 3}
 --- !u!114 &1832203738
 MonoBehaviour:
   m_ObjectHideFlags: 0

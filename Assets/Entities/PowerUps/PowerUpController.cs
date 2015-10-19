@@ -60,23 +60,19 @@ public class PowerUpController : NetworkBehaviour {
     }
 
 
-    void Start () {
 
-        if (!isServer) return;
-    }
-
-    
     // Spawn powerUps every x seconds
+    [Server]
     IEnumerator SpawnPowerUps() {
         while (true) {
             InitiatePowerUp();
-            yield return new WaitForSeconds(Random.Range(2.0f, 3.0f));
+            yield return new WaitForSeconds(Random.Range(14.0f, 16.0f));
         }
     }
 
     // Initiate powerups 
     void InitiatePowerUp() {
-        if (!isServer) return;
+        if (!NetworkServer.active) return;
         int index = Random.Range(0, powerUps.GetLength(0)); // get random powerup index
         Vector3 position = new Vector3(Random.Range(-2, 2), 5.5f, 0); // get random spawn position
         //RpcDropPowerUp(index, position, id++);
@@ -85,20 +81,6 @@ public class PowerUpController : NetworkBehaviour {
         NetworkServer.Spawn(item);
     }
 
-    /*[ClientRpc]
-    void RpcDropPowerUp(int index, Vector3 position, int itemID) {
-        GameObject item = Instantiate(Resources.Load(powerUps[index] + "item"), position, Quaternion.identity) as GameObject;
-        item.GetComponent<PowerUpItem>().SetId(itemID);
-    }*/
-
-    // Update is called once per frame
-    public override void OnStartServer () {
-        
-    }
-
-    void Update() {
-        if (!isServer) return;
-    }
 
 
 }

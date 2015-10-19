@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour {
     private Difficulty _difficulty;
     public Difficulty CurrentPlayerDifficulty { get; set; }
 
+    public bool Paused { get; set; }
 
     //Public reference that other classes will use
     public static GameManager instance
@@ -53,6 +54,7 @@ public class GameManager : MonoBehaviour {
         }
         CurrentPlayerDifficulty = Difficulty.Normal;
         CurrentGameMode = GameMode.None;
+        Paused = false;
     }
 
 	// Host has disconnected the game
@@ -66,6 +68,9 @@ public class GameManager : MonoBehaviour {
     // Check if all the players are dead
 
     void Update() {
+        if (Input.GetKeyDown(KeyCode.Escape)) {
+            Application.Quit();
+        }
     }
 
 }

@@ -956,6 +956,7 @@ GameObject:
   m_Component:
   - 224: {fileID: 540990512}
   - 114: {fileID: 540990513}
+  - 114: {fileID: 540990514}
   m_Layer: 5
   m_Name: DifficultySlider
   m_TagString: Untagged
@@ -1042,6 +1043,17 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Slider+SliderEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &540990514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 540990511}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7a334ce08e66fd428c661d56e95e80f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &655622778
 GameObject:
   m_ObjectHideFlags: 0
@@ -1382,7 +1394,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Local Multiplayer
+  m_Text: 2-Player Co-op
 --- !u!222 &743896113
 CanvasRenderer:
   m_ObjectHideFlags: 0

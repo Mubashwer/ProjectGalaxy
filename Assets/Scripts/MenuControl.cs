@@ -37,10 +37,16 @@ public class MenuControl : MonoBehaviour {
     public void OnClickedInGameQuit() {
         
         GameManager.GameMode mode = GameManager.instance.CurrentGameMode;
+        if (GameManager.instance.Paused) {
+            var pauseButton = GameObject.Find("PauseButton");
+            if (pauseButton) {
+                pauseButton.GetComponent<PauseButton>().PauseGame(); // Unpause if game is quit while being paused
+            }
+        }
+        // Stop Game and network connection 
         GameManager.instance.CurrentGameMode = GameManager.GameMode.None;
         NetworkManagerCustom networkManager = NetworkManagerCustom.instance;
         networkManager.StopGame();
-        //Debug.Log(mode);
         if ((mode == GameManager.GameMode.MultiPlayerHost || mode == GameManager.GameMode.SinglePlayer) && (NetworkServer.active || NetworkClient.active)) {
             networkManager.StopHost();
         }

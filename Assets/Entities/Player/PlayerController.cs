@@ -78,7 +78,7 @@ public class PlayerController : NetworkBehaviour {
 
     // Update is called once per frame
     void Update() {
-        if (!isLocalPlayer || IsAlive == false) {
+        if (!isLocalPlayer || !IsAlive || GameManager.instance.Paused) {
             return;
         }
 
@@ -308,13 +308,17 @@ public class PlayerController : NetworkBehaviour {
         transform.FindChild("RightExhaustFlames").gameObject.GetComponent<Renderer>().enabled = false;
         transform.FindChild("LeftExhaustFlames").gameObject.GetComponent<Renderer>().enabled = false;
         if (currentLives <= 0) {
-            if (isLocalPlayer) LevelManager.instance.GameOver("you are dead", (int)score);
+            if (isLocalPlayer) StartCoroutine(GameOver());
         }
         else {
             Respawn();
         }
         
 
+    }
+    IEnumerator GameOver() {
+        yield return new WaitForSeconds(2);
+        LevelManager.instance.GameOver("you are dead", (int)score);
     }
 
 
