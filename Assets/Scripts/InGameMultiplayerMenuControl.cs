@@ -19,15 +19,20 @@ public class InGameMultiplayerMenuControl : NetworkBehaviour {
         bool multiplayer = (GameManager.instance.CurrentGameMode == GameManager.GameMode.MultiPlayerHost);
         multiplayerMenuCanvas.SetActive(multiplayer);
 
-        if (multiplayer) {
-            ipAddressUIText.GetComponent<Text>().text = "Give your IP to Player 2\n" + Utilities.GetCurrentIPAddress().ToString();  //Utilities.Base64Encode(Utilities.GetCurrentIPAddress().ToString());
+        try {
+	        if (multiplayer) {
+	            ipAddressUIText.GetComponent<Text>().text = "Give your IP to Player 2\n" + Utilities.GetCurrentIPAddress().ToString();  //Utilities.Base64Encode(Utilities.GetCurrentIPAddress().ToString());
+	        }
         }
-
-        // For Client
-        multiplayerJoinMenuCanvas = GameObject.Find("CanvasMultiplayerJoin");
-        clientInputCode = GameObject.Find("JoinKey");
-        multiplayer = (GameManager.instance.CurrentGameMode == GameManager.GameMode.MultiPlayerClient);
-        multiplayerJoinMenuCanvas.SetActive(multiplayer);
+        catch{}
+        finally {
+	
+	        // For Client
+	        multiplayerJoinMenuCanvas = GameObject.Find("CanvasMultiplayerJoin");
+	        clientInputCode = GameObject.Find("JoinKey");
+	        multiplayer = (GameManager.instance.CurrentGameMode == GameManager.GameMode.MultiPlayerClient);
+	        multiplayerJoinMenuCanvas.SetActive(multiplayer);
+	        }
     }
 	
 	// Update is called once per frame
