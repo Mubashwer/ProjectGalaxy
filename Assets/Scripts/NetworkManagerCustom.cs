@@ -35,6 +35,10 @@ public class NetworkManagerCustom : NetworkManager {
 
     // called when a new player is added for a client
     public override void OnServerAddPlayer(NetworkConnection conn, short playerControllerId) {
+        if(numPlayers >=  2 || (numPlayers >=  1 && GameManager.instance.CurrentGameMode == GameManager.GameMode.SinglePlayer) ) {
+            conn.Disconnect();
+        }
+
         base.OnServerAddPlayer(conn, playerControllerId);
 
         if (numPlayers < 2) return; // Beyond this point is only for non-host client player

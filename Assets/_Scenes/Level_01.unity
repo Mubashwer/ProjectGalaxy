@@ -811,7 +811,7 @@ MonoBehaviour:
     m_FontStyle: 0
     m_BestFit: 1
     m_MinSize: 10
-    m_MaxSize: 25
+    m_MaxSize: 40
     m_Alignment: 0
     m_RichText: 0
     m_HorizontalOverflow: 0
@@ -2023,7 +2023,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Please enter a valid key!
+  m_Text: Please enter a valid key and wait!
 --- !u!222 &1774003085
 CanvasRenderer:
   m_ObjectHideFlags: 0

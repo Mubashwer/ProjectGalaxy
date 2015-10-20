@@ -97,9 +97,9 @@ public class PowerUp : NetworkBehaviour {
     }
 
     public virtual void RestorePlayerSprite() {
-        if (!spriteChange || !player || !playerOldSprite) return;
+        if (!spriteChange || !player) return;
         
-		if (player.GetComponent<PlayerController>().PlayerNum >= 21) { 
+		if (player.GetComponent<PlayerController>().PlayerNum >= 2) { 
         	player.GetComponent<SpriteRenderer>().sprite = playerTwoOldSprite;
         }else{
 			player.GetComponent<SpriteRenderer>().sprite = playerOldSprite;

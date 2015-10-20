@@ -7,25 +7,24 @@ using System;
 
 public class Utilities : MonoBehaviour {
 
-    public static string Base64Encode(string plainText) {
-        var plainTextBytes = System.Text.Encoding.UTF8.GetBytes(plainText);
-        return System.Convert.ToBase64String(plainTextBytes);
+    public static string Base64Encode(byte[] bytes) {
+        return Convert.ToBase64String(bytes);
     }
 
-    public static string Base64Decode(string base64EncodedData) {
-        var base64EncodedBytes = System.Convert.FromBase64String(base64EncodedData);
-        return System.Text.Encoding.UTF8.GetString(base64EncodedBytes);
+    public static byte[] Base64Decode(string base64EncodedData) {
+        return Convert.FromBase64String(base64EncodedData);
     }
 
 
-    public static string GetIp() {
+    public static IPAddress GetIP() {
         var host = Dns.GetHostEntry(Dns.GetHostName());
         foreach (var ip in host.AddressList) {
-            if (ip.AddressFamily == AddressFamily.InterNetwork) {
-                return ip.ToString();
+            var ipBytes = ip.GetAddressBytes();
+            if (ip.AddressFamily == AddressFamily.InterNetwork && ipBytes.Length ==  4 && ipBytes[3] != 1) {
+                return ip;
             }
         }
-        return "empty";
+        return IPAddress.None;
     }
 
 

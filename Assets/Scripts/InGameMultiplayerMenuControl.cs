@@ -20,25 +20,26 @@ public class InGameMultiplayerMenuControl : NetworkBehaviour {
         multiplayerMenuCanvas.SetActive(multiplayer);
 
         try {
-	        if (multiplayer) {
-	            ipAddressUIText.GetComponent<Text>().text = "Give your IP to Player 2\n" + Utilities.GetIp();  //Utilities.Base64Encode(Utilities.GetCurrentIPAddress().ToString());
-	        }
+            if (multiplayer) {
+                ipAddressUIText.GetComponent<Text>().text = "Give this code to Player 2:\n" +  Utilities.Base64Encode(Utilities.GetIP().GetAddressBytes());
+               //Debug.Log(Utilities.Base64Decode(Utilities.Base64Encode(Utilities.GetIP())));
+            }
         }
         catch{}
         finally {
-	
-	        // For Client
-	        multiplayerJoinMenuCanvas = GameObject.Find("CanvasMultiplayerJoin");
-	        clientInputCode = GameObject.Find("JoinKey");
-	        multiplayer = (GameManager.instance.CurrentGameMode == GameManager.GameMode.MultiPlayerClient);
-	        multiplayerJoinMenuCanvas.SetActive(multiplayer);
-	        }
+    
+            // For Client
+            multiplayerJoinMenuCanvas = GameObject.Find("CanvasMultiplayerJoin");
+            clientInputCode = GameObject.Find("JoinKey");
+            multiplayer = (GameManager.instance.CurrentGameMode == GameManager.GameMode.MultiPlayerClient);
+            multiplayerJoinMenuCanvas.SetActive(multiplayer);
+            }
     }
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    
+    // Update is called once per frame
+    void Update () {
+    
+    }
 
 
     public void CommenceMultiplayerGame() {
@@ -49,9 +50,7 @@ public class InGameMultiplayerMenuControl : NetworkBehaviour {
     public void OnClickedJoinGame() {
         NetworkManager networkManager = NetworkManagerCustom.instance;
         var code = clientInputCode.GetComponent<InputField>().text;
-        //var hack = Utilities.Base64Encode("192.168.1.1");
-        //Debug.Log(code);
-        networkManager.networkAddress = code;
+        networkManager.networkAddress = (new IPAddress(Utilities.Base64Decode(code))).ToString();
         networkManager.StartClient();
         multiplayerJoinMenuCanvas.SetActive(false);
     }
