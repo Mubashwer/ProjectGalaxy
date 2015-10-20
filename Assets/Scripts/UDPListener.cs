@@ -16,7 +16,8 @@ public class UDPListener : MonoBehaviour {
     // start from unity3d
     public void Start() {
         client = new UdpClient(7778);
-        client.Client.ReceiveTimeout = 100;
+        client.EnableBroadcast = true;
+        client.Client.ReceiveTimeout = 10;
         StartCoroutine(ReceiveDataCoRoutine());
     }
 
@@ -45,7 +46,7 @@ public class UDPListener : MonoBehaviour {
             catch (Exception e) {
                 print(e.ToString());
             }
-            yield return new WaitForSeconds(1);
+            yield return null;
         }
     }
 }
