@@ -83,21 +83,22 @@ public class LevelManager : MonoBehaviour {
     }
 
     public void LoadLevel(string levelName, bool showAd) {
-        if (!showAd) Application.LoadLevel(levelName);
-        else StartCoroutine(ShowAdThenLoad(levelName));
+        if (showAd) {
+            StopAllCoroutines();
+            StartCoroutine(ShowAd());
+        }
+        Application.LoadLevel(levelName);
     }
 
-    IEnumerator ShowAdThenLoad(string levelName) {
+    IEnumerator ShowAd() {
         while (!Advertisement.IsReady())
-            yield return null;
+            yield return new WaitForSeconds(2);
         try {
+            if (Advertisement.IsReady()) {
                 Advertisement.Show();
+            }
         }
         catch { }
-        finally {
-            Application.LoadLevel(levelName);
-        }
-
     } 
 
 
