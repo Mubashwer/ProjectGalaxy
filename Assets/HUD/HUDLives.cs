@@ -28,6 +28,7 @@ public class HUDLives : MonoBehaviour {
     // Update is called once per frame
     void Update () {
         FindPlayer();
+        if (!player) return;
         int newCurrentLives = player.GetCurrentRemainingLives();
         if (currentLives == newCurrentLives) return;
         currentLives = newCurrentLives;

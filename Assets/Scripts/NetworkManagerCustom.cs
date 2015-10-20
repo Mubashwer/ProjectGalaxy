@@ -37,6 +37,7 @@ public class NetworkManagerCustom : NetworkManager {
     public override void OnServerAddPlayer(NetworkConnection conn, short playerControllerId) {
         if(numPlayers >=  2 || (numPlayers >=  1 && GameManager.instance.CurrentGameMode == GameManager.GameMode.SinglePlayer) ) {
             conn.Disconnect();
+            Debug.Log("Kicked out!");
         }
 
         base.OnServerAddPlayer(conn, playerControllerId);

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using UnityEngine.Advertisements;
 
 public class LevelManager : MonoBehaviour {
 
@@ -80,6 +81,24 @@ public class LevelManager : MonoBehaviour {
         }
         return player;
     }
+
+    public void LoadLevel(string levelName, bool showAd) {
+        if (!showAd) Application.LoadLevel(levelName);
+        else StartCoroutine(ShowAdThenLoad(levelName));
+    }
+
+    IEnumerator ShowAdThenLoad(string levelName) {
+        while (!Advertisement.IsReady())
+            yield return null;
+        try {
+                Advertisement.Show();
+        }
+        catch { }
+        finally {
+            Application.LoadLevel(levelName);
+        }
+
+    } 
 
 
 }

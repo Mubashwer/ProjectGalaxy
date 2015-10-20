@@ -22,7 +22,7 @@ public class MenuControl : MonoBehaviour {
 
     public void OnClickedSinglePlayer() {
         GameManager.instance.CurrentGameMode = GameManager.GameMode.SinglePlayer;
-        Application.LoadLevel("Level_01");
+        LevelManager.instance.LoadLevel("Level_01", true);
         NetworkManager networkManager = NetworkManagerCustom.instance;
         networkManager.StartHost();
         EnemyController.instance.Enabled = true;
@@ -63,12 +63,12 @@ public class MenuControl : MonoBehaviour {
 
     public void OnClickedMultiplayerMenuClient() {
         GameManager.instance.CurrentGameMode = GameManager.GameMode.MultiPlayerClient;
-        Application.LoadLevel("Level_01");
+        LevelManager.instance.LoadLevel("Level_01", true);
     }
 
     public void OnClickedMultiplayerMenuServer() {
         GameManager.instance.CurrentGameMode = GameManager.GameMode.MultiPlayerHost;
-        Application.LoadLevel("Level_01");
+        LevelManager.instance.LoadLevel("Level_01", true);
         NetworkManager networkManager = NetworkManagerCustom.instance;
         networkManager.StartHost();
     }

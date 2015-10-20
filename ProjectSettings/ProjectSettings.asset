@@ -86,14 +86,14 @@ PlayerSettings:
     16:9: 1
     Others: 1
   bundleIdentifier: tk.CrownClownStudios.GalaxyProtectors
-  bundleVersion: 1.01
+  bundleVersion: 1.03
   preloadedAssets: []
   metroEnableIndependentInputSource: 0
   metroEnableLowLatencyPresentationAPI: 0
   xboxOneDisableKinectGpuReservation: 0
   virtualRealitySupported: 0
   productGUID: f332b82a6569f994f9497dbed2a0e9e1
-  AndroidBundleVersionCode: 101
+  AndroidBundleVersionCode: 103
   AndroidMinSdkVersion: 9
   AndroidPreferredInstallLocation: 1
   aotOptions: 

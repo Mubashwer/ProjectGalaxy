@@ -21,8 +21,7 @@ public class InGameMultiplayerMenuControl : NetworkBehaviour {
 
         try {
             if (multiplayer) {
-                ipAddressUIText.GetComponent<Text>().text = "Give this code to Player 2:\n" +  Utilities.Base64Encode(Utilities.GetIP().GetAddressBytes());
-               //Debug.Log(Utilities.Base64Decode(Utilities.Base64Encode(Utilities.GetIP())));
+                ipAddressUIText.GetComponent<Text>().text = "Give this code to Player 2:\n" + Utilities.Base64Encode(IPAddress.Parse(Network.player.ipAddress).GetAddressBytes()); //encode ip
             }
         }
         catch{}
