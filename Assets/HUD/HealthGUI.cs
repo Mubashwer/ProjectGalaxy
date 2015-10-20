@@ -7,7 +7,7 @@ public class HealthGUI : MonoBehaviour
 {
 
     // Use this for initialization
-    private PlayerController player; // health
+    private PlayerController player; 
     private float maxHealth; //maximum health of player
     bool playerSet = false;
 

@@ -282,6 +282,9 @@ public class PlayerController : NetworkBehaviour {
 
     }
 
+    public int  GetCurrentRemainingLives() {
+        return currentLives-1;
+    }
 
     // Updates scores in all clients
     [ClientRpc]
