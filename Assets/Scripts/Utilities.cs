@@ -3,6 +3,7 @@ using System.Collections;
 using System.Net;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
+using System;
 
 public class Utilities : MonoBehaviour {
 
@@ -16,27 +17,16 @@ public class Utilities : MonoBehaviour {
         return System.Text.Encoding.UTF8.GetString(base64EncodedBytes);
     }
 
-    public static IPAddress GetCurrentIPAddress() {
-        try {
-            return GetLocalIPv4(NetworkInterfaceType.Wireless80211);
-        }
-        catch {
-            return new IPAddress(0);
-        }
-    }
 
-    public static IPAddress GetLocalIPv4(NetworkInterfaceType _type) {
-        IPAddress output = null;
-        foreach (NetworkInterface item in NetworkInterface.GetAllNetworkInterfaces()) {
-            if (item.NetworkInterfaceType == _type && item.OperationalStatus == OperationalStatus.Up) {
-                foreach (UnicastIPAddressInformation ip in item.GetIPProperties().UnicastAddresses) {
-                    if (ip.Address.AddressFamily == AddressFamily.InterNetwork) {
-                        output = ip.Address;
-                    }
-                }
+    public static string GetIp() {
+        var host = Dns.GetHostEntry(Dns.GetHostName());
+        foreach (var ip in host.AddressList) {
+            if (ip.AddressFamily == AddressFamily.InterNetwork) {
+                return ip.ToString();
             }
         }
-        return output;
+        return "empty";
     }
+
 
 }
