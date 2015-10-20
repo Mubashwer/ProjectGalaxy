@@ -108,4 +108,12 @@ public class LoginManager : MonoBehaviour {
             loginButtonText.text = "SIGN IN";
         }
     }
+
+    public void LogOut() {
+        try {
+            PlayGamesPlatform.Instance.SignOut();
+        }
+        catch{ }
+    }
+
 }

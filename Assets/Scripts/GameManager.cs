@@ -68,9 +68,7 @@ public class GameManager : MonoBehaviour {
     // Check if all the players are dead
 
     void Update() {
-        if (Input.GetKeyDown(KeyCode.Escape)) {
-            Application.Quit();
-        }
+
     }
 
 }
