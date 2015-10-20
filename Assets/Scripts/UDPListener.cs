@@ -15,7 +15,7 @@ public class UDPListener : MonoBehaviour {
 
     // start from unity3d
     public void Start() {
-        client = new UdpClient(7778);
+        client = new UdpClient(14534);
         client.EnableBroadcast = true;
         client.Client.ReceiveTimeout = 10;
         StartCoroutine(ReceiveDataCoRoutine());
