@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
-using UnityEngine.Advertisements;
+//using UnityEngine.Advertisements;
 
 public class LevelManager : MonoBehaviour {
 
@@ -82,7 +82,7 @@ public class LevelManager : MonoBehaviour {
         return player;
     }
 
-    public void LoadLevel(string levelName, bool showAd) {
+    /*public void LoadLevel(string levelName, bool showAd) {
         if (showAd) {
             StopAllCoroutines();
             StartCoroutine(ShowAd());
@@ -99,7 +99,7 @@ public class LevelManager : MonoBehaviour {
             }
         }
         catch { }
-    } 
+    } */
 
 
 }

@@ -2,8 +2,8 @@
 
 ### What is this repository for? ###
 
-* Project Galaxy (working title)
-* v0.0.1
+* Galaxy Protectors
+* v1.05
 
 ### Requirements? ###
 
@@ -15,6 +15,7 @@
 
 * Open project with Unity
 * Go to File->Build Settings and select "Android"
+* Remove the key from player settings on Build Settings
 * Press Build and wait
 
 ### How to to install/play? ###
