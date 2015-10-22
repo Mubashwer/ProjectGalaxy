@@ -16,16 +16,16 @@ public class Utilities : MonoBehaviour {
     }
 
 
-    public static IPAddress GetIP() {
-        var host = Dns.GetHostEntry(Dns.GetHostName());
-        foreach (var ip in host.AddressList) {
-            var ipBytes = ip.GetAddressBytes();
-            if (ip.AddressFamily == AddressFamily.InterNetwork && ipBytes.Length ==  4 && ipBytes[3] != 1) {
-                return ip;
-            }
-        }
-        return IPAddress.None;
-    }
+    //public static IPAddress GetIP() {
+    //    var host = Dns.GetHostEntry(Dns.GetHostName());
+    //    foreach (var ip in host.AddressList) {
+    //        var ipBytes = ip.GetAddressBytes();
+    //        if (ip.AddressFamily == AddressFamily.InterNetwork && ipBytes.Length ==  4 && ipBytes[3] != 1) {
+    //            return ip;
+    //        }
+    //    }
+    //    return IPAddress.None;
+    //}
 
 
 }

@@ -58,11 +58,11 @@ public class GameManager : MonoBehaviour {
     }
 
 	// Host has disconnected the game
-	void OnDisconnectedFromServer(NetworkDisconnection info) {
-		if(info == NetworkDisconnection.LostConnection){
-			Debug.Log("Lost connection to the server");
-		}
-	}
+	//void OnDisconnectedFromServer(NetworkDisconnection info) {
+	//	if(info == NetworkDisconnection.LostConnection){
+	//		Debug.Log("Lost connection to the server");
+	//	}
+	//}
 
     
     // Check if all the players are dead

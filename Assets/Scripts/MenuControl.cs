@@ -2,8 +2,6 @@
 using UnityEngine.UI;
 using UnityEngine.Networking;
 using System.Collections;
-using GooglePlayGames;
-using UnityEngine.SocialPlatforms;
 
 
 public class MenuControl : MonoBehaviour {
@@ -71,15 +69,6 @@ public class MenuControl : MonoBehaviour {
         Application.LoadLevel("Level_01");
         NetworkManager networkManager = NetworkManagerCustom.instance;
         networkManager.StartHost();
-    }
-
-    public void OnClickedLeaderBoard() {
-        // show leaderboard UI
-        try {
-            LoginManager.instance.ShowLeaderBoard();
-        }
-        catch { }
-
     }
 
     public void OnClickedOptions() {
