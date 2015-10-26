@@ -4,53 +4,16 @@ using System.Threading;
 using NUnit.Framework;
 using UnityEngine;
 
-
-
 namespace UnitTest
 {
-		
-	
 		using NUnit.Framework;
-		
-		[TestFixture]
-		
-		public class Testing{
-			[Test]
-			
-			public void ExceptionTest()
-			{
-				Assert.AreEqual(1,1);
-			}
-		}
-		
-		[TestFixture]
-		
-		public class Testing2{
-			[Test]
-			
-			public void ExceptionTest2()
-			{
-				Assert.AreEqual(1,2);
-			}
-		}
-		
 		
 		[TestFixture]
 		public class PlayerControllerTest
 		{
-			[Test]
-		public void GetMaxHealth()
-			{
-				// Create a health component with initial health = 50.
-			//	var player = new PlayerController();
-			//player.RpcDamaged(200f);
 				
-				// assert (verify) that healthAmount was updated.
-				//Assert.AreEqual(800f, player.getHealth);
-				
-			}
-			
-			[Test]
+		// Tests that damage is applied to the player when it is hit.
+		[Test]
 		public void Player_RpcDamaged_Test()
 			{
 			 PlayerController player;
@@ -72,20 +35,41 @@ namespace UnitTest
 				
 			}
 			
-		}
 		
+		// Tests that when damage is applied to a player with shield, no damage is done
+		[Test]
+		public void Player_ShieldPowerUp_Test()
+		{
+			PlayerController player2;
+			
+			// Instantiating the player.
+			player2 =  GameObject.Find("Player2").GetComponent<PlayerController>();
+			// Getting current health
+			float playerHealth = player2.getHealth();
+			// Extracts power up item
+			player2.RpcPowerUpExtract(player2.item.powerUpName, 1);
+			// AppliedDamage with powerUp
+			float appliedDamage = player2.powerUp.Defend(200f);
+			// Damage done applied
+			player2.RpcDamaged (appliedDamage);
+			// Getting new health
+			float newPlayerHealth = player2.getHealth();
+			// There should not be any damage due to powerUp shield
+			float actualDamage = playerHealth - newPlayerHealth;
+			// assert (verify) that health was updated.
+			Assert.AreEqual(0f, actualDamage);
+			
+		}	
 		
-
-		
-		
-		
-		
+	}
 	
-		[TestFixture]
-		public class EnemyAITest
+	
+	[TestFixture]
+	public class EnemyAITest
 		{	
 		
-			[Test]
+		// Tests that damage is applied to the enemy when it is hit.
+		[Test]
 		public void Enemy_RpcDamaged_Test()
 			{
 			EnemyAI enemy;
@@ -107,44 +91,6 @@ namespace UnitTest
 			
 			}
 		}
-		
-		
-		
-		[TestFixture]
-		public class ShieldPowerUpTest
-		{
-			
-			// Tests that when damage is applied to a player with shield, no damage is done
-			[Test]
-			public void Player_ShieldPowerUp_Test()
-			{
-				PlayerController player2;
 				
-				// Instantiating the player.
-				player2 =  GameObject.Find("Player2").GetComponent<PlayerController>();
-				// Getting current health
-				float playerHealth = player2.getHealth();
-				// Extracts power up item
-				player2.RpcPowerUpExtract(player2.item.powerUpName, 1);
-				// AppliedDamage with powerUp
-				float appliedDamage = player2.powerUp.Defend(200f);
-				// Damage done applied
-				player2.RpcDamaged (appliedDamage);
-				// Getting new health
-				float newPlayerHealth = player2.getHealth();
-				// There should not be any damage due to power up shield
-				float actualDamage = playerHealth - newPlayerHealth;
-				// assert (verify) that health was updated.
-				Assert.AreEqual(0f, actualDamage);
-				
-			}	
-		}	
-		
-		
-		
-		
-		
-		
-		
-	    
+			    
 }
