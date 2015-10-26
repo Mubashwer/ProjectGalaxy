@@ -15,7 +15,7 @@ public class PlayerController : NetworkBehaviour {
 
     public bool IsAlive { get; set; }
     public int PlayerNum { get; set; }
-    [HideInInspector]
+    //[HideInInspector]
     public PowerUpItem item;
     [HideInInspector]
     public PowerUp powerUp;
@@ -180,7 +180,7 @@ public class PlayerController : NetworkBehaviour {
 
     // Takes damage and (maybe?) dies in all clients
     [ClientRpc]
-    void RpcDamaged(float damage) {
+    public void RpcDamaged(float damage) {
         health -= damage;
         // hit effect
         GameObject hit = Instantiate(Resources.Load("YellowBulletHit"), transform.position, Quaternion.identity) as GameObject;
@@ -194,7 +194,7 @@ public class PlayerController : NetworkBehaviour {
 
     // Extract powerUp in all clients
     [ClientRpc]
-    void RpcPowerUpExtract(string name, int id) {
+    public void RpcPowerUpExtract(string name, int id) {
         GameObject powerUpObject = Instantiate(Resources.Load(name + "PowerUp")) as GameObject;
         powerUp = powerUpObject.GetComponent<PowerUp>();
         powerUp.Setup(gameObject, id);

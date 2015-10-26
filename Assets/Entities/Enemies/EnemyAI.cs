@@ -104,7 +104,7 @@ public class EnemyAI : NetworkBehaviour {
     }
 
     [ClientRpc]
-    void RpcDamaged(float damage) {
+    public void RpcDamaged(float damage) {
         Health -= damage;
         // hit effect
         GameObject hit = Instantiate(Resources.Load("YellowBulletHit"), transform.position, Quaternion.identity) as GameObject;
