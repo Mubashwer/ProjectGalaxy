@@ -189,12 +189,12 @@ MonoBehaviour:
   maxHealth:
   - 200
   - 300
-  - 500
+  - 400
   projectileShootRate:
-  - .200000003
+  - .25
   - .300000012
   - .600000024
-  scoreValue: 080000001400000032000000
+  scoreValue: 030000002300000041000000
   rotationSpeed:
   - .600000024
   - .800000012
@@ -351,7 +351,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: scoreValue.Array.data[1]
-      value: 20
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: rotationSpeed.Array.data[1]
@@ -367,11 +367,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: scoreValue.Array.data[2]
-      value: 50
+      value: 65
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: scoreValue.Array.data[0]
-      value: 8
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: projectileShootRate.Array.data[2]
@@ -379,7 +379,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: projectileShootRate.Array.data[0]
-      value: .200000003
+      value: .25
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: health.Array.data[2]
@@ -391,7 +391,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: maxHealth.Array.data[2]
-      value: 500
+      value: 400
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: maxHealth.Array.data[1]

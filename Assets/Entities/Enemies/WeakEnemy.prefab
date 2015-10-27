@@ -187,14 +187,14 @@ MonoBehaviour:
   projectile: {fileID: 175764, guid: 20e11034337269949a50fe70ad76420e, type: 2}
   shootSound: {fileID: 8300000, guid: 9a61bcd03420c954d99bda7a3b8f2323, type: 3}
   maxHealth:
-  - 80
+  - 100
   - 150
   - 200
   projectileShootRate:
-  - .800000012
+  - .899999976
   - 1
   - 1
-  scoreValue: 020000000f0000001e000000
+  scoreValue: 010000000f0000001e000000
   rotationSpeed:
   - 6
   - 8
@@ -355,7 +355,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: projectileShootRate.Array.data[0]
-      value: .800000012
+      value: .899999976
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: projectileShootRate.Array.data[2]
@@ -371,7 +371,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: scoreValue.Array.data[0]
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: rotationSpeed.Array.data[1]
@@ -391,7 +391,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: maxHealth.Array.data[0]
-      value: 80
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: maxHealth.Array.data[2]

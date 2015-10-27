@@ -26,7 +26,8 @@ public class PowerUpGUI : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-        if (!FindPlayer() || player.IsAlive == false) return; // find local player
+        FindPlayer();
+        if (!player || !player.IsAlive) return;
 
         
         // if player replace powerUp: replace HUD
