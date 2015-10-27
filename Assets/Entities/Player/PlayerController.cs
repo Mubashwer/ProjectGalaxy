@@ -337,11 +337,11 @@ public class PlayerController : NetworkBehaviour {
         IsAlive = true;
         transform.FindChild("RightExhaustFlames").gameObject.GetComponent<Renderer>().enabled = true;
         transform.FindChild("LeftExhaustFlames").gameObject.GetComponent<Renderer>().enabled = true;
+        health = maxHealth[difficulty];
     }
 
     void Respawn() {
         StartCoroutine(Blink());
-        health = maxHealth[difficulty];
     }
     
     [Command]

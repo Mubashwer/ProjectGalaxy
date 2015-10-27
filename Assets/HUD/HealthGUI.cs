@@ -30,6 +30,7 @@ public class HealthGUI : MonoBehaviour
     void Update() {
         float health;
         FindPlayer();
+        if (!player || !player.IsAlive) return;
         if (player) {
             health = player.getHealth();
         }
