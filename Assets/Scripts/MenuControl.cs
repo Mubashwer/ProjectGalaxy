@@ -82,17 +82,27 @@ public class MenuControl : MonoBehaviour {
 
     }
 
+
+    /* OPTIONS */
+
     public void OnClickedOptions() {
         mainMenuCanvas.SetActive(false);
         optionsCanvas.SetActive(true);
     }
-    public void OnClickedOptionsMenuBack() {
-        mainMenuCanvas.SetActive(true);
-        optionsCanvas.SetActive(false);
-    }
+
     public void OnDifficultyChanged() {
         Slider slider = GameObject.Find("DifficultySlider").GetComponent<Slider>();
         GameManager.instance.CurrentPlayerDifficulty = (GameManager.Difficulty)Mathf.RoundToInt(slider.value);
+    }
+
+    public void OnMusicToggleClicked() {
+        Toggle toggle = GameObject.Find("MusicToggle").GetComponent<Toggle>();
+        LevelManager.instance.GetComponent<AudioSource>().mute = !toggle.isOn;
+    }
+
+    public void OnClickedOptionsMenuBack() {
+        mainMenuCanvas.SetActive(true);
+        optionsCanvas.SetActive(false);
     }
 
 }
