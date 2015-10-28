@@ -27,16 +27,16 @@ public class UpgradePowerUp : PowerUp {
             bulletPos = player.transform.position;
 
             if(i == 0) {
-                bulletPos.x -= 1.083f;
+                bulletPos.x -= 0.863f;
             }
             if(i == 1) {
-                bulletPos.x -= 1.158f;
+                bulletPos.x -= 0.938f;
             }
             if(i == 2) {
-                bulletPos.x += 0.53f;
+                bulletPos.x += 0.41f;
             }
             else {
-                bulletPos.x += 0.605f;
+                bulletPos.x += 0.485f;
             }
             bulletPos.y += 0.5f;
             bullet = Instantiate(Resources.Load("YellowLongBullet"), bulletPos, Quaternion.identity) as GameObject;
