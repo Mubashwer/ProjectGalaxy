@@ -24,6 +24,11 @@
 * Run and install the .apk file
 * Play!
 
+
+### Official build ###
+
+* https://play.google.com/store/apps/details?id=tk.CrownClownStudios.GalaxyProtectors
+
 ### How to test? ###
 
 * Go to '_Scenes' folder under 'Assets' and open the 'Test' scene
@@ -33,3 +38,8 @@
 * To look at the testing script, go to "\Assets\UnityTestTools\Tests\UnitTest\Editor\Unit_Test.cs" 
 
 
+### Directory Structure in Assets ###
+ * Entities folders such as Player, Enemies, Powerups have respective sprites, prefabs and scripts in them
+ * HUD folder contains sprites, prefabs and scripts related to HUD GameObjects such as health, powe-up timer and etc.
+ * Scripts folder contains misc. scripts such as menu scripts, game manager scripts etc
+ 
