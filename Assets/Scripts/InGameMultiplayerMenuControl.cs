@@ -21,7 +21,9 @@ public class InGameMultiplayerMenuControl : NetworkBehaviour {
 
         try {
             if (multiplayer) {
-                ipAddressUIText.GetComponent<Text>().text = "Give this code to Player 2:\n" + Utilities.Base64Encode(IPAddress.Parse(Network.player.ipAddress).GetAddressBytes()); //encode ip
+                var code = Utilities.Base64Encode(IPAddress.Parse(Network.player.ipAddress).GetAddressBytes()).ToString();
+                code = code.Remove(code.Length - 2, 2); // remove trailing padded "==" 
+                ipAddressUIText.GetComponent<Text>().text = "Give this code to Player 2:\n" + code; //encode ip
             }
         }
         catch{}
@@ -49,7 +51,7 @@ public class InGameMultiplayerMenuControl : NetworkBehaviour {
     public void OnClickedJoinGame() {
         NetworkManager networkManager = NetworkManagerCustom.instance;
         var code = clientInputCode.GetComponent<InputField>().text;
-        networkManager.networkAddress = (new IPAddress(Utilities.Base64Decode(code))).ToString();
+        networkManager.networkAddress = (new IPAddress(Utilities.Base64Decode(code + "=="))).ToString();  
         networkManager.StartClient();
         multiplayerJoinMenuCanvas.SetActive(false);
     }
